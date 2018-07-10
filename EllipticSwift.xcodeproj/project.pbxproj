@@ -1,0 +1,797 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5F0D722665319B73863D0956 /* libPods-EllipticSwiftTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A986D531EFC8D7C120E061 /* libPods-EllipticSwiftTests.a */; };
+		604CBD4A8EB1F149E748DC88 /* libPods-EllipticSwift_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F246573B5D4BA51101E5B62 /* libPods-EllipticSwift_iOS.a */; };
+		813CB9CA20F12475001434D4 /* EllipticSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813CB9C020F12475001434D4 /* EllipticSwift.framework */; };
+		813CB9CF20F12475001434D4 /* EllipticSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9CE20F12475001434D4 /* EllipticSwiftTests.swift */; };
+		813CB9D120F12475001434D4 /* EllipticSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 813CB9C320F12475001434D4 /* EllipticSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		813CB9E320F124A9001434D4 /* EllipticSwift_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 813CB9E120F124A9001434D4 /* EllipticSwift_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		813CB9E920F12591001434D4 /* FieldProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9E820F12591001434D4 /* FieldProtocols.swift */; };
+		813CB9EA20F12591001434D4 /* FieldProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9E820F12591001434D4 /* FieldProtocols.swift */; };
+		813CB9EC20F126A4001434D4 /* PrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9EB20F126A4001434D4 /* PrimeField.swift */; };
+		813CB9ED20F126A4001434D4 /* PrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9EB20F126A4001434D4 /* PrimeField.swift */; };
+		813CB9EF20F128B9001434D4 /* PrimeFieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9EE20F128B9001434D4 /* PrimeFieldElement.swift */; };
+		813CB9F020F128B9001434D4 /* PrimeFieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9EE20F128B9001434D4 /* PrimeFieldElement.swift */; };
+		81DFCBF220F3FA0D00603123 /* BigInt+Bitset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCBF120F3FA0D00603123 /* BigInt+Bitset.swift */; };
+		81DFCBF320F3FA0D00603123 /* BigInt+Bitset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCBF120F3FA0D00603123 /* BigInt+Bitset.swift */; };
+		81DFCBF520F4001D00603123 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCBF420F4001D00603123 /* Constants.swift */; };
+		81DFCBF620F4001D00603123 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCBF420F4001D00603123 /* Constants.swift */; };
+		81DFCBF920F4AB5200603123 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCBF820F4AB5200603123 /* Point.swift */; };
+		81DFCBFA20F4AB5200603123 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCBF820F4AB5200603123 /* Point.swift */; };
+		81DFCBFC20F4AE6E00603123 /* Curve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCBFB20F4AE6E00603123 /* Curve.swift */; };
+		81DFCBFD20F4AE6E00603123 /* Curve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCBFB20F4AE6E00603123 /* Curve.swift */; };
+		81DFCBFF20F4AEBA00603123 /* WeierstrassCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCBFE20F4AEBA00603123 /* WeierstrassCurve.swift */; };
+		81DFCC0020F4AEBA00603123 /* WeierstrassCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCBFE20F4AEBA00603123 /* WeierstrassCurve.swift */; };
+		81DFCC0220F4B81900603123 /* PrecompiledCurves.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC0120F4B81900603123 /* PrecompiledCurves.swift */; };
+		81DFCC0320F4B81900603123 /* PrecompiledCurves.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC0120F4B81900603123 /* PrecompiledCurves.swift */; };
+		81DFCC0620F4ECFE00603123 /* KSlidingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC0520F4ECFE00603123 /* KSlidingWindow.swift */; };
+		81DFCC0720F4ECFE00603123 /* KSlidingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC0520F4ECFE00603123 /* KSlidingWindow.swift */; };
+		CC7AB8957C42B6BE8D97D7D1 /* libPods-EllipticSwift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B46A18082B4C5966DAF715C /* libPods-EllipticSwift.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		813CB9CB20F12475001434D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 813CB9B720F12475001434D4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 813CB9BF20F12475001434D4;
+			remoteInfo = EllipticSwift;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		014E5800BB314C4A45FE52E4 /* Pods-EllipticSwift_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllipticSwift_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-EllipticSwift_iOS/Pods-EllipticSwift_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		0170224A2A4E0F6FF5A72AC8 /* Pods-EllipticSwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllipticSwiftTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EllipticSwiftTests/Pods-EllipticSwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
+		136E1BBF769A0D2C5A7BDDB3 /* Pods-EllipticSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllipticSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-EllipticSwift/Pods-EllipticSwift.release.xcconfig"; sourceTree = "<group>"; };
+		2D81F68392F0D534C66636CE /* Pods-EllipticSwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllipticSwiftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EllipticSwiftTests/Pods-EllipticSwiftTests.release.xcconfig"; sourceTree = "<group>"; };
+		3B46A18082B4C5966DAF715C /* libPods-EllipticSwift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EllipticSwift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BF7A38119BC4B7D74E11E75 /* Pods-EllipticSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllipticSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EllipticSwift/Pods-EllipticSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		6F246573B5D4BA51101E5B62 /* libPods-EllipticSwift_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EllipticSwift_iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		813CB9C020F12475001434D4 /* EllipticSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EllipticSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		813CB9C320F12475001434D4 /* EllipticSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EllipticSwift.h; sourceTree = "<group>"; };
+		813CB9C420F12475001434D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		813CB9C920F12475001434D4 /* EllipticSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EllipticSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		813CB9CE20F12475001434D4 /* EllipticSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllipticSwiftTests.swift; sourceTree = "<group>"; };
+		813CB9D020F12475001434D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		813CB9DF20F124A9001434D4 /* EllipticSwift_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EllipticSwift_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		813CB9E120F124A9001434D4 /* EllipticSwift_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EllipticSwift_iOS.h; sourceTree = "<group>"; };
+		813CB9E220F124A9001434D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		813CB9E820F12591001434D4 /* FieldProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldProtocols.swift; sourceTree = "<group>"; };
+		813CB9EB20F126A4001434D4 /* PrimeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeField.swift; sourceTree = "<group>"; };
+		813CB9EE20F128B9001434D4 /* PrimeFieldElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeFieldElement.swift; sourceTree = "<group>"; };
+		81DFCBF120F3FA0D00603123 /* BigInt+Bitset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BigInt+Bitset.swift"; sourceTree = "<group>"; };
+		81DFCBF420F4001D00603123 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		81DFCBF820F4AB5200603123 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		81DFCBFB20F4AE6E00603123 /* Curve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Curve.swift; sourceTree = "<group>"; };
+		81DFCBFE20F4AEBA00603123 /* WeierstrassCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeierstrassCurve.swift; sourceTree = "<group>"; };
+		81DFCC0120F4B81900603123 /* PrecompiledCurves.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecompiledCurves.swift; sourceTree = "<group>"; };
+		81DFCC0520F4ECFE00603123 /* KSlidingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KSlidingWindow.swift; sourceTree = "<group>"; };
+		89D25E59ED1A8B5EEEF0547C /* Pods-EllipticSwift_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllipticSwift_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EllipticSwift_iOS/Pods-EllipticSwift_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		B1A986D531EFC8D7C120E061 /* libPods-EllipticSwiftTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EllipticSwiftTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		813CB9BC20F12475001434D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC7AB8957C42B6BE8D97D7D1 /* libPods-EllipticSwift.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		813CB9C620F12475001434D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				813CB9CA20F12475001434D4 /* EllipticSwift.framework in Frameworks */,
+				5F0D722665319B73863D0956 /* libPods-EllipticSwiftTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		813CB9DB20F124A9001434D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				604CBD4A8EB1F149E748DC88 /* libPods-EllipticSwift_iOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3350990634F42A4E4A95EFF7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4BF7A38119BC4B7D74E11E75 /* Pods-EllipticSwift.debug.xcconfig */,
+				136E1BBF769A0D2C5A7BDDB3 /* Pods-EllipticSwift.release.xcconfig */,
+				0170224A2A4E0F6FF5A72AC8 /* Pods-EllipticSwiftTests.debug.xcconfig */,
+				2D81F68392F0D534C66636CE /* Pods-EllipticSwiftTests.release.xcconfig */,
+				89D25E59ED1A8B5EEEF0547C /* Pods-EllipticSwift_iOS.debug.xcconfig */,
+				014E5800BB314C4A45FE52E4 /* Pods-EllipticSwift_iOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		813CB9B620F12475001434D4 = {
+			isa = PBXGroup;
+			children = (
+				813CB9C220F12475001434D4 /* EllipticSwift */,
+				813CB9CD20F12475001434D4 /* EllipticSwiftTests */,
+				813CB9E020F124A9001434D4 /* EllipticSwift_iOS */,
+				813CB9C120F12475001434D4 /* Products */,
+				3350990634F42A4E4A95EFF7 /* Pods */,
+				9BFAE9C082BCF3332669F54C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		813CB9C120F12475001434D4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				813CB9C020F12475001434D4 /* EllipticSwift.framework */,
+				813CB9C920F12475001434D4 /* EllipticSwiftTests.xctest */,
+				813CB9DF20F124A9001434D4 /* EllipticSwift_iOS.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		813CB9C220F12475001434D4 /* EllipticSwift */ = {
+			isa = PBXGroup;
+			children = (
+				81DFCC0420F4ECED00603123 /* GeneralAlgorithms */,
+				81DFCBF720F4AB4000603123 /* CurveArithmetics */,
+				81DFCBF020F3F9FB00603123 /* Extensions */,
+				813CB9E720F1257B001434D4 /* ModularArithmetics */,
+				813CB9C320F12475001434D4 /* EllipticSwift.h */,
+				813CB9C420F12475001434D4 /* Info.plist */,
+			);
+			path = EllipticSwift;
+			sourceTree = "<group>";
+		};
+		813CB9CD20F12475001434D4 /* EllipticSwiftTests */ = {
+			isa = PBXGroup;
+			children = (
+				813CB9CE20F12475001434D4 /* EllipticSwiftTests.swift */,
+				813CB9D020F12475001434D4 /* Info.plist */,
+			);
+			path = EllipticSwiftTests;
+			sourceTree = "<group>";
+		};
+		813CB9E020F124A9001434D4 /* EllipticSwift_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				813CB9E120F124A9001434D4 /* EllipticSwift_iOS.h */,
+				813CB9E220F124A9001434D4 /* Info.plist */,
+			);
+			path = EllipticSwift_iOS;
+			sourceTree = "<group>";
+		};
+		813CB9E720F1257B001434D4 /* ModularArithmetics */ = {
+			isa = PBXGroup;
+			children = (
+				813CB9E820F12591001434D4 /* FieldProtocols.swift */,
+				813CB9EB20F126A4001434D4 /* PrimeField.swift */,
+				813CB9EE20F128B9001434D4 /* PrimeFieldElement.swift */,
+				81DFCBF420F4001D00603123 /* Constants.swift */,
+			);
+			path = ModularArithmetics;
+			sourceTree = "<group>";
+		};
+		81DFCBF020F3F9FB00603123 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				81DFCBF120F3FA0D00603123 /* BigInt+Bitset.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		81DFCBF720F4AB4000603123 /* CurveArithmetics */ = {
+			isa = PBXGroup;
+			children = (
+				81DFCBF820F4AB5200603123 /* Point.swift */,
+				81DFCBFB20F4AE6E00603123 /* Curve.swift */,
+				81DFCBFE20F4AEBA00603123 /* WeierstrassCurve.swift */,
+				81DFCC0120F4B81900603123 /* PrecompiledCurves.swift */,
+			);
+			path = CurveArithmetics;
+			sourceTree = "<group>";
+		};
+		81DFCC0420F4ECED00603123 /* GeneralAlgorithms */ = {
+			isa = PBXGroup;
+			children = (
+				81DFCC0520F4ECFE00603123 /* KSlidingWindow.swift */,
+			);
+			path = GeneralAlgorithms;
+			sourceTree = "<group>";
+		};
+		9BFAE9C082BCF3332669F54C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3B46A18082B4C5966DAF715C /* libPods-EllipticSwift.a */,
+				B1A986D531EFC8D7C120E061 /* libPods-EllipticSwiftTests.a */,
+				6F246573B5D4BA51101E5B62 /* libPods-EllipticSwift_iOS.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		813CB9BD20F12475001434D4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				813CB9D120F12475001434D4 /* EllipticSwift.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		813CB9DC20F124A9001434D4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				813CB9E320F124A9001434D4 /* EllipticSwift_iOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		813CB9BF20F12475001434D4 /* EllipticSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 813CB9D420F12475001434D4 /* Build configuration list for PBXNativeTarget "EllipticSwift" */;
+			buildPhases = (
+				D2561CF4EDBF599F9676C307 /* [CP] Check Pods Manifest.lock */,
+				813CB9BB20F12475001434D4 /* Sources */,
+				813CB9BC20F12475001434D4 /* Frameworks */,
+				813CB9BD20F12475001434D4 /* Headers */,
+				813CB9BE20F12475001434D4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EllipticSwift;
+			productName = EllipticSwift;
+			productReference = 813CB9C020F12475001434D4 /* EllipticSwift.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		813CB9C820F12475001434D4 /* EllipticSwiftTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 813CB9D720F12475001434D4 /* Build configuration list for PBXNativeTarget "EllipticSwiftTests" */;
+			buildPhases = (
+				F2FC0445BFBC994EAF4B8407 /* [CP] Check Pods Manifest.lock */,
+				813CB9C520F12475001434D4 /* Sources */,
+				813CB9C620F12475001434D4 /* Frameworks */,
+				813CB9C720F12475001434D4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				813CB9CC20F12475001434D4 /* PBXTargetDependency */,
+			);
+			name = EllipticSwiftTests;
+			productName = EllipticSwiftTests;
+			productReference = 813CB9C920F12475001434D4 /* EllipticSwiftTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		813CB9DE20F124A9001434D4 /* EllipticSwift_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 813CB9E420F124A9001434D4 /* Build configuration list for PBXNativeTarget "EllipticSwift_iOS" */;
+			buildPhases = (
+				2C66AD5B93A39CD9E4E6FBC1 /* [CP] Check Pods Manifest.lock */,
+				813CB9DA20F124A9001434D4 /* Sources */,
+				813CB9DB20F124A9001434D4 /* Frameworks */,
+				813CB9DC20F124A9001434D4 /* Headers */,
+				813CB9DD20F124A9001434D4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EllipticSwift_iOS;
+			productName = EllipticSwift_iOS;
+			productReference = 813CB9DF20F124A9001434D4 /* EllipticSwift_iOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		813CB9B720F12475001434D4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Alexander Vlasov";
+				TargetAttributes = {
+					813CB9BF20F12475001434D4 = {
+						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
+					};
+					813CB9C820F12475001434D4 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+					813CB9DE20F124A9001434D4 = {
+						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
+					};
+				};
+			};
+			buildConfigurationList = 813CB9BA20F12475001434D4 /* Build configuration list for PBXProject "EllipticSwift" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 813CB9B620F12475001434D4;
+			productRefGroup = 813CB9C120F12475001434D4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				813CB9BF20F12475001434D4 /* EllipticSwift */,
+				813CB9C820F12475001434D4 /* EllipticSwiftTests */,
+				813CB9DE20F124A9001434D4 /* EllipticSwift_iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		813CB9BE20F12475001434D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		813CB9C720F12475001434D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		813CB9DD20F124A9001434D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2C66AD5B93A39CD9E4E6FBC1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EllipticSwift_iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D2561CF4EDBF599F9676C307 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EllipticSwift-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F2FC0445BFBC994EAF4B8407 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EllipticSwiftTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		813CB9BB20F12475001434D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81DFCC0220F4B81900603123 /* PrecompiledCurves.swift in Sources */,
+				81DFCBFC20F4AE6E00603123 /* Curve.swift in Sources */,
+				81DFCC0620F4ECFE00603123 /* KSlidingWindow.swift in Sources */,
+				81DFCBF520F4001D00603123 /* Constants.swift in Sources */,
+				81DFCBFF20F4AEBA00603123 /* WeierstrassCurve.swift in Sources */,
+				813CB9EC20F126A4001434D4 /* PrimeField.swift in Sources */,
+				81DFCBF920F4AB5200603123 /* Point.swift in Sources */,
+				81DFCBF220F3FA0D00603123 /* BigInt+Bitset.swift in Sources */,
+				813CB9E920F12591001434D4 /* FieldProtocols.swift in Sources */,
+				813CB9EF20F128B9001434D4 /* PrimeFieldElement.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		813CB9C520F12475001434D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				813CB9CF20F12475001434D4 /* EllipticSwiftTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		813CB9DA20F124A9001434D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81DFCC0320F4B81900603123 /* PrecompiledCurves.swift in Sources */,
+				81DFCBFD20F4AE6E00603123 /* Curve.swift in Sources */,
+				81DFCC0720F4ECFE00603123 /* KSlidingWindow.swift in Sources */,
+				81DFCBF620F4001D00603123 /* Constants.swift in Sources */,
+				81DFCC0020F4AEBA00603123 /* WeierstrassCurve.swift in Sources */,
+				813CB9ED20F126A4001434D4 /* PrimeField.swift in Sources */,
+				81DFCBFA20F4AB5200603123 /* Point.swift in Sources */,
+				81DFCBF320F3FA0D00603123 /* BigInt+Bitset.swift in Sources */,
+				813CB9EA20F12591001434D4 /* FieldProtocols.swift in Sources */,
+				813CB9F020F128B9001434D4 /* PrimeFieldElement.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		813CB9CC20F12475001434D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 813CB9BF20F12475001434D4 /* EllipticSwift */;
+			targetProxy = 813CB9CB20F12475001434D4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		813CB9D220F12475001434D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		813CB9D320F12475001434D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		813CB9D520F12475001434D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4BF7A38119BC4B7D74E11E75 /* Pods-EllipticSwift.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 62V9CKQN89;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = EllipticSwift/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.bankexfoundation.EllipticSwift;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		813CB9D620F12475001434D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 136E1BBF769A0D2C5A7BDDB3 /* Pods-EllipticSwift.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 62V9CKQN89;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = EllipticSwift/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.bankexfoundation.EllipticSwift;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		813CB9D820F12475001434D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0170224A2A4E0F6FF5A72AC8 /* Pods-EllipticSwiftTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 62V9CKQN89;
+				INFOPLIST_FILE = EllipticSwiftTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.bankexfoundation.EllipticSwiftTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		813CB9D920F12475001434D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D81F68392F0D534C66636CE /* Pods-EllipticSwiftTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 62V9CKQN89;
+				INFOPLIST_FILE = EllipticSwiftTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.bankexfoundation.EllipticSwiftTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		813CB9E520F124A9001434D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89D25E59ED1A8B5EEEF0547C /* Pods-EllipticSwift_iOS.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 62V9CKQN89;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = EllipticSwift_iOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.bankexfoundation.EllipticSwift-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		813CB9E620F124A9001434D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 014E5800BB314C4A45FE52E4 /* Pods-EllipticSwift_iOS.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 62V9CKQN89;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = EllipticSwift_iOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.bankexfoundation.EllipticSwift-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		813CB9BA20F12475001434D4 /* Build configuration list for PBXProject "EllipticSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				813CB9D220F12475001434D4 /* Debug */,
+				813CB9D320F12475001434D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		813CB9D420F12475001434D4 /* Build configuration list for PBXNativeTarget "EllipticSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				813CB9D520F12475001434D4 /* Debug */,
+				813CB9D620F12475001434D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		813CB9D720F12475001434D4 /* Build configuration list for PBXNativeTarget "EllipticSwiftTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				813CB9D820F12475001434D4 /* Debug */,
+				813CB9D920F12475001434D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		813CB9E420F124A9001434D4 /* Build configuration list for PBXNativeTarget "EllipticSwift_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				813CB9E520F124A9001434D4 /* Debug */,
+				813CB9E620F124A9001434D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 813CB9B720F12475001434D4 /* Project object */;
+}
