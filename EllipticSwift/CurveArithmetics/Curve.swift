@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import BigInt
 
 public enum Curve {
     case weierstrass(WeierstrassCurve)
@@ -26,4 +27,50 @@ public enum Curve {
             return curve.field
         }
     }
+    
+    public func isEqualTo(_ other: Curve) -> Bool {
+        switch self {
+        case .weierstrass(let thisCurve):
+            guard case .weierstrass(let otherCurve) = other else {
+                return false
+            }
+            return thisCurve.isEqualTo(otherCurve)
+        }
+    }
+    
+    public func add(_ p: ProjectivePoint, _ q: ProjectivePoint) -> ProjectivePoint {
+        switch self {
+        case .weierstrass(let curve):
+            return curve.add(p, q)
+        }
+    }
+    
+    public func sub(_ p: ProjectivePoint, _ q: ProjectivePoint) -> ProjectivePoint {
+        switch self {
+        case .weierstrass(let curve):
+            return curve.sub(p, q)
+        }
+    }
+    
+    public func mixedAdd(_ p: ProjectivePoint, _ q: AffinePoint) -> ProjectivePoint {
+        switch self {
+        case .weierstrass(let curve):
+            return curve.mixedAdd(p, q)
+        }
+    }
+    
+    public func mul(_ scalar: BigUInt , _ p: AffinePoint) -> ProjectivePoint {
+        switch self {
+        case .weierstrass(let curve):
+            return curve.mul(scalar, p)
+        }
+    }
+    
+    public func neg(_ p: ProjectivePoint) -> ProjectivePoint {
+        switch self {
+        case .weierstrass(let curve):
+            return curve.neg(p)
+        }
+    }
+    
 }

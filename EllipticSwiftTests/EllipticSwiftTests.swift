@@ -132,6 +132,10 @@ class EllipticSwiftTests: XCTestCase {
         let _ = EllipticSwift.secp256k1WeierstrassCurve
     }
     
+    func testBN256Init() {
+        let _ = EllipticSwift.bn256WeierstrassCurve
+    }
+    
     func testInfinityPointGeneration() {
         let c = EllipticSwift.secp256k1Curve
         let p = ProjectivePoint.infinityPoint(c)

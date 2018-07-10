@@ -33,6 +33,8 @@
 		81DFCC0320F4B81900603123 /* PrecompiledCurves.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC0120F4B81900603123 /* PrecompiledCurves.swift */; };
 		81DFCC0620F4ECFE00603123 /* windowMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC0520F4ECFE00603123 /* windowMethods.swift */; };
 		81DFCC0720F4ECFE00603123 /* windowMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC0520F4ECFE00603123 /* windowMethods.swift */; };
+		81DFCC0920F53B1100603123 /* Point+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC0820F53B1100603123 /* Point+Operations.swift */; };
+		81DFCC0A20F53B1100603123 /* Point+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC0820F53B1100603123 /* Point+Operations.swift */; };
 		CC7AB8957C42B6BE8D97D7D1 /* libPods-EllipticSwift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B46A18082B4C5966DAF715C /* libPods-EllipticSwift.a */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +75,7 @@
 		81DFCBFE20F4AEBA00603123 /* WeierstrassCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeierstrassCurve.swift; sourceTree = "<group>"; };
 		81DFCC0120F4B81900603123 /* PrecompiledCurves.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecompiledCurves.swift; sourceTree = "<group>"; };
 		81DFCC0520F4ECFE00603123 /* windowMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = windowMethods.swift; sourceTree = "<group>"; };
+		81DFCC0820F53B1100603123 /* Point+Operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Point+Operations.swift"; sourceTree = "<group>"; };
 		89D25E59ED1A8B5EEEF0547C /* Pods-EllipticSwift_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllipticSwift_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EllipticSwift_iOS/Pods-EllipticSwift_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		B1A986D531EFC8D7C120E061 /* libPods-EllipticSwiftTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EllipticSwiftTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -144,6 +147,7 @@
 		813CB9C220F12475001434D4 /* EllipticSwift */ = {
 			isa = PBXGroup;
 			children = (
+				81DFCC0E20F53FD600603123 /* Bulletproofs */,
 				81DFCC0420F4ECED00603123 /* GeneralAlgorithms */,
 				81DFCBF720F4AB4000603123 /* CurveArithmetics */,
 				81DFCBF020F3F9FB00603123 /* Extensions */,
@@ -198,6 +202,7 @@
 				81DFCBFB20F4AE6E00603123 /* Curve.swift */,
 				81DFCBFE20F4AEBA00603123 /* WeierstrassCurve.swift */,
 				81DFCC0120F4B81900603123 /* PrecompiledCurves.swift */,
+				81DFCC0820F53B1100603123 /* Point+Operations.swift */,
 			);
 			path = CurveArithmetics;
 			sourceTree = "<group>";
@@ -208,6 +213,13 @@
 				81DFCC0520F4ECFE00603123 /* windowMethods.swift */,
 			);
 			path = GeneralAlgorithms;
+			sourceTree = "<group>";
+		};
+		81DFCC0E20F53FD600603123 /* Bulletproofs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Bulletproofs;
 			sourceTree = "<group>";
 		};
 		9BFAE9C082BCF3332669F54C /* Frameworks */ = {
@@ -435,6 +447,7 @@
 				813CB9EC20F126A4001434D4 /* PrimeField.swift in Sources */,
 				81DFCBF920F4AB5200603123 /* Point.swift in Sources */,
 				81DFCBF220F3FA0D00603123 /* BigInt+Bitset.swift in Sources */,
+				81DFCC0920F53B1100603123 /* Point+Operations.swift in Sources */,
 				813CB9E920F12591001434D4 /* FieldProtocols.swift in Sources */,
 				813CB9EF20F128B9001434D4 /* PrimeFieldElement.swift in Sources */,
 			);
@@ -460,6 +473,7 @@
 				813CB9ED20F126A4001434D4 /* PrimeField.swift in Sources */,
 				81DFCBFA20F4AB5200603123 /* Point.swift in Sources */,
 				81DFCBF320F3FA0D00603123 /* BigInt+Bitset.swift in Sources */,
+				81DFCC0A20F53B1100603123 /* Point+Operations.swift in Sources */,
 				813CB9EA20F12591001434D4 /* FieldProtocols.swift in Sources */,
 				813CB9F020F128B9001434D4 /* PrimeFieldElement.swift in Sources */,
 			);

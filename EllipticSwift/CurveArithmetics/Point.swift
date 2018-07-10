@@ -61,6 +61,13 @@ public struct AffinePoint {
         let p = ProjectivePoint(self.rawX, self.rawY, one, curve)
         return p
     }
+    
+    public func isEqualTo(_ other: AffinePoint) -> Bool {
+        if !self.curve.isEqualTo(other.curve) {
+            return false
+        }
+        return self.rawX.isEqualTo(other.rawX) && self.rawY.isEqualTo(other.rawY)
+    }
 }
 
 public struct ProjectivePoint { // also refered as Jacobian Point
@@ -78,6 +85,10 @@ public struct ProjectivePoint { // also refered as Jacobian Point
         let zero = field.fromValue(0)
         let one = field.fromValue(1)
         return ProjectivePoint(zero, one, zero, curve)
+    }
+    
+    public func isEqualTo(_ other: ProjectivePoint) -> Bool {
+        return self.toAffine().isEqualTo(other.toAffine())
     }
     
     internal init(_ rawX: PrimeFieldElement, _ rawY: PrimeFieldElement, _ rawZ: PrimeFieldElement, _ curve: Curve) {

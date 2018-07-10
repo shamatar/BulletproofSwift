@@ -23,3 +23,16 @@ public let secp256k1WeierstrassCurve: WeierstrassCurve = {
 }()
 
 public let secp256k1Curve = Curve.weierstrass(secp256k1WeierstrassCurve)
+
+public let bn256Prime = BigUInt("21888242871839275222246405745257275088696311157297823662689037894645226208583", radix: 10)!
+public let bn256PrimeField = PrimeField(bn256Prime)!
+
+public let bn256CurveOrder = BigUInt("21888242871839275222246405745257275088548364400416034343698204186575808495617", radix: 10)!
+public let bn256WeierstrassCurve: WeierstrassCurve = {
+    let curve = WeierstrassCurve(field: bn256PrimeField, order: bn256CurveOrder, A: 0, B: 3)
+    let generatorX = BigUInt("1", radix: 10)!
+    let generatorY = BigUInt("2", radix: 10)!
+    let success = curve.setGenerator(AffineCoordinates(generatorX, generatorY))
+    precondition(success, "Failed to init bn256 curve!")
+    return curve
+}()

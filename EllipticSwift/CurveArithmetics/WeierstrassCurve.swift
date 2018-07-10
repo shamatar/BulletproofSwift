@@ -81,13 +81,20 @@ public class WeierstrassCurve {
     }
     
     public func toPoint(_ p: AffineCoordinates) -> AffinePoint? {
-        let reducedGeneratorX = field.fromValue(p.X)
-        let reducedGeneratorY = field.fromValue(p.Y)
-        let point = AffinePoint(reducedGeneratorX, reducedGeneratorY, Curve.weierstrass(self))
+        let reducedX = field.fromValue(p.X)
+        let reducedY = field.fromValue(p.Y)
+        let point = AffinePoint(reducedX, reducedY, Curve.weierstrass(self))
         if !checkOnCurve(point) {
             return nil
         }
         return point
+    }
+    
+    public func isEqualTo(_ other: WeierstrassCurve) -> Bool {
+        return self.field.isEqualTo(other.field) &&
+            self.order == other.order &&
+            self.A.isEqualTo(other.A) &&
+            self.B.isEqualTo(other.B)
     }
 }
 
@@ -138,6 +145,10 @@ extension WeierstrassCurve {
     public func neg(_ p: ProjectivePoint) -> ProjectivePoint {
         let field = self.field
         return ProjectivePoint(p.rawX, field.neg(p.rawY), p.rawZ, Curve.weierstrass(self))
+    }
+    
+    public func sub(_ p: ProjectivePoint, _ q: ProjectivePoint) -> ProjectivePoint {
+        return self.add(p, neg(q))
     }
     
     public func double(_ p: ProjectivePoint) -> ProjectivePoint {
