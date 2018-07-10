@@ -172,19 +172,65 @@ class EllipticSwiftTests: XCTestCase {
         let sum = c.add(p!.toProjective(), q!.toProjective())
         let sumAffine = sum.toAffine().coordinates
         XCTAssert(!sumAffine.isInfinity)
-        print(String(sumAffine.X, radix: 16))
-        print(String(sumAffine.Y, radix: 16))
         XCTAssert(sumAffine.X == BigUInt("cb48b4b3237451109ddd2fb9146556f4c1acb4082a9c667adf4fcb9b0bb6ff83", radix: 16)!)
         XCTAssert(sumAffine.Y == BigUInt("b47df17dfc7607880c54f2c2bfea0f0118c79319573dc66fcb0d952115beb554", radix: 16)!)
     }
     
-    func testWNAF() {
-        let scalar = BigUInt(11749)
-        let (lookups, powers) = EllipticSwift.computeWNAF(scalar: scalar)
-        for i in 0 ..< lookups.count {
-            print("Lookup the element " + String(lookups[i]))
-            print("Rise previous result in a power " + String(powers[i]))
-        }
+    func testPointDouble() {
+        let c = EllipticSwift.secp256k1WeierstrassCurve
+        let p = c.toPoint(BigUInt("5cfdf0eaa22d4d954067ab6f348e400f97357e2703821195131bfe78f7c92b38", radix: 16)!, BigUInt("584171d79868d22fae4442faede6d2c4972a35d1699453254d1b0df029225032", radix: 16)!)
+        XCTAssert(p != nil)
+        let dbl = c.add(p!.toProjective(), p!.toProjective())
+        let affine = dbl.toAffine().coordinates
+        XCTAssert(!affine.isInfinity)
+        XCTAssert(affine.X == BigUInt("aad76204cd11092a84f04694138db345b1d7223a0bba5483cd089968a34448cb", radix: 16)!)
+        XCTAssert(affine.Y == BigUInt("7cfb0467e5df4e174c1ee43c5dcca494cd3e198cf9512f7088bea0a8a76f7d78", radix: 16)!)
     }
     
+//    func testWNAF() {
+//        let scalar = BigUInt(11749)
+//        let (lookups, powers) = EllipticSwift.computeWNAF(scalar: scalar)
+//        for i in 0 ..< lookups.count {
+//            print("Lookup the element " + String(lookups[i]))
+//            print("Rise previous result in a power " + String(powers[i]))
+//        }
+//    }
+    
+    func testPointDoublingAndMultiplication() {
+        let c = EllipticSwift.secp256k1WeierstrassCurve
+        let p = c.toPoint(BigUInt("5cfdf0eaa22d4d954067ab6f348e400f97357e2703821195131bfe78f7c92b38", radix: 16)!, BigUInt("584171d79868d22fae4442faede6d2c4972a35d1699453254d1b0df029225032", radix: 16)!)
+        XCTAssert(p != nil)
+        let dbl = c.double(p!.toProjective()).toAffine().coordinates
+        let mul = c.mul(2, p!).toAffine().coordinates
+        XCTAssert(!dbl.isInfinity)
+        XCTAssert(!mul.isInfinity)
+        XCTAssert(dbl.X == mul.X)
+        XCTAssert(dbl.Y == mul.Y)
+    }
+    
+    func testPointTriple() {
+        let c = EllipticSwift.secp256k1WeierstrassCurve
+        let p = c.toPoint(BigUInt("5cfdf0eaa22d4d954067ab6f348e400f97357e2703821195131bfe78f7c92b38", radix: 16)!, BigUInt("584171d79868d22fae4442faede6d2c4972a35d1699453254d1b0df029225032", radix: 16)!)
+        XCTAssert(p != nil)
+        var res = c.add(p!.toProjective(), p!.toProjective())
+        res = c.add(res, p!.toProjective())
+        let resAff = res.toAffine().coordinates
+        let mul = c.mul(3, p!).toAffine().coordinates
+        XCTAssert(!resAff.isInfinity)
+        XCTAssert(!mul.isInfinity)
+        XCTAssert(resAff.X == mul.X)
+        XCTAssert(resAff.Y == mul.Y)
+    }
+    
+    func testPointMul() {
+        let scalar = BigUInt("e853ff4cc88e32bc6c2b74ffaca14a7e4b118686e77eefb086cb0ae298811127", radix: 16)!
+        let c = EllipticSwift.secp256k1WeierstrassCurve
+        let p = c.toPoint(BigUInt("5cfdf0eaa22d4d954067ab6f348e400f97357e2703821195131bfe78f7c92b38", radix: 16)!, BigUInt("584171d79868d22fae4442faede6d2c4972a35d1699453254d1b0df029225032", radix: 16)!)
+        XCTAssert(p != nil)
+        let res = c.mul(scalar, p!)
+        let resAff = res.toAffine().coordinates
+        XCTAssert(!resAff.isInfinity)
+        XCTAssert(resAff.X == BigUInt("e2b1976566023f61f70893549a497dbf68f14e6cb44ba1b3bbe8c438a172a7b0", radix: 16)!)
+        XCTAssert(resAff.Y == BigUInt("d088864d26ac7c96690ebc652b2906e8f2b85bccfb27b181d587899ccab4b442", radix: 16)!)
+    }
 }

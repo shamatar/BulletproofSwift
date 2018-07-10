@@ -121,7 +121,6 @@ public class PrimeField {
     }
     
     public func kSlidingWindowExponentiation(_ a: PrimeFieldElement, _ b: BigUInt, windowSize: Int = DefaultWindowSize) -> PrimeFieldElement {
-//        print(String(b, radix: 2))
         let numPrecomputedElements = (1 << windowSize) - 1 // 2**k - 1
         var precomputations = [PrimeFieldElement](repeating: self.identityElement, count: numPrecomputedElements)
         precomputations[0] = a
@@ -130,50 +129,18 @@ public class PrimeField {
             precomputations[i] = mul(precomputations[i-2], precomputations[1])
         }
         var result = self.identityElement
-        let (lookups, powers) = computeWNAF(scalar: b, windowSize: windowSize)
+        let (lookups, powers) = computeSlidingWindow(scalar: b, windowSize: windowSize)
         for i in 0 ..< lookups.count {
             let lookupCoeff = lookups[i]
             if lookupCoeff == -1 {
                 result = mul(result, result)
             } else {
                 let power = powers[i]
-                let intermediatePower = pow(result, power)
+                let intermediatePower = doubleAndAddExponentiation(result, power) // use trivial form to don't go recursion
+//                let intermediatePower = pow(result, power)
                 result = mul(intermediatePower, precomputations[lookupCoeff])
             }
-            
         }
-//        var i = b.bitWidth-1
-//        while i > 0 {
-//            if !b.bit(i) {
-//                result = mul(result, result)
-//                i = i - 1
-//            } else {
-//                var l = i - windowSize + 1
-//                var nextI = l - 1
-//                if l <= 0 {
-//                    l = 0
-//                    nextI = 0
-//                }
-//                var bitSlice = b.bits(i, l)
-//                let elementNumber = Int(bitSlice) - 1
-////                print(String(bitSlice, radix: 2))
-//                if bitSlice == 0 {
-//                    i = nextI
-//                    continue
-//                }
-//                while bitSlice & 1 == 0 {
-//                    bitSlice = bitSlice >> 1
-//                    l = l + 1
-//                }
-////                print(String(bitSlice, radix: 2))
-//                let power = 1 << windowSize
-////                print("Rise in a power of " + String(power))
-////                print("Multiply by precomputation element number " + String(elementNumber))
-//                let intermediatePower = pow(result, BigUInt(power))
-//                result = mul(intermediatePower, precomputations[elementNumber])
-//                i = nextI
-//            }
-//        }
         return result
     }
     

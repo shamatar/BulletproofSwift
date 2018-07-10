@@ -31,8 +31,8 @@
 		81DFCC0020F4AEBA00603123 /* WeierstrassCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCBFE20F4AEBA00603123 /* WeierstrassCurve.swift */; };
 		81DFCC0220F4B81900603123 /* PrecompiledCurves.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC0120F4B81900603123 /* PrecompiledCurves.swift */; };
 		81DFCC0320F4B81900603123 /* PrecompiledCurves.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC0120F4B81900603123 /* PrecompiledCurves.swift */; };
-		81DFCC0620F4ECFE00603123 /* KSlidingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC0520F4ECFE00603123 /* KSlidingWindow.swift */; };
-		81DFCC0720F4ECFE00603123 /* KSlidingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC0520F4ECFE00603123 /* KSlidingWindow.swift */; };
+		81DFCC0620F4ECFE00603123 /* windowMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC0520F4ECFE00603123 /* windowMethods.swift */; };
+		81DFCC0720F4ECFE00603123 /* windowMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC0520F4ECFE00603123 /* windowMethods.swift */; };
 		CC7AB8957C42B6BE8D97D7D1 /* libPods-EllipticSwift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B46A18082B4C5966DAF715C /* libPods-EllipticSwift.a */; };
 /* End PBXBuildFile section */
 
@@ -72,7 +72,7 @@
 		81DFCBFB20F4AE6E00603123 /* Curve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Curve.swift; sourceTree = "<group>"; };
 		81DFCBFE20F4AEBA00603123 /* WeierstrassCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeierstrassCurve.swift; sourceTree = "<group>"; };
 		81DFCC0120F4B81900603123 /* PrecompiledCurves.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecompiledCurves.swift; sourceTree = "<group>"; };
-		81DFCC0520F4ECFE00603123 /* KSlidingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KSlidingWindow.swift; sourceTree = "<group>"; };
+		81DFCC0520F4ECFE00603123 /* windowMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = windowMethods.swift; sourceTree = "<group>"; };
 		89D25E59ED1A8B5EEEF0547C /* Pods-EllipticSwift_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllipticSwift_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EllipticSwift_iOS/Pods-EllipticSwift_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		B1A986D531EFC8D7C120E061 /* libPods-EllipticSwiftTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EllipticSwiftTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -205,7 +205,7 @@
 		81DFCC0420F4ECED00603123 /* GeneralAlgorithms */ = {
 			isa = PBXGroup;
 			children = (
-				81DFCC0520F4ECFE00603123 /* KSlidingWindow.swift */,
+				81DFCC0520F4ECFE00603123 /* windowMethods.swift */,
 			);
 			path = GeneralAlgorithms;
 			sourceTree = "<group>";
@@ -429,7 +429,7 @@
 			files = (
 				81DFCC0220F4B81900603123 /* PrecompiledCurves.swift in Sources */,
 				81DFCBFC20F4AE6E00603123 /* Curve.swift in Sources */,
-				81DFCC0620F4ECFE00603123 /* KSlidingWindow.swift in Sources */,
+				81DFCC0620F4ECFE00603123 /* windowMethods.swift in Sources */,
 				81DFCBF520F4001D00603123 /* Constants.swift in Sources */,
 				81DFCBFF20F4AEBA00603123 /* WeierstrassCurve.swift in Sources */,
 				813CB9EC20F126A4001434D4 /* PrimeField.swift in Sources */,
@@ -454,7 +454,7 @@
 			files = (
 				81DFCC0320F4B81900603123 /* PrecompiledCurves.swift in Sources */,
 				81DFCBFD20F4AE6E00603123 /* Curve.swift in Sources */,
-				81DFCC0720F4ECFE00603123 /* KSlidingWindow.swift in Sources */,
+				81DFCC0720F4ECFE00603123 /* windowMethods.swift in Sources */,
 				81DFCBF620F4001D00603123 /* Constants.swift in Sources */,
 				81DFCC0020F4AEBA00603123 /* WeierstrassCurve.swift in Sources */,
 				813CB9ED20F126A4001434D4 /* PrimeField.swift in Sources */,

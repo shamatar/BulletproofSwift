@@ -35,8 +35,8 @@ extension BigUInt {
         precondition(to - from < WordSize, "not meant to access more than " + String(WordSize) + " bits")
 //        print("Accessing bits from " + String(from) + " to " + String(to) + " (zero enumerated)")
         let numBits = BigInt.Word(from - to + 1)
-        let lW = from / WordSize
-        let uW = to / WordSize
+        let uW = from / WordSize
+        let lW = to / WordSize // uW >= lW
         if lW == uW {
             let lB = BigInt.Word(to - lW*WordSize) // single bit is that marks the lowest bit
             let bitmask: BigInt.Word = ((1 << numBits) - 1) << lB
@@ -46,13 +46,13 @@ extension BigUInt {
             return shifted
         } else { // lW + 1 == uW
             let lB = BigInt.Word(to - lW*WordSize) // single bit is that marks the lowest bit
-            let bitsInLW = numBits - lB
+            let bitsInLW = WordSize - Int(lB)
             let lBitmask: BigInt.Word = ((1 << bitsInLW) - 1) << lB
             let lWord = self.words[lW]
-            let uB = BigInt.Word(from - uW*WordSize) // single bit is that marks the highest bit
+            let uB = BigInt.Word(from - uW*WordSize + 1) // single bit is that marks the highest bit
             let uBitmask: BigInt.Word = ((1 << uB) - 1)
             let uWord = self.words[uW]
-            let uBits = (uWord & uBitmask) << lB
+            let uBits = (uWord & uBitmask) << bitsInLW
             let lBits = (lWord & lBitmask) >> lB
             return uBits ^ lBits
         }
