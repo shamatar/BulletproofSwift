@@ -102,6 +102,22 @@ public class PrimeField {
         return doubleAndAddExponentiation(a, b)
     }
     
+    public func sqrt(_ a: PrimeFieldElement) -> PrimeFieldElement {
+        if a.rawValue == 0 {
+            return a
+        }
+        
+        let mod3 = self.prime.words[0] & 3
+        precondition(mod3 % 2 == 1)
+        
+        // Fast case
+        if (mod3 == 3) {
+            let power = (self.prime + 1) >> 1
+            return self.pow(a, power)
+        }
+        precondition(false, "NYI")
+    }
+    
     public func doubleAndAddExponentiation(_ a: PrimeFieldElement, _ b: BigUInt) -> PrimeFieldElement {
         // double and add
         var base = a

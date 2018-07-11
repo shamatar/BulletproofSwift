@@ -96,6 +96,29 @@ public class WeierstrassCurve {
             self.A.isEqualTo(other.A) &&
             self.B.isEqualTo(other.B)
     }
+    
+    public func hashInto(_ data: Data) -> AffinePoint {
+        var seed = BigUInt(data) % self.field.prime
+        seed = seed - 1
+        for _ in 0 ..< 1000 {
+            seed = seed + 1
+            let x = self.field.fromValue(seed)
+            var y2 = x * x
+            if !self.aIsZero {
+                y2 = y2 + self.A * x
+            }
+            if !self.bIsZero {
+                y2 = y2 + self.B
+            }
+            // TODO
+            let yReduced = y2.field.sqrt(y2)
+            
+            if y2.isEqualTo(yReduced * yReduced) {
+                return AffinePoint(x, yReduced, Curve.weierstrass(self))
+            }
+        }
+        precondition(false, "Are you using a normal curve?")
+    }
 }
 
 extension WeierstrassCurve {

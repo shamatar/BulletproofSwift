@@ -53,6 +53,16 @@
 		81DFCC2920F60EB900603123 /* FieldVectorPolynomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC2720F60EB900603123 /* FieldVectorPolynomial.swift */; };
 		81DFCC2B20F615DC00603123 /* VectorBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC2A20F615DC00603123 /* VectorBase.swift */; };
 		81DFCC2C20F615DC00603123 /* VectorBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC2A20F615DC00603123 /* VectorBase.swift */; };
+		81DFCC2E20F645CA00603123 /* ProofUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC2D20F645CA00603123 /* ProofUtils.swift */; };
+		81DFCC2F20F645CA00603123 /* ProofUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC2D20F645CA00603123 /* ProofUtils.swift */; };
+		81DFCC3220F64C9F00603123 /* InnerProductWitness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC3120F64C9F00603123 /* InnerProductWitness.swift */; };
+		81DFCC3320F64C9F00603123 /* InnerProductWitness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC3120F64C9F00603123 /* InnerProductWitness.swift */; };
+		81DFCC3520F64F5400603123 /* InnerProductProof.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC3420F64F5400603123 /* InnerProductProof.swift */; };
+		81DFCC3620F64F5400603123 /* InnerProductProof.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC3420F64F5400603123 /* InnerProductProof.swift */; };
+		81DFCC3820F651B800603123 /* InnerProductProver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC3720F651B800603123 /* InnerProductProver.swift */; };
+		81DFCC3920F651B800603123 /* InnerProductProver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC3720F651B800603123 /* InnerProductProver.swift */; };
+		81DFCC3C20F657AA00603123 /* GeneratorParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC3B20F657AA00603123 /* GeneratorParams.swift */; };
+		81DFCC3D20F657AA00603123 /* GeneratorParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC3B20F657AA00603123 /* GeneratorParams.swift */; };
 		CC7AB8957C42B6BE8D97D7D1 /* libPods-EllipticSwift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B46A18082B4C5966DAF715C /* libPods-EllipticSwift.a */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +113,11 @@
 		81DFCC2420F60E6200603123 /* FieldPolynomial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldPolynomial.swift; sourceTree = "<group>"; };
 		81DFCC2720F60EB900603123 /* FieldVectorPolynomial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldVectorPolynomial.swift; sourceTree = "<group>"; };
 		81DFCC2A20F615DC00603123 /* VectorBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorBase.swift; sourceTree = "<group>"; };
+		81DFCC2D20F645CA00603123 /* ProofUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProofUtils.swift; sourceTree = "<group>"; };
+		81DFCC3120F64C9F00603123 /* InnerProductWitness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerProductWitness.swift; sourceTree = "<group>"; };
+		81DFCC3420F64F5400603123 /* InnerProductProof.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerProductProof.swift; sourceTree = "<group>"; };
+		81DFCC3720F651B800603123 /* InnerProductProver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerProductProver.swift; sourceTree = "<group>"; };
+		81DFCC3B20F657AA00603123 /* GeneratorParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorParams.swift; sourceTree = "<group>"; };
 		89D25E59ED1A8B5EEEF0547C /* Pods-EllipticSwift_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllipticSwift_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EllipticSwift_iOS/Pods-EllipticSwift_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		B1A986D531EFC8D7C120E061 /* libPods-EllipticSwiftTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EllipticSwiftTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -247,6 +262,8 @@
 		81DFCC0E20F53FD600603123 /* Bulletproofs */ = {
 			isa = PBXGroup;
 			children = (
+				81DFCC3A20F6579C00603123 /* RangeProof */,
+				81DFCC3020F64C6400603123 /* InnerProductProof */,
 				81DFCC2020F5FC4200603123 /* ProofUtils */,
 				81DFCC1220F5F3E200603123 /* LinearAlgebra */,
 				81DFCC0F20F5543E00603123 /* Global.swift */,
@@ -270,8 +287,27 @@
 		81DFCC2020F5FC4200603123 /* ProofUtils */ = {
 			isa = PBXGroup;
 			children = (
+				81DFCC2D20F645CA00603123 /* ProofUtils.swift */,
 			);
 			path = ProofUtils;
+			sourceTree = "<group>";
+		};
+		81DFCC3020F64C6400603123 /* InnerProductProof */ = {
+			isa = PBXGroup;
+			children = (
+				81DFCC3120F64C9F00603123 /* InnerProductWitness.swift */,
+				81DFCC3420F64F5400603123 /* InnerProductProof.swift */,
+				81DFCC3720F651B800603123 /* InnerProductProver.swift */,
+			);
+			path = InnerProductProof;
+			sourceTree = "<group>";
+		};
+		81DFCC3A20F6579C00603123 /* RangeProof */ = {
+			isa = PBXGroup;
+			children = (
+				81DFCC3B20F657AA00603123 /* GeneratorParams.swift */,
+			);
+			path = RangeProof;
 			sourceTree = "<group>";
 		};
 		9BFAE9C082BCF3332669F54C /* Frameworks */ = {
@@ -493,19 +529,24 @@
 			files = (
 				81DFCC1520F5F3FA00603123 /* PeddersenBase.swift in Sources */,
 				81DFCC2220F6058B00603123 /* MontgomeryReducedPrimeField.swift in Sources */,
+				81DFCC3520F64F5400603123 /* InnerProductProof.swift in Sources */,
 				81DFCC0220F4B81900603123 /* PrecompiledCurves.swift in Sources */,
 				81DFCBFC20F4AE6E00603123 /* Curve.swift in Sources */,
 				81DFCC1E20F5F84200603123 /* PrimeFieldElement+Operations.swift in Sources */,
+				81DFCC3820F651B800603123 /* InnerProductProver.swift in Sources */,
 				81DFCC0620F4ECFE00603123 /* windowMethods.swift in Sources */,
 				81DFCC1820F5F5ED00603123 /* GeneratorVector.swift in Sources */,
 				81DFCBF520F4001D00603123 /* Constants.swift in Sources */,
 				81DFCBFF20F4AEBA00603123 /* WeierstrassCurve.swift in Sources */,
 				813CB9EC20F126A4001434D4 /* PrimeField.swift in Sources */,
 				81DFCBF920F4AB5200603123 /* Point.swift in Sources */,
+				81DFCC2E20F645CA00603123 /* ProofUtils.swift in Sources */,
 				81DFCBF220F3FA0D00603123 /* BigInt+Bitset.swift in Sources */,
 				81DFCC2820F60EB900603123 /* FieldVectorPolynomial.swift in Sources */,
 				81DFCC2B20F615DC00603123 /* VectorBase.swift in Sources */,
+				81DFCC3C20F657AA00603123 /* GeneratorParams.swift in Sources */,
 				81DFCC1020F5543E00603123 /* Global.swift in Sources */,
+				81DFCC3220F64C9F00603123 /* InnerProductWitness.swift in Sources */,
 				81DFCC0920F53B1100603123 /* Point+Operations.swift in Sources */,
 				813CB9E920F12591001434D4 /* FieldProtocols.swift in Sources */,
 				813CB9EF20F128B9001434D4 /* PrimeFieldElement.swift in Sources */,
@@ -528,19 +569,24 @@
 			files = (
 				81DFCC1620F5F3FA00603123 /* PeddersenBase.swift in Sources */,
 				81DFCC2320F6058B00603123 /* MontgomeryReducedPrimeField.swift in Sources */,
+				81DFCC3620F64F5400603123 /* InnerProductProof.swift in Sources */,
 				81DFCC0320F4B81900603123 /* PrecompiledCurves.swift in Sources */,
 				81DFCBFD20F4AE6E00603123 /* Curve.swift in Sources */,
 				81DFCC1F20F5F84200603123 /* PrimeFieldElement+Operations.swift in Sources */,
+				81DFCC3920F651B800603123 /* InnerProductProver.swift in Sources */,
 				81DFCC0720F4ECFE00603123 /* windowMethods.swift in Sources */,
 				81DFCC1920F5F5ED00603123 /* GeneratorVector.swift in Sources */,
 				81DFCBF620F4001D00603123 /* Constants.swift in Sources */,
 				81DFCC0020F4AEBA00603123 /* WeierstrassCurve.swift in Sources */,
 				813CB9ED20F126A4001434D4 /* PrimeField.swift in Sources */,
 				81DFCBFA20F4AB5200603123 /* Point.swift in Sources */,
+				81DFCC2F20F645CA00603123 /* ProofUtils.swift in Sources */,
 				81DFCBF320F3FA0D00603123 /* BigInt+Bitset.swift in Sources */,
 				81DFCC2920F60EB900603123 /* FieldVectorPolynomial.swift in Sources */,
 				81DFCC2C20F615DC00603123 /* VectorBase.swift in Sources */,
+				81DFCC3D20F657AA00603123 /* GeneratorParams.swift in Sources */,
 				81DFCC1120F5543E00603123 /* Global.swift in Sources */,
+				81DFCC3320F64C9F00603123 /* InnerProductWitness.swift in Sources */,
 				81DFCC0A20F53B1100603123 /* Point+Operations.swift in Sources */,
 				813CB9EA20F12591001434D4 /* FieldProtocols.swift in Sources */,
 				813CB9F020F128B9001434D4 /* PrimeFieldElement.swift in Sources */,
@@ -781,7 +827,7 @@
 			baseConfigurationReference = 89D25E59ED1A8B5EEEF0547C /* Pods-EllipticSwift_iOS.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 62V9CKQN89;
@@ -811,7 +857,7 @@
 			baseConfigurationReference = 014E5800BB314C4A45FE52E4 /* Pods-EllipticSwift_iOS.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 62V9CKQN89;

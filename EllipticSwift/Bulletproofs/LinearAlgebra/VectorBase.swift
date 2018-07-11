@@ -10,9 +10,9 @@ import Foundation
 import BigInt
 
 public struct VectorBase{
-    private var gs: GeneratorVector
-    private var hs: GeneratorVector
-    private var h: AffinePoint
+    public var gs: GeneratorVector
+    public var hs: GeneratorVector
+    public var h: AffinePoint
     
     public init (gs: GeneratorVector, hs: GeneratorVector, h: AffinePoint) {
         self.gs = gs;

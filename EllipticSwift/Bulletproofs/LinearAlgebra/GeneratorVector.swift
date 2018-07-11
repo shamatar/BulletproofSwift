@@ -10,8 +10,8 @@ import Foundation
 import BigInt
 
 public struct GeneratorVector {
-    private var gs : [AffinePoint]
-    private var curve: Curve
+    public var gs : [AffinePoint]
+    public var curve: Curve
     
     public init (_ gs: [AffinePoint], _ curve: Curve) {
         for g in gs {

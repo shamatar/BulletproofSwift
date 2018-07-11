@@ -80,4 +80,11 @@ public enum Curve {
         }
     }
     
+    public func hashInto(_ data: Data) -> AffinePoint {
+        switch self {
+        case .weierstrass(let curve):
+            return curve.hashInto(data)
+        }
+    }
+    
 }

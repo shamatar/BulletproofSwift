@@ -154,7 +154,7 @@ public struct FieldVector {
         precondition(field != nil)
         let kReduced = field!.fromValue(k)
         var elements = [PrimeFieldElement]()
-        for i in 0 ..< n {
+        for _ in 0 ..< n {
             elements.append(kReduced)
         }
         return FieldVector(elements, q);

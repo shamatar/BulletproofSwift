@@ -1,4 +1,5 @@
 def import_pods
+  pod 'CryptoSwift', '~> 0.10.0'
   pod 'BigInt', '~> 3.1.0'
 end
 
