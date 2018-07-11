@@ -50,8 +50,7 @@ public func computeSlidingWindow(scalar: BigUInt, windowSize: Int = DefaultWindo
     return (lookupCoeffs, powers)
 }
 
-// returns [Int] - lookup coefficients in precompute, stores as UNSIGNED, so should be later converted at lookup time
-
+// returns [Int] - lookup coefficients in precompute, stores as SIGNED
 public func computeWNAF(scalar: BigUInt, windowSize: Int = DefaultWindowSize) -> [Int] {
     func guardedMods(_ a: BigInt.Word, _ half: Int, _ full: Int) -> Int {
         if a > half {
