@@ -7,12 +7,12 @@
 //
 
 import Foundation
-
-public struct  FieldPolynomial {
-    public var coefficients: [PrimeFieldElement]
+import BigInt
+public struct FieldPolynomial {
+    public var coefficients: [BigUInt]
     
     
-    public init (_ coefficients: [PrimeFieldElement]) {
+    public init (_ coefficients: [BigUInt]) {
         self.coefficients = coefficients;
     }
 }

@@ -64,7 +64,7 @@ public struct ProofUtils {
         return bn % q
     }
     
-    public static func randomNumber() -> BigUInt {
-        return BigUInt.randomInteger(withMaximumWidth: UnsignedIntegerBitWidth)
+    public static func randomNumber(bitWidth: Int = UnsignedIntegerBitWidth) -> BigUInt {
+        return BigUInt.randomInteger(withMaximumWidth: bitWidth)
     }
 }

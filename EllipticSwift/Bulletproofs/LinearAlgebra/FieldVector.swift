@@ -10,52 +10,42 @@ import Foundation
 import BigInt
 
 public struct FieldVector {
-    public var a: [PrimeFieldElement]
+    public var a: [BigUInt]
     public var q: BigUInt
     
-    public init (_ a: [PrimeFieldElement], _ q: BigUInt) {
-        self.a = a;
+    public init (_ a: [BigUInt], _ q: BigUInt) {
+        self.a = a.map({ (el) -> BigUInt in
+            return el & q
+        })
         self.q = q;
     }
     
-    public init (_ a: [BigUInt], _ q: BigUInt) {
-        let field = PrimeField(q)
-        precondition(field != nil)
-        var elements = [PrimeFieldElement]()
-        for i in 0 ..< a.count {
-            let fe = field!.fromValue(a[i])
-            elements.append(fe)
-        }
-        self.a = elements
-        self.q = q
-    }
-    
-    public func innerPoduct(_ other: FieldVector) -> PrimeFieldElement {
+    public func innerPoduct(_ other: FieldVector) -> BigUInt {
         precondition(self.a.count == other.a.count)
         precondition(self.q == other.q)
         precondition(self.a.count > 0)
         var result = self.a[0] * other.a[0]
         for i in 1 ..< self.a.count {
-            result = result + self.a[i] * other.a[i]
+            result = result + ((self.a[i] * other.a[i]) % q)
         }
-        return result.mod(self.q)
+        return result % self.q
     }
     
     public func hadamardProduct(_ other: FieldVector) -> FieldVector {
         precondition(self.a.count == other.a.count)
         precondition(self.q == other.q)
         precondition(self.a.count > 0)
-        var elements = [PrimeFieldElement]()
+        var elements = [BigUInt]()
         for i in 0 ..< self.a.count {
-            elements.append((self.a[i] * other.a[i]).mod(self.q))
+            elements.append((self.a[i] * other.a[i]) % self.q)
         }
         return FieldVector(elements, self.q)
     }
     
     public func times(_ scalar: BigUInt) -> FieldVector {
-        var elements = [PrimeFieldElement]()
+        var elements = [BigUInt]()
         for i in 0 ..< self.a.count {
-            elements.append((scalar*self.a[i]).mod(self.q))
+            elements.append((scalar * self.a[i]) % self.q)
         }
         return FieldVector(elements, self.q)
     }
@@ -64,56 +54,63 @@ public struct FieldVector {
         precondition(self.a.count == other.a.count)
         precondition(self.q == other.q)
         precondition(self.a.count > 0)
-        var elements = [PrimeFieldElement]()
+        var elements = [BigUInt]()
         for i in 0 ..< self.a.count {
-            elements.append((self.a[i] + other.a[i]).mod(self.q))
+            elements.append((self.a[i] + other.a[i]) % self.q)
         }
         return FieldVector(elements, self.q)
     }
     
     public func add(_ scalar: BigUInt) -> FieldVector {
         precondition(self.a.count > 0)
-        var elements = [PrimeFieldElement]()
+        var elements = [BigUInt]()
         for i in 0 ..< self.a.count {
-            elements.append((scalar + self.a[i]).mod(self.q))
+            elements.append((scalar + self.a[i]) % self.q)
         }
         return FieldVector(elements, self.q)
     }
-    
+        
     public func sub(_ other: FieldVector) -> FieldVector {
         precondition(self.a.count == other.a.count)
         precondition(self.q == other.q)
         precondition(self.a.count > 0)
-        var elements = [PrimeFieldElement]()
+        var elements = [BigUInt]()
         for i in 0 ..< self.a.count {
-            elements.append((self.a[i] - other.a[i]).mod(self.q))
+            if self.a[i] > other.a[i] {
+                elements.append(self.a[i] - other.a[i])
+            } else {
+                elements.append(self.q - (other.a[i] - self.a[i]))
+            }
+            
         }
         return FieldVector(elements, self.q)
     }
     
-    public func sum() -> PrimeFieldElement {
+    public func sum() -> BigUInt {
         precondition(self.a.count > 0)
         var result = self.a[0]
         for i in 1 ..< self.a.count {
             result = result + self.a[i]
         }
-        return result.mod(self.q)
+        return result % self.q
     }
     
     public func inv() -> FieldVector {
         precondition(self.a.count > 0)
-        var elements = [PrimeFieldElement]()
+        var elements = [BigUInt]()
         for i in 0 ..< self.a.count {
-            elements.append(self.a[i].inv(self.q))
+            let inverse = self.a[i].inverse(self.q)
+            precondition(inverse != nil)
+            elements.append(inverse!)
         }
         return FieldVector(elements, self.q)
     }
     
     public var first: BigUInt? {
-        return self.a.first?.value
+        return self.a.first
     }
     
-    public func get(_ i: Int) -> PrimeFieldElement {
+    public func get(_ i: Int) -> BigUInt {
         return self.a[i];
     }
     
@@ -123,7 +120,7 @@ public struct FieldVector {
     
     public func subvector(_ from: Int, _ noninclusiveTo: Int) -> FieldVector {
         precondition(self.a.count > 0)
-        var elements = [PrimeFieldElement]()
+        var elements = [BigUInt]()
         for i in from ..< noninclusiveTo {
             elements.append(self.a[i])
         }
@@ -131,9 +128,7 @@ public struct FieldVector {
     }
     
     public var vector: [BigUInt] {
-        return self.a.map({ (el) -> BigUInt in
-            return el.value
-        })
+        return self.a
     }
     
     
@@ -146,16 +141,16 @@ public struct FieldVector {
         for i in 1 ..< n {
             elements.append(elements[i-1] * kReduced)
         }
-        return FieldVector(elements, q);
+        let normalElements = elements.map { (el) -> BigUInt in
+            return el.value
+        }
+        return FieldVector(normalElements, q);
     }
     
     public static func fill(k: BigUInt, n: Int, q: BigUInt) -> FieldVector {
-        let field = PrimeField(q)
-        precondition(field != nil)
-        let kReduced = field!.fromValue(k)
-        var elements = [PrimeFieldElement]()
+        var elements = [BigUInt]()
         for _ in 0 ..< n {
-            elements.append(kReduced)
+            elements.append(k)
         }
         return FieldVector(elements, q);
     }
@@ -175,11 +170,11 @@ public struct FieldVector {
         return true
     }
     
-//    public static func random(n: Int, q: BigUInt) -> FieldVector  {
-//        const res = [];
-//        for (let i = 0; i < n; i++) {
-//        res.push(ProofUtils.randomNumber());
-//        }
-//        return new FieldVector(res, q);
-//    }
+    public static func random(n: Int, q: BigUInt) -> FieldVector  {
+        var res = [BigUInt]()
+        for _ in 0 ..< n {
+            res.append(ProofUtils.randomNumber(bitWidth: q.bitWidth))
+        }
+        return FieldVector(res, q);
+    }
 }

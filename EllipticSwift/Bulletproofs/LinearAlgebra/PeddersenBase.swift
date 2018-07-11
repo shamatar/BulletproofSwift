@@ -26,7 +26,7 @@ public struct PeddersenBase {
         self.curve = curve
     }
     
-    public func commit(_ x: BigUInt, r: BigUInt) -> AffinePoint {
+    public func commit(_ x: BigUInt, _ r: BigUInt) -> AffinePoint {
         return ((x * self.g) + (r * self.h)).toAffine()
     }
     
@@ -34,6 +34,6 @@ public struct PeddersenBase {
         let q = self.g.curve.order
         let xValue: BigUInt = x.mod(q)
         let rValue: BigUInt = r.mod(q)
-        return commit(xValue, r: rValue)
+        return commit(xValue, rValue)
     }
 }

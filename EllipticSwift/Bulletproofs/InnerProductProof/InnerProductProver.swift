@@ -24,7 +24,7 @@ public struct InnerProductProver {
     public static func generateProof(base: VectorBase, P: AffinePoint, As: FieldVector , Bs: FieldVector , Ls: [AffinePoint], Rs: [AffinePoint]) -> InnerProductProof {
         let n = As.size
         if (n == 1) {
-            return InnerProductProof(L: Rs, R: Rs, a: As.get(0).value, b: Bs.get(0).value)
+            return InnerProductProof(L: Rs, R: Rs, a: As.get(0), b: Bs.get(0))
         }
         let nPrime = n >> 1
         let asLeft = As.subvector(0, nPrime)
@@ -49,9 +49,9 @@ public struct InnerProductProver {
         var rs = Rs
         
         let u = base.h
-        L = L + cL.value * u
+        L = L + cL * u
         ls.append(L.toAffine())
-        R = R + cR.value * u
+        R = R + cR * u
         rs.append(R.toAffine())
         
         let lAffine = L.toAffine()
