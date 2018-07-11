@@ -73,4 +73,11 @@ public enum Curve {
         }
     }
     
+    public var order: BigUInt {
+        switch self {
+        case .weierstrass(let curve):
+            return curve.order
+        }
+    }
+    
 }

@@ -164,5 +164,4 @@ public class PrimeField {
         self.montInvR = montInvR
         self.montK = (self.montR * self.montInvR - BigUInt(1)) / self.prime
     }
-    
 }
