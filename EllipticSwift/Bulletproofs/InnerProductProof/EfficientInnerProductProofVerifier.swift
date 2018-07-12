@@ -19,11 +19,11 @@ public struct EfficientInnerProductVerifier {
     var inverseChallenges = [BigUInt]()
     let q = params.gs.curve.order
         
-    var localC : ProjectivePoint = ProjectivePoint.infinityPoint(params.gs.curve)
+    var localC : ProjectivePoint = c.toProjective()
     for i in 0 ..< ls.count {
         let l = ls[i]
         let r = rs[i]
-        let x = ProofUtils.computeChallenge(q: q, points: [l, c, r])
+        let x = ProofUtils.computeChallenge(q: q, points: [l, localC.toAffine(), r])
         challenges.append(x)
         let xInv = x.inverse(q)
         precondition(xInv != nil)
@@ -32,9 +32,11 @@ public struct EfficientInnerProductVerifier {
     }
     let n = params.gs.size
     var otherExponents = [BigUInt](repeating: BigUInt(0), count: n)
-    otherExponents[0] = challenges.reduce(1, { (prev, current) -> BigUInt in
+    let firstExponent = challenges.reduce(1, { (prev, current) -> BigUInt in
         (prev * current) % q
-    }) % q
+    }).inverse(q)
+    precondition(firstExponent != nil)
+    otherExponents[0] = firstExponent!
     challenges = challenges.reversed()
     var bitSet = BigUInt(0)
     let ONE = BigUInt(1)
@@ -61,6 +63,6 @@ public struct EfficientInnerProductVerifier {
     let h = params.hs.commit(otherExponents.reversed())
     let prod = (proof.a * proof.b) % q
     let cProof = (proof.a * g) + (proof.b * h) + (prod * params.h)
-    return c.isEqualTo(cProof.toAffine())
+    return localC.toAffine().isEqualTo(cProof.toAffine())
     }
 }

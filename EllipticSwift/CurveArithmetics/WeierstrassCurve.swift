@@ -98,12 +98,10 @@ public class WeierstrassCurve {
     }
     
     public func hashInto(_ data: Data) -> AffinePoint {
-        var seed = BigUInt(data) % self.field.prime
-        seed = seed - 1
-        for _ in 0 ..< 1000 {
-            seed = seed + 1
-            let x = self.field.fromValue(seed)
-            var y2 = x * x
+        var seed = self.field.fromValue(BigUInt(data))
+        for _ in 0 ..< 100 {
+            let x = seed
+            var y2 = x * x * x
             if !self.aIsZero {
                 y2 = y2 + self.A * x
             }
@@ -112,12 +110,13 @@ public class WeierstrassCurve {
             }
             // TODO
             let yReduced = y2.field.sqrt(y2)
-            
             if y2.isEqualTo(yReduced * yReduced) {
                 return AffinePoint(x, yReduced, Curve.weierstrass(self))
             }
+            seed = seed + self.field.identityElement
         }
         precondition(false, "Are you using a normal curve?")
+        return ProjectivePoint.infinityPoint(Curve.weierstrass(self)).toAffine()
     }
 }
 

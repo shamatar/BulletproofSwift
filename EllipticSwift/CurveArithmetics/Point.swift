@@ -9,7 +9,15 @@
 import Foundation
 import BigInt
 
-public struct AffineCoordinates {
+public struct AffineCoordinates: CustomStringConvertible {
+    public var description: String {
+        if self.isInfinity {
+            return "Point of O"
+        } else {
+            return "Point " + "(0x" + String(self.X, radix: 16) + ", 0x" + String(self.Y, radix: 16) + ")"
+        }
+    }
+    
     public var isInfinity: Bool = false
     public var X: BigUInt
     public var Y: BigUInt
@@ -22,7 +30,11 @@ public struct AffineCoordinates {
     }
 }
 
-public struct AffinePoint {
+public struct AffinePoint: CustomStringConvertible {
+    public var description: String {
+        return self.coordinates.description
+    }
+    
     public var curve: Curve
     public var isInfinity: Bool = true
     internal var rawX: PrimeFieldElement

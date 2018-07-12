@@ -99,7 +99,9 @@ public class PrimeField {
         if b == 1 {
             return a
         }
-        return doubleAndAddExponentiation(a, b)
+        return kSlidingWindowExponentiation(a, b)
+//        return doubleAndAddExponentiation(a, b)
+        
     }
     
     public func sqrt(_ a: PrimeFieldElement) -> PrimeFieldElement {
@@ -112,10 +114,11 @@ public class PrimeField {
         
         // Fast case
         if (mod3 == 3) {
-            let power = (self.prime + 1) >> 1
+            let power = (self.prime + 1) >> 2
             return self.pow(a, power)
         }
         precondition(false, "NYI")
+        return self.fromValue(0)
     }
     
     public func doubleAndAddExponentiation(_ a: PrimeFieldElement, _ b: BigUInt) -> PrimeFieldElement {

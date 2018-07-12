@@ -237,4 +237,15 @@ class EllipticSwiftTests: XCTestCase {
         XCTAssert(resAff.X == BigUInt("e2b1976566023f61f70893549a497dbf68f14e6cb44ba1b3bbe8c438a172a7b0", radix: 16)!)
         XCTAssert(resAff.Y == BigUInt("d088864d26ac7c96690ebc652b2906e8f2b85bccfb27b181d587899ccab4b442", radix: 16)!)
     }
+    
+    func testModularSquareRoot() {
+        let primeField = EllipticSwift.bn256PrimeField
+        let x = BigUInt("16013846061302606236678105035458059333313648338706491832021059651102665958964", radix: 10)!
+        let xReduced = primeField.fromValue(x)
+        let sqrtReduced = primeField.sqrt(xReduced)
+        let y = sqrtReduced.value
+//        XCTAssert(sqrtReduced * sqrtReduced == xReduced)
+//        XCTAssert((y * y) % primeField.prime == x)
+        XCTAssert(y == BigUInt("19775247992460679389771436516608933805782779220511590267128505960436574705663", radix: 10)!)
+    }
 }

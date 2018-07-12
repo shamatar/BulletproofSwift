@@ -15,7 +15,7 @@ public struct FieldVector {
     
     public init (_ a: [BigUInt], _ q: BigUInt) {
         self.a = a.map({ (el) -> BigUInt in
-            return el & q
+            return el % q
         })
         self.q = q;
     }
@@ -133,18 +133,25 @@ public struct FieldVector {
     
     
     public static func powers(k: BigUInt, n: Int, q: BigUInt) -> FieldVector {
-        let field = PrimeField(q)
-        precondition(field != nil)
-        let kReduced = field!.fromValue(k)
-        var elements = [PrimeFieldElement]()
-        elements.append(field!.identityElement)
+        var elements = [BigUInt]()
+        elements.append(1)
         for i in 1 ..< n {
-            elements.append(elements[i-1] * kReduced)
+            elements.append((elements[i-1] * k) % q)
         }
-        let normalElements = elements.map { (el) -> BigUInt in
-            return el.value
-        }
-        return FieldVector(normalElements, q);
+        return FieldVector(elements, q);
+        
+//        let field = PrimeField(q)
+//        precondition(field != nil)
+//        let kReduced = field!.fromValue(k)
+//        var elements = [PrimeFieldElement]()
+//        elements.append(field!.identityElement)
+//        for i in 1 ..< n {
+//            elements.append(elements[i-1] * kReduced)
+//        }
+//        let normalElements = elements.map { (el) -> BigUInt in
+//            return el.value
+//        }
+//        return FieldVector(normalElements, q);
     }
     
     public static func fill(k: BigUInt, n: Int, q: BigUInt) -> FieldVector {

@@ -33,15 +33,16 @@ public struct GeneratorParams {
             let hString = "H" + String(i)
             let hStringData = hString.data(using: .utf8)
             precondition(hStringData != nil)
-            let hHash = hashFunctionForChallenges(gStringData!)
+            let hHash = hashFunctionForChallenges(hStringData!)
             let h = curve.hashInto(hHash)
             hPoints.append(h)
         }
         let g = curve.hashInto(hashFunctionForChallenges("G".data(using: .utf8)!))
         let h = curve.hashInto(hashFunctionForChallenges("H".data(using: .utf8)!))
+        let v = curve.hashInto(hashFunctionForChallenges("V".data(using: .utf8)!))
         let generatorVectorG = GeneratorVector(gPoints, curve)
         let generatorVectorH = GeneratorVector(hPoints, curve)
-        let vectorBase = VectorBase(gs: generatorVectorG, hs: generatorVectorH, h: h)
+        let vectorBase = VectorBase(gs: generatorVectorG, hs: generatorVectorH, h: v)
         let base = PeddersenBase(g: g, h: h, curve: curve);
         return GeneratorParams(vectorBase: vectorBase, base: base, curve: curve);
     }

@@ -73,6 +73,7 @@
 		81DFCC4A20F69E8100603123 /* RangeProof.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC4820F69E8100603123 /* RangeProof.swift */; };
 		81DFCC4E20F75E4000603123 /* EfficientInnerProductProofVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC4D20F75E4000603123 /* EfficientInnerProductProofVerifier.swift */; };
 		81DFCC4F20F75E4000603123 /* EfficientInnerProductProofVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC4D20F75E4000603123 /* EfficientInnerProductProofVerifier.swift */; };
+		81DFCC5120F7682A00603123 /* EllipticSwiftBulletproofTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC5020F7682A00603123 /* EllipticSwiftBulletproofTests.swift */; };
 		CC7AB8957C42B6BE8D97D7D1 /* libPods-EllipticSwift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B46A18082B4C5966DAF715C /* libPods-EllipticSwift.a */; };
 /* End PBXBuildFile section */
 
@@ -133,6 +134,7 @@
 		81DFCC4520F69B9900603123 /* PolyCommitment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyCommitment.swift; sourceTree = "<group>"; };
 		81DFCC4820F69E8100603123 /* RangeProof.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeProof.swift; sourceTree = "<group>"; };
 		81DFCC4D20F75E4000603123 /* EfficientInnerProductProofVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EfficientInnerProductProofVerifier.swift; sourceTree = "<group>"; };
+		81DFCC5020F7682A00603123 /* EllipticSwiftBulletproofTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllipticSwiftBulletproofTests.swift; sourceTree = "<group>"; };
 		89D25E59ED1A8B5EEEF0547C /* Pods-EllipticSwift_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllipticSwift_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EllipticSwift_iOS/Pods-EllipticSwift_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		B1A986D531EFC8D7C120E061 /* libPods-EllipticSwiftTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EllipticSwiftTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -218,6 +220,7 @@
 		813CB9CD20F12475001434D4 /* EllipticSwiftTests */ = {
 			isa = PBXGroup;
 			children = (
+				81DFCC5020F7682A00603123 /* EllipticSwiftBulletproofTests.swift */,
 				813CB9CE20F12475001434D4 /* EllipticSwiftTests.swift */,
 				813CB9D020F12475001434D4 /* Info.plist */,
 			);
@@ -592,6 +595,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81DFCC5120F7682A00603123 /* EllipticSwiftBulletproofTests.swift in Sources */,
 				813CB9CF20F12475001434D4 /* EllipticSwiftTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

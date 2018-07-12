@@ -24,7 +24,7 @@ public struct InnerProductProver {
     public static func generateProof(base: VectorBase, P: AffinePoint, As: FieldVector , Bs: FieldVector , Ls: [AffinePoint], Rs: [AffinePoint]) -> InnerProductProof {
         let n = As.size
         if (n == 1) {
-            return InnerProductProof(L: Rs, R: Rs, a: As.get(0), b: Bs.get(0))
+            return InnerProductProof(L: Ls, R: Rs, a: As.get(0), b: Bs.get(0))
         }
         let nPrime = n >> 1
         let asLeft = As.subvector(0, nPrime)
@@ -50,12 +50,11 @@ public struct InnerProductProver {
         
         let u = base.h
         L = L + cL * u
-        ls.append(L.toAffine())
-        R = R + cR * u
-        rs.append(R.toAffine())
-        
         let lAffine = L.toAffine()
+        ls.append(lAffine)
+        R = R + cR * u
         let rAffine = R.toAffine()
+        rs.append(rAffine)
         
         let q = gs.curve.order
         let x = ProofUtils.computeChallenge(q: q, points: [lAffine, P, rAffine])
@@ -70,7 +69,6 @@ public struct InnerProductProver {
         let hPrime = hLeft.hadamardProduct(xs).add(hRight.hadamardProduct(xInverses))
         let aPrime = asLeft.times(x).add(asRight.times(xInv!))
         let bPrime = bsLeft.times(xInv!).add(bsRight.times(x))
-        // console.log(aPrime.getVector()[0].toString(16))
         
         let PPrime = xSquare * lAffine + xInvSquare * rAffine + P
         let basePrime = VectorBase(gs: gPrime, hs: hPrime, h: u)
