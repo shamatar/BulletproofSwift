@@ -71,6 +71,8 @@
 		81DFCC4720F69B9900603123 /* PolyCommitment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC4520F69B9900603123 /* PolyCommitment.swift */; };
 		81DFCC4920F69E8100603123 /* RangeProof.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC4820F69E8100603123 /* RangeProof.swift */; };
 		81DFCC4A20F69E8100603123 /* RangeProof.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC4820F69E8100603123 /* RangeProof.swift */; };
+		81DFCC4E20F75E4000603123 /* EfficientInnerProductProofVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC4D20F75E4000603123 /* EfficientInnerProductProofVerifier.swift */; };
+		81DFCC4F20F75E4000603123 /* EfficientInnerProductProofVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC4D20F75E4000603123 /* EfficientInnerProductProofVerifier.swift */; };
 		CC7AB8957C42B6BE8D97D7D1 /* libPods-EllipticSwift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B46A18082B4C5966DAF715C /* libPods-EllipticSwift.a */; };
 /* End PBXBuildFile section */
 
@@ -130,6 +132,7 @@
 		81DFCC4220F6989900603123 /* PeddersenCommitment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeddersenCommitment.swift; sourceTree = "<group>"; };
 		81DFCC4520F69B9900603123 /* PolyCommitment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyCommitment.swift; sourceTree = "<group>"; };
 		81DFCC4820F69E8100603123 /* RangeProof.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeProof.swift; sourceTree = "<group>"; };
+		81DFCC4D20F75E4000603123 /* EfficientInnerProductProofVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EfficientInnerProductProofVerifier.swift; sourceTree = "<group>"; };
 		89D25E59ED1A8B5EEEF0547C /* Pods-EllipticSwift_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllipticSwift_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EllipticSwift_iOS/Pods-EllipticSwift_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		B1A986D531EFC8D7C120E061 /* libPods-EllipticSwiftTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EllipticSwiftTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -311,6 +314,7 @@
 				81DFCC3120F64C9F00603123 /* InnerProductWitness.swift */,
 				81DFCC3420F64F5400603123 /* InnerProductProof.swift */,
 				81DFCC3720F651B800603123 /* InnerProductProver.swift */,
+				81DFCC4D20F75E4000603123 /* EfficientInnerProductProofVerifier.swift */,
 			);
 			path = InnerProductProof;
 			sourceTree = "<group>";
@@ -562,6 +566,7 @@
 				81DFCC3820F651B800603123 /* InnerProductProver.swift in Sources */,
 				81DFCC0620F4ECFE00603123 /* windowMethods.swift in Sources */,
 				81DFCC1820F5F5ED00603123 /* GeneratorVector.swift in Sources */,
+				81DFCC4E20F75E4000603123 /* EfficientInnerProductProofVerifier.swift in Sources */,
 				81DFCBF520F4001D00603123 /* Constants.swift in Sources */,
 				81DFCBFF20F4AEBA00603123 /* WeierstrassCurve.swift in Sources */,
 				813CB9EC20F126A4001434D4 /* PrimeField.swift in Sources */,
@@ -606,6 +611,7 @@
 				81DFCC3920F651B800603123 /* InnerProductProver.swift in Sources */,
 				81DFCC0720F4ECFE00603123 /* windowMethods.swift in Sources */,
 				81DFCC1920F5F5ED00603123 /* GeneratorVector.swift in Sources */,
+				81DFCC4F20F75E4000603123 /* EfficientInnerProductProofVerifier.swift in Sources */,
 				81DFCBF620F4001D00603123 /* Constants.swift in Sources */,
 				81DFCC0020F4AEBA00603123 /* WeierstrassCurve.swift in Sources */,
 				813CB9ED20F126A4001434D4 /* PrimeField.swift in Sources */,
