@@ -15,8 +15,8 @@
 		813CB9E320F124A9001434D4 /* EllipticSwift_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 813CB9E120F124A9001434D4 /* EllipticSwift_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		813CB9E920F12591001434D4 /* FieldProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9E820F12591001434D4 /* FieldProtocols.swift */; };
 		813CB9EA20F12591001434D4 /* FieldProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9E820F12591001434D4 /* FieldProtocols.swift */; };
-		813CB9EC20F126A4001434D4 /* PrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9EB20F126A4001434D4 /* PrimeField.swift */; };
-		813CB9ED20F126A4001434D4 /* PrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9EB20F126A4001434D4 /* PrimeField.swift */; };
+		813CB9EC20F126A4001434D4 /* MontPrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9EB20F126A4001434D4 /* MontPrimeField.swift */; };
+		813CB9ED20F126A4001434D4 /* MontPrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9EB20F126A4001434D4 /* MontPrimeField.swift */; };
 		813CB9EF20F128B9001434D4 /* PrimeFieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9EE20F128B9001434D4 /* PrimeFieldElement.swift */; };
 		813CB9F020F128B9001434D4 /* PrimeFieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9EE20F128B9001434D4 /* PrimeFieldElement.swift */; };
 		81DFCBF220F3FA0D00603123 /* BigInt+Bitset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCBF120F3FA0D00603123 /* BigInt+Bitset.swift */; };
@@ -45,8 +45,6 @@
 		81DFCC1C20F5F62E00603123 /* FieldVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC1A20F5F62E00603123 /* FieldVector.swift */; };
 		81DFCC1E20F5F84200603123 /* PrimeFieldElement+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC1D20F5F84200603123 /* PrimeFieldElement+Operations.swift */; };
 		81DFCC1F20F5F84200603123 /* PrimeFieldElement+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC1D20F5F84200603123 /* PrimeFieldElement+Operations.swift */; };
-		81DFCC2220F6058B00603123 /* MontgomeryReducedPrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC2120F6058B00603123 /* MontgomeryReducedPrimeField.swift */; };
-		81DFCC2320F6058B00603123 /* MontgomeryReducedPrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC2120F6058B00603123 /* MontgomeryReducedPrimeField.swift */; };
 		81DFCC2520F60E6200603123 /* FieldPolynomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC2420F60E6200603123 /* FieldPolynomial.swift */; };
 		81DFCC2620F60E6200603123 /* FieldPolynomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC2420F60E6200603123 /* FieldPolynomial.swift */; };
 		81DFCC2820F60EB900603123 /* FieldVectorPolynomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC2720F60EB900603123 /* FieldVectorPolynomial.swift */; };
@@ -74,6 +72,10 @@
 		81DFCC4E20F75E4000603123 /* EfficientInnerProductProofVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC4D20F75E4000603123 /* EfficientInnerProductProofVerifier.swift */; };
 		81DFCC4F20F75E4000603123 /* EfficientInnerProductProofVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC4D20F75E4000603123 /* EfficientInnerProductProofVerifier.swift */; };
 		81DFCC5120F7682A00603123 /* EllipticSwiftBulletproofTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC5020F7682A00603123 /* EllipticSwiftBulletproofTests.swift */; };
+		81DFCC5320F7A32700603123 /* PrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC5220F7A32700603123 /* PrimeField.swift */; };
+		81DFCC5420F7A32700603123 /* PrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC5220F7A32700603123 /* PrimeField.swift */; };
+		81DFCC5620F7A34A00603123 /* NaivePrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC5520F7A34A00603123 /* NaivePrimeField.swift */; };
+		81DFCC5720F7A34A00603123 /* NaivePrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC5520F7A34A00603123 /* NaivePrimeField.swift */; };
 		CC7AB8957C42B6BE8D97D7D1 /* libPods-EllipticSwift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B46A18082B4C5966DAF715C /* libPods-EllipticSwift.a */; };
 /* End PBXBuildFile section */
 
@@ -105,7 +107,7 @@
 		813CB9E120F124A9001434D4 /* EllipticSwift_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EllipticSwift_iOS.h; sourceTree = "<group>"; };
 		813CB9E220F124A9001434D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		813CB9E820F12591001434D4 /* FieldProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldProtocols.swift; sourceTree = "<group>"; };
-		813CB9EB20F126A4001434D4 /* PrimeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeField.swift; sourceTree = "<group>"; };
+		813CB9EB20F126A4001434D4 /* MontPrimeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontPrimeField.swift; sourceTree = "<group>"; };
 		813CB9EE20F128B9001434D4 /* PrimeFieldElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeFieldElement.swift; sourceTree = "<group>"; };
 		81DFCBF120F3FA0D00603123 /* BigInt+Bitset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BigInt+Bitset.swift"; sourceTree = "<group>"; };
 		81DFCBF420F4001D00603123 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -120,7 +122,6 @@
 		81DFCC1720F5F5ED00603123 /* GeneratorVector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorVector.swift; sourceTree = "<group>"; };
 		81DFCC1A20F5F62E00603123 /* FieldVector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldVector.swift; sourceTree = "<group>"; };
 		81DFCC1D20F5F84200603123 /* PrimeFieldElement+Operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PrimeFieldElement+Operations.swift"; sourceTree = "<group>"; };
-		81DFCC2120F6058B00603123 /* MontgomeryReducedPrimeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontgomeryReducedPrimeField.swift; sourceTree = "<group>"; };
 		81DFCC2420F60E6200603123 /* FieldPolynomial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldPolynomial.swift; sourceTree = "<group>"; };
 		81DFCC2720F60EB900603123 /* FieldVectorPolynomial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldVectorPolynomial.swift; sourceTree = "<group>"; };
 		81DFCC2A20F615DC00603123 /* VectorBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorBase.swift; sourceTree = "<group>"; };
@@ -135,6 +136,8 @@
 		81DFCC4820F69E8100603123 /* RangeProof.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeProof.swift; sourceTree = "<group>"; };
 		81DFCC4D20F75E4000603123 /* EfficientInnerProductProofVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EfficientInnerProductProofVerifier.swift; sourceTree = "<group>"; };
 		81DFCC5020F7682A00603123 /* EllipticSwiftBulletproofTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllipticSwiftBulletproofTests.swift; sourceTree = "<group>"; };
+		81DFCC5220F7A32700603123 /* PrimeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeField.swift; sourceTree = "<group>"; };
+		81DFCC5520F7A34A00603123 /* NaivePrimeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaivePrimeField.swift; sourceTree = "<group>"; };
 		89D25E59ED1A8B5EEEF0547C /* Pods-EllipticSwift_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllipticSwift_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EllipticSwift_iOS/Pods-EllipticSwift_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		B1A986D531EFC8D7C120E061 /* libPods-EllipticSwiftTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EllipticSwiftTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -240,11 +243,12 @@
 			isa = PBXGroup;
 			children = (
 				813CB9E820F12591001434D4 /* FieldProtocols.swift */,
-				813CB9EB20F126A4001434D4 /* PrimeField.swift */,
+				813CB9EB20F126A4001434D4 /* MontPrimeField.swift */,
 				813CB9EE20F128B9001434D4 /* PrimeFieldElement.swift */,
 				81DFCBF420F4001D00603123 /* Constants.swift */,
 				81DFCC1D20F5F84200603123 /* PrimeFieldElement+Operations.swift */,
-				81DFCC2120F6058B00603123 /* MontgomeryReducedPrimeField.swift */,
+				81DFCC5220F7A32700603123 /* PrimeField.swift */,
+				81DFCC5520F7A34A00603123 /* NaivePrimeField.swift */,
 			);
 			path = ModularArithmetics;
 			sourceTree = "<group>";
@@ -560,19 +564,20 @@
 			files = (
 				81DFCC1520F5F3FA00603123 /* PeddersenBase.swift in Sources */,
 				81DFCC3F20F6985E00603123 /* RangeProofProver.swift in Sources */,
-				81DFCC2220F6058B00603123 /* MontgomeryReducedPrimeField.swift in Sources */,
 				81DFCC3520F64F5400603123 /* InnerProductProof.swift in Sources */,
+				81DFCC5620F7A34A00603123 /* NaivePrimeField.swift in Sources */,
 				81DFCC4920F69E8100603123 /* RangeProof.swift in Sources */,
 				81DFCC0220F4B81900603123 /* PrecompiledCurves.swift in Sources */,
 				81DFCBFC20F4AE6E00603123 /* Curve.swift in Sources */,
 				81DFCC1E20F5F84200603123 /* PrimeFieldElement+Operations.swift in Sources */,
 				81DFCC3820F651B800603123 /* InnerProductProver.swift in Sources */,
 				81DFCC0620F4ECFE00603123 /* windowMethods.swift in Sources */,
+				81DFCC5320F7A32700603123 /* PrimeField.swift in Sources */,
 				81DFCC1820F5F5ED00603123 /* GeneratorVector.swift in Sources */,
 				81DFCC4E20F75E4000603123 /* EfficientInnerProductProofVerifier.swift in Sources */,
 				81DFCBF520F4001D00603123 /* Constants.swift in Sources */,
 				81DFCBFF20F4AEBA00603123 /* WeierstrassCurve.swift in Sources */,
-				813CB9EC20F126A4001434D4 /* PrimeField.swift in Sources */,
+				813CB9EC20F126A4001434D4 /* MontPrimeField.swift in Sources */,
 				81DFCBF920F4AB5200603123 /* Point.swift in Sources */,
 				81DFCC2E20F645CA00603123 /* ProofUtils.swift in Sources */,
 				81DFCBF220F3FA0D00603123 /* BigInt+Bitset.swift in Sources */,
@@ -606,19 +611,20 @@
 			files = (
 				81DFCC1620F5F3FA00603123 /* PeddersenBase.swift in Sources */,
 				81DFCC4020F6985E00603123 /* RangeProofProver.swift in Sources */,
-				81DFCC2320F6058B00603123 /* MontgomeryReducedPrimeField.swift in Sources */,
 				81DFCC3620F64F5400603123 /* InnerProductProof.swift in Sources */,
+				81DFCC5720F7A34A00603123 /* NaivePrimeField.swift in Sources */,
 				81DFCC4A20F69E8100603123 /* RangeProof.swift in Sources */,
 				81DFCC0320F4B81900603123 /* PrecompiledCurves.swift in Sources */,
 				81DFCBFD20F4AE6E00603123 /* Curve.swift in Sources */,
 				81DFCC1F20F5F84200603123 /* PrimeFieldElement+Operations.swift in Sources */,
 				81DFCC3920F651B800603123 /* InnerProductProver.swift in Sources */,
 				81DFCC0720F4ECFE00603123 /* windowMethods.swift in Sources */,
+				81DFCC5420F7A32700603123 /* PrimeField.swift in Sources */,
 				81DFCC1920F5F5ED00603123 /* GeneratorVector.swift in Sources */,
 				81DFCC4F20F75E4000603123 /* EfficientInnerProductProofVerifier.swift in Sources */,
 				81DFCBF620F4001D00603123 /* Constants.swift in Sources */,
 				81DFCC0020F4AEBA00603123 /* WeierstrassCurve.swift in Sources */,
-				813CB9ED20F126A4001434D4 /* PrimeField.swift in Sources */,
+				813CB9ED20F126A4001434D4 /* MontPrimeField.swift in Sources */,
 				81DFCBFA20F4AB5200603123 /* Point.swift in Sources */,
 				81DFCC2F20F645CA00603123 /* ProofUtils.swift in Sources */,
 				81DFCBF320F3FA0D00603123 /* BigInt+Bitset.swift in Sources */,

@@ -36,23 +36,12 @@ class EllipticSwiftBulletproofTests: XCTestCase {
 
         let proof = InnerProductProver.generateProofFromWitness(base: base, c: vTot, witness: witness)
         XCTAssert(proof.L.count == nBitLength)
-//        print("L")
-//        proof.L.forEach { (p) in
-//            print(p.description)
-//        }
-//        print("R")
-//        proof.R.forEach { (p) in
-//            print(p.description)
-//        }
-//        print(String(proof.a, radix: 16))
-//        print(String(proof.b, radix: 16))
-        
         let valid = EfficientInnerProductVerifier.verify(params: base, c: vTot, proof: proof)
         XCTAssert(valid)
     }
     
     func testBaseCorrectness() {
-        let n = 16
+        let n = 256
         let curve = EllipticSwift.bn256Curve
         let params = GeneratorParams.generateParams(size: n, curve: curve)
         let base = params.vectorBase

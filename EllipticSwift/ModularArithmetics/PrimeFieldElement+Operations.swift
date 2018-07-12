@@ -45,8 +45,7 @@ extension PrimeFieldElement: Equatable {
             return self
         }
         let newField = PrimeField(q)
-        precondition(newField != nil)
-        return newField!.fromValue(self.value)
+        return newField.fromValue(self.value)
     }
     
     public func mod(_ q: BigUInt) -> BigUInt {
@@ -61,8 +60,7 @@ extension PrimeFieldElement: Equatable {
             return self.field.inv(self)
         }
         let newField = PrimeField(q)
-        precondition(newField != nil)
-        let newValue = newField!.fromValue(self.value)
-        return newField!.inv(newValue)
+        let newValue = newField.fromValue(self.value)
+        return newField.inv(newValue)
     }
 }

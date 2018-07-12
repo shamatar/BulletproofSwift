@@ -17,7 +17,7 @@ class EllipticSwiftTests: XCTestCase {
     
     func testTrivialMontArithmetics() {
         let modulus = BigUInt(97)
-        let field = PrimeField(modulus)!
+        let field = MontPrimeField(modulus)!
         field.montR = BigUInt(100) // for testing purposes
         field.montInvR = BigUInt(65) // for testing purposes
         let fe1 = field.fromValue(BigUInt(43))
@@ -30,13 +30,13 @@ class EllipticSwiftTests: XCTestCase {
     
     func testMontR() {
         let modulus = BigUInt(97)
-        let field = PrimeField(modulus)!
+        let field = MontPrimeField(modulus)!
         XCTAssert(field.montR == BigUInt(1) << 64)
     }
     
     func testTrivialMontMul() {
         let modulus = BigUInt(97)
-        let field = PrimeField(modulus)!
+        let field = MontPrimeField(modulus)!
         let fe1 = field.fromValue(BigUInt(43))
         let fe2 = field.fromValue(BigUInt(56))
         let multiple = field.mul(fe1, fe2)
@@ -45,7 +45,7 @@ class EllipticSwiftTests: XCTestCase {
     
     func testSub() {
         let modulus = BigUInt(97)
-        let field = PrimeField(modulus)!
+        let field = MontPrimeField(modulus)!
         let fe1 = field.fromValue(BigUInt(43))
         let fe2 = field.fromValue(BigUInt(56))
         let sum = field.add(fe1, fe2)
@@ -59,7 +59,7 @@ class EllipticSwiftTests: XCTestCase {
     
     func testIdentity() {
         let modulus = BigUInt(97)
-        let field = PrimeField(modulus)!
+        let field = MontPrimeField(modulus)!
         let identity = field.identity()
         let fe1 = field.fromValue(BigUInt(3))
         let mul = field.mul(fe1, identity)
@@ -68,7 +68,7 @@ class EllipticSwiftTests: XCTestCase {
     
     func testMontDouble() {
         let modulus = BigUInt(97)
-        let field = PrimeField(modulus)!
+        let field = MontPrimeField(modulus)!
         let fe1 = field.fromValue(BigUInt(3))
         XCTAssert(fe1.isEqualTo(field.pow(fe1, BigUInt(1))))
         let power = field.pow(fe1, BigUInt(2))
@@ -78,7 +78,7 @@ class EllipticSwiftTests: XCTestCase {
     
     func testMontPow() {
         let modulus = BigUInt(97)
-        let field = PrimeField(modulus)!
+        let field = MontPrimeField(modulus)!
         let fe1 = field.fromValue(BigUInt(3))
         let power = field.pow(fe1, BigUInt(5))
         XCTAssert(power.value == 49)
@@ -86,7 +86,7 @@ class EllipticSwiftTests: XCTestCase {
     
     func testDoubleAndAddPow() {
         let modulus = BigUInt(97)
-        let field = PrimeField(modulus)!
+        let field = MontPrimeField(modulus)!
         let fe1 = field.fromValue(BigUInt(3))
         let power = field.doubleAndAddExponentiation(fe1, BigUInt(5))
         XCTAssert(power.value == 49)
@@ -94,7 +94,7 @@ class EllipticSwiftTests: XCTestCase {
     
     func testKWindowPow() {
         let modulus = BigUInt(97)
-        let field = PrimeField(modulus)!
+        let field = MontPrimeField(modulus)!
         let fe1 = field.fromValue(BigUInt(3))
         let power = field.kSlidingWindowExponentiation(fe1, BigUInt(11749), windowSize: 3)
         let trivialPower = field.doubleAndAddExponentiation(fe1, BigUInt(11749))
@@ -103,7 +103,7 @@ class EllipticSwiftTests: XCTestCase {
     
     func testKWindowPowWiderWindow() {
         let modulus = BigUInt(97)
-        let field = PrimeField(modulus)!
+        let field = MontPrimeField(modulus)!
         let fe1 = field.fromValue(BigUInt(3))
         let power = field.kSlidingWindowExponentiation(fe1, BigUInt(11749))
         let trivialPower = field.doubleAndAddExponentiation(fe1, BigUInt(11749))
@@ -112,7 +112,7 @@ class EllipticSwiftTests: XCTestCase {
     
     func testKWindowSpeed() {
         let modulus = k256Prime
-        let field = PrimeField(modulus)!
+        let field = MontPrimeField(modulus)!
         let fe1 = field.fromValue(BigUInt(3))
         measure {
             let _ = field.kSlidingWindowExponentiation(fe1, BigUInt(11749), windowSize: 5)
@@ -121,7 +121,7 @@ class EllipticSwiftTests: XCTestCase {
     
     func testDoubleAndAddSpeed() {
         let modulus = k256Prime
-        let field = PrimeField(modulus)!
+        let field = MontPrimeField(modulus)!
         let fe1 = field.fromValue(BigUInt(3))
         measure {
             let _ = field.doubleAndAddExponentiation(fe1, BigUInt(11749))
@@ -147,7 +147,7 @@ class EllipticSwiftTests: XCTestCase {
     func testFieldInversion() {
         let modulus = BigUInt(97)
         let inverse = BigUInt(3).inverse(modulus)!
-        let field = PrimeField(modulus)!
+        let field = MontPrimeField(modulus)!
         let fe1 = field.fromValue(BigUInt(3))
         let inv = field.inv(fe1)
         XCTAssert(inverse == inv.value)

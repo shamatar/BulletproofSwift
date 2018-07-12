@@ -11,7 +11,7 @@ import BigInt
 
 // secp256k1
 public let k256Prime = BigUInt("fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f", radix: 16)!
-public let k256PrimeField = PrimeField(k256Prime)!
+public let k256PrimeField = PrimeField(k256Prime)
 public let secp256k1CurveOrder = BigUInt("fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141", radix: 16)!
 public let secp256k1WeierstrassCurve: WeierstrassCurve = {
     let curve = WeierstrassCurve(field: k256PrimeField, order: secp256k1CurveOrder, A: 0, B: 7)
@@ -25,7 +25,7 @@ public let secp256k1Curve = Curve.weierstrass(secp256k1WeierstrassCurve)
 
 // bn256
 public let bn256Prime = BigUInt("21888242871839275222246405745257275088696311157297823662689037894645226208583", radix: 10)!
-public let bn256PrimeField = PrimeField(bn256Prime)!
+public let bn256PrimeField = PrimeField(bn256Prime)
 public let bn256CurveOrder = BigUInt("21888242871839275222246405745257275088548364400416034343698204186575808495617", radix: 10)!
 public let bn256WeierstrassCurve: WeierstrassCurve = {
     let curve = WeierstrassCurve(field: bn256PrimeField, order: bn256CurveOrder, A: 0, B: 3)

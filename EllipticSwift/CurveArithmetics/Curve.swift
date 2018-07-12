@@ -86,5 +86,4 @@ public enum Curve {
             return curve.hashInto(data)
         }
     }
-    
 }

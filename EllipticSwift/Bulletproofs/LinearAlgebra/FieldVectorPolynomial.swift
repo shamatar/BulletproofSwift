@@ -23,13 +23,12 @@ public struct FieldVectorPolynomial {
     public func evaluate(_ x: BigUInt) -> FieldVector {
         let q = self.coefficients[0].q
         let field = PrimeField(q)
-        precondition(field != nil)
-        let xRed = field!.fromValue(x)
+        let xRed = field.fromValue(x)
         let result = self.coefficients.enumerated().map { (index: Int, element: FieldVector) -> (FieldVector, BigUInt) in
             return (element, BigUInt(index))
             }.map { (arg) -> (FieldVector, BigUInt) in
                 let (el, idx) = arg
-                return (el, field!.pow(xRed, idx).value)
+                return (el, field.pow(xRed, idx).value)
             }.map { (arg) -> FieldVector in
                 let (el, idx) = arg
                 return el.times(idx)
