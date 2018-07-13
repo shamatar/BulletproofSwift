@@ -162,5 +162,5 @@ public enum PrimeField {
             return field.zeroElement
         }
     }
-    
 }
+
