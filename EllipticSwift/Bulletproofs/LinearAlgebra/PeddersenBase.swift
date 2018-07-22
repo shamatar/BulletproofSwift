@@ -26,14 +26,13 @@ public struct PeddersenBase {
         self.curve = curve
     }
     
-    public func commit(_ x: BigUInt, _ r: BigUInt) -> AffinePoint {
+    public func commit(_ x: BigNumber, _ r: BigNumber) -> AffinePoint {
         return ((x * self.g) + (r * self.h)).toAffine()
     }
     
-    public func commit(_ x: PrimeFieldElement, _ r: PrimeFieldElement) -> AffinePoint {
-        let q = self.g.curve.order
-        let xValue: BigUInt = x.mod(q)
-        let rValue: BigUInt = r.mod(q)
+    public func commit(_ x: GeneralPrimeFieldElement, _ r: GeneralPrimeFieldElement) -> AffinePoint {
+        let xValue: BigNumber = x.value
+        let rValue: BigNumber = r.value
         return commit(xValue, rValue)
     }
 }

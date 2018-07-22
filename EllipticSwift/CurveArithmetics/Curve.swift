@@ -21,10 +21,17 @@ public enum Curve {
         }
     }
     
-    public var field: PrimeField {
+    public var field: GeneralPrimeField {
         switch self {
         case .weierstrass(let curve):
             return curve.field
+        }
+    }
+    
+    public var curveOrderField: GeneralPrimeField {
+        switch self {
+        case .weierstrass(let curve):
+            return curve.curveOrderField
         }
     }
     
@@ -59,7 +66,14 @@ public enum Curve {
         }
     }
     
-    public func mul(_ scalar: BigUInt , _ p: AffinePoint) -> ProjectivePoint {
+//    public func mul(_ scalar: BigUInt , _ p: AffinePoint) -> ProjectivePoint {
+//        switch self {
+//        case .weierstrass(let curve):
+//            return curve.mul(scalar, p)
+//        }
+//    }
+    
+    public func mul(_ scalar: BigNumber , _ p: AffinePoint) -> ProjectivePoint {
         switch self {
         case .weierstrass(let curve):
             return curve.mul(scalar, p)
@@ -73,7 +87,7 @@ public enum Curve {
         }
     }
     
-    public var order: BigUInt {
+    public var order: BigNumber {
         switch self {
         case .weierstrass(let curve):
             return curve.order

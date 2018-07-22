@@ -11,10 +11,10 @@ import Accelerate
 
 extension U256 {
     public static var one: U256 {
-        return U256(Data(repeating: 1, count: 1))!
+        return vU256(v: (vUInt32(1), vUInt32(0)))
     }
     
     public static var zero: U256 {
-        return vU256(v: (BigNumber.vZERO, BigNumber.vZERO))
+        return vU256(v: (vZERO, vZERO))
     }
 }

@@ -9,9 +9,9 @@
 import Foundation
 import BigInt
 
-public struct InnerProductProver {
+internal struct InnerProductProver {
 
-    public static func generateProofFromWitness(base: VectorBase, c: AffinePoint, witness: InnerProductWitness) -> InnerProductProof {
+    static func generateProofFromWitness(base: VectorBase, c: AffinePoint, witness: InnerProductWitness) -> InnerProductProof {
         let n = base.gs.size
             if (!((n & (n - 1)) == 0)) {
                 precondition(false, "Vector base length is not a power of 2")
@@ -21,10 +21,10 @@ public struct InnerProductProver {
         return generateProof(base: base, P: c, As: witness.a, Bs: witness.b, Ls: emptyLs, Rs: emptyRs)
     }
     
-    public static func generateProof(base: VectorBase, P: AffinePoint, As: FieldVector , Bs: FieldVector , Ls: [AffinePoint], Rs: [AffinePoint]) -> InnerProductProof {
+    static func generateProof(base: VectorBase, P: AffinePoint, As: FieldVector , Bs: FieldVector , Ls: [AffinePoint], Rs: [AffinePoint]) -> InnerProductProof {
         let n = As.size
         if (n == 1) {
-            return InnerProductProof(L: Ls, R: Rs, a: As.get(0), b: Bs.get(0))
+            return InnerProductProof(L: Ls, R: Rs, a: As.get(0).value, b: Bs.get(0).value)
         }
         let nPrime = n >> 1
         let asLeft = As.subvector(0, nPrime)
@@ -49,28 +49,29 @@ public struct InnerProductProver {
         var rs = Rs
         
         let u = base.h
-        L = L + cL * u
+        L = L + cL.value * u
         let lAffine = L.toAffine()
         ls.append(lAffine)
-        R = R + cR * u
+        R = R + cR.value * u
         let rAffine = R.toAffine()
         rs.append(rAffine)
         
         let q = gs.curve.order
-        let x = ProofUtils.computeChallenge(q: q, points: [lAffine, P, rAffine])
-        let xInv = x.inverse(q)
-        precondition(xInv != nil)
-        let xSquare = x.power(2, modulus: q)
-        let xInvSquare = xInv!.power(2, modulus: q)
-        let xs = [BigUInt](repeating: x, count: nPrime)
-        let xInverses = [BigUInt](repeating: xInv!, count: nPrime)
+        let curveOrderField = GeneralPrimeField(q)
+        let xGenerated = ProofUtils.computeChallenge(points: [lAffine, P, rAffine])
+        let x = curveOrderField.fromValue(xGenerated)
+        let xInv = x.inv()
+        let xSquare = x * x
+        let xInvSquare = xInv * xInv
+        let xs = [BigNumber](repeating: x.value, count: nPrime)
+        let xInverses = [BigNumber](repeating: xInv.value, count: nPrime)
         
         let gPrime = gLeft.hadamardProduct(xInverses).add(gRight.hadamardProduct(xs))
         let hPrime = hLeft.hadamardProduct(xs).add(hRight.hadamardProduct(xInverses))
-        let aPrime = asLeft.times(x).add(asRight.times(xInv!))
-        let bPrime = bsLeft.times(xInv!).add(bsRight.times(x))
+        let aPrime = asLeft.times(x.value).add(asRight.times(xInv.value))
+        let bPrime = bsLeft.times(xInv.value).add(bsRight.times(x.value))
         
-        let PPrime = xSquare * lAffine + xInvSquare * rAffine + P
+        let PPrime = xSquare.value * lAffine + xInvSquare.value * rAffine + P
         let basePrime = VectorBase(gs: gPrime, hs: hPrime, h: u)
         
         return generateProof(base: basePrime, P: PPrime.toAffine(), As: aPrime, Bs: bPrime, Ls: ls, Rs: rs)

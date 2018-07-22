@@ -9,10 +9,9 @@
 import Foundation
 import BigInt
 public struct FieldPolynomial {
-    public var coefficients: [BigUInt]
+    public var coefficients: [GeneralPrimeFieldElement]
     
-    
-    public init (_ coefficients: [BigUInt]) {
+    public init (_ coefficients: [GeneralPrimeFieldElement]) {
         self.coefficients = coefficients;
     }
 }

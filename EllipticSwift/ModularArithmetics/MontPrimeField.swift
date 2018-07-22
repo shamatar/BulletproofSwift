@@ -99,8 +99,8 @@ public class MontPrimeField {
         if b == 1 {
             return a
         }
-        return kSlidingWindowExponentiation(a, b)
-//        return doubleAndAddExponentiation(a, b)
+//        return kSlidingWindowExponentiation(a, b)
+        return doubleAndAddExponentiation(a, b)
     }
     
     public func sqrt(_ a: PrimeFieldElement) -> PrimeFieldElement {
@@ -126,7 +126,7 @@ public class MontPrimeField {
         var result = self.identityElement
         let bitwidth = b.bitWidth
         for i in 0 ..< bitwidth {
-            if b.isBitSet(i) {
+            if b[bitAt: i] {
                 result = mul(result, base)
             }
             if i == b.bitWidth - 1 {
@@ -137,30 +137,30 @@ public class MontPrimeField {
         return result
     }
     
-    public func kSlidingWindowExponentiation(_ a: PrimeFieldElement, _ b: BigUInt, windowSize: Int = DefaultWindowSize) -> PrimeFieldElement {
-        let numPrecomputedElements = (1 << windowSize) - 1 // 2**k - 1
-        var precomputations = [PrimeFieldElement](repeating: self.identityElement, count: numPrecomputedElements)
-        precomputations[0] = a
-        precomputations[1] = mul(a, a)
-        for i in 2 ..< numPrecomputedElements {
-            precomputations[i] = mul(precomputations[i-2], precomputations[1])
-        }
-        var result = self.identityElement
-        let (lookups, powers) = computeSlidingWindow(scalar: b, windowSize: windowSize)
-        for i in 0 ..< lookups.count {
-            let lookupCoeff = lookups[i]
-            if lookupCoeff == -1 {
-                result = mul(result, result)
-            } else {
-                let power = powers[i]
-                let intermediatePower = doubleAndAddExponentiation(result, power) // use trivial form to don't go recursion
-//                let intermediatePower = pow(result, power)
-                result = mul(intermediatePower, precomputations[lookupCoeff])
-            }
-        }
-        return result
-    }
-    
+//    public func kSlidingWindowExponentiation(_ a: PrimeFieldElement, _ b: BigUInt, windowSize: Int = DefaultWindowSize) -> PrimeFieldElement {
+//        let numPrecomputedElements = (1 << windowSize) - 1 // 2**k - 1
+//        var precomputations = [PrimeFieldElement](repeating: self.identityElement, count: numPrecomputedElements)
+//        precomputations[0] = a
+//        precomputations[1] = mul(a, a)
+//        for i in 2 ..< numPrecomputedElements {
+//            precomputations[i] = mul(precomputations[i-2], precomputations[1])
+//        }
+//        var result = self.identityElement
+//        let (lookups, powers) = computeSlidingWindow(scalar: b, windowSize: windowSize)
+//        for i in 0 ..< lookups.count {
+//            let lookupCoeff = lookups[i]
+//            if lookupCoeff == -1 {
+//                result = mul(result, result)
+//            } else {
+//                let power = powers[i]
+//                let intermediatePower = doubleAndAddExponentiation(result, power) // use trivial form to don't go recursion
+////                let intermediatePower = pow(result, power)
+//                result = mul(intermediatePower, precomputations[lookupCoeff])
+//            }
+//        }
+//        return result
+//    }
+//    
     public func fromValue(_ a: BigUInt) -> PrimeFieldElement {
         let reducedValue = (a*self.montR) % self.prime
         return PrimeFieldElement(reducedValue, PrimeField.montgommery(self))

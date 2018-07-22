@@ -9,43 +9,22 @@
 import Foundation
 import Accelerate
 
-extension U256: Equatable, Comparable {
-    public mutating func compareTo(_ other: U256) -> ComparisonResult {
-        var otherCopy = other
-        let result = withUnsafeBytes(of: &self, { (thisPtr) -> ComparisonResult in
-            withUnsafeBytes(of: &otherCopy, { (otherPtr) -> ComparisonResult in
-                for i in 0 ..< U256byteLength/4 {
-                    let a = thisPtr.load(fromByteOffset: i*4, as: UInt32.self)
-                    let b = otherPtr.load(fromByteOffset: i*4, as: UInt32.self)
-                    if a > b {
-                        return ComparisonResult.orderedDescending
-                    } else if a < b {
-                        return ComparisonResult.orderedAscending
-                    }
-                }
-                return ComparisonResult.orderedSame
-            })
-        })
-        return result
-    }
-    
+extension U256: Comparable {
     public static func < (lhs: U256, rhs: U256) -> Bool {
-        var lhsCopy = lhs
-        switch lhsCopy.compareTo(rhs) {
-        case .orderedAscending:
+        if lhs.v.1 < rhs.v.1 {
             return true
-        default:
+        } else if lhs.v.1 > rhs.v.1 {
             return false
         }
+        if lhs.v.0 < rhs.v.0 {
+            return true
+        }
+        return false
     }
-    
-    public static func == (lhs: U256, rhs: U256) -> Bool {
-        var lhsCopy = lhs
-        switch lhsCopy.compareTo(rhs) {
-        case .orderedSame:
-            return true
-        default:
-            return false
-        }
+}
+
+extension U256: EvenOrOdd {
+    public var isEven: Bool {
+        return self.v.0.isEven
     }
 }

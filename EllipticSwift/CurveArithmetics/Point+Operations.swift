@@ -24,7 +24,7 @@ extension ProjectivePoint: Equatable {
         return lhs.curve.sub(lhs, rhs)
     }
     
-    public static func * (lhs: BigUInt, rhs: ProjectivePoint) -> ProjectivePoint {
+    public static func * (lhs: BigNumber, rhs: ProjectivePoint) -> ProjectivePoint {
         if rhs.isInfinity {
             return rhs
         }
@@ -44,7 +44,7 @@ extension AffinePoint: Equatable {
         return lhs.isEqualTo(rhs)
     }
     
-    public static func * (lhs: BigUInt, rhs: AffinePoint) -> ProjectivePoint {
+    public static func * (lhs: BigNumber, rhs: AffinePoint) -> ProjectivePoint {
         return rhs.curve.mul(lhs, rhs)
     }
     

@@ -17,14 +17,36 @@ public struct PolyCommitment {
         self.coefficientCommitments = coefficientCommitments
     }
     
-    public func evaluate(_ x: BigUInt) -> PeddersenCommitment  {
-        var multiplier = BigUInt(1)
+    public func evaluate(_ x: BigNumber) -> PeddersenCommitment  {
+        var multiplier = BigNumber(integerLiteral: 1)
         var intermediates = [PeddersenCommitment]()
+        let q = self.coefficientCommitments[0].base.curve.order
         intermediates.append(self.coefficientCommitments[0].times(multiplier))
         for i in 1 ..< self.coefficientCommitments.count {
-            multiplier = multiplier * x
+            multiplier = multiplier.modMultiply(x, q)
             intermediates.append(self.coefficientCommitments[i].times(multiplier))
         }
+        print(intermediates.map({ (c) -> AffinePoint in
+            return c.commitment
+        }))
+        var result = intermediates[0]
+        for i in 1 ..< intermediates.count {
+            result = result.add(intermediates[i])
+        }
+        return result
+    }
+    
+    public func evaluate(_ x: GeneralPrimeFieldElement) -> PeddersenCommitment  {
+        var multiplier = x.field.identityElement
+        var intermediates = [PeddersenCommitment]()
+        intermediates.append(self.coefficientCommitments[0].times(multiplier.value))
+        for i in 1 ..< self.coefficientCommitments.count {
+            multiplier = multiplier * x
+            intermediates.append(self.coefficientCommitments[i].times(multiplier.value))
+        }
+        print(intermediates.map({ (c) -> AffinePoint in
+            return c.commitment
+        }))
         var result = intermediates[0]
         for i in 1 ..< intermediates.count {
             result = result.add(intermediates[i])
@@ -34,14 +56,14 @@ public struct PolyCommitment {
     
     public func getNonzeroCommitments() -> [AffinePoint] {
         let res = self.coefficientCommitments.filter { (el) -> Bool in
-                return el.r != 0
+                return !el.r.isZero
             }.map { (el) -> AffinePoint in
                 return el.commitment
             }
         return res
     }
     
-    public static func from(base: PeddersenBase, x0: BigUInt, xs: [BigUInt]) -> PolyCommitment {
+    public static func from(base: PeddersenBase, x0: BigNumber, xs: [BigNumber]) -> PolyCommitment {
         let toZero = PeddersenCommitment(base: base, x: x0, r: 0)
         var coeffs = [PeddersenCommitment]()
         coeffs.append(toZero)

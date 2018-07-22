@@ -11,8 +11,8 @@ import Accelerate
 
 extension U256 {
     public func div(_ a: U256) -> (U256, U256) {
-        var result = U256(v: (BigNumber.vZERO, BigNumber.vZERO))
-        var remainder = U256(v: (BigNumber.vZERO, BigNumber.vZERO))
+        var result = U256()
+        var remainder = U256()
         var aCopy = a
         var selfCopy = self
         withUnsafePointer(to: &selfCopy) { (selfPtr: UnsafePointer<vU256>) -> Void in

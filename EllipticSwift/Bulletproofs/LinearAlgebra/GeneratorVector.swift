@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import BigInt
 
 public struct GeneratorVector {
     public var gs : [AffinePoint]
@@ -40,8 +39,7 @@ public struct GeneratorVector {
         return GeneratorVector(elements, self.curve)
     }
     
-    
-    public func commit(_ exponents: [BigUInt]) -> AffinePoint {
+    public func commit(_ exponents: [BigNumber]) -> AffinePoint {
         precondition(exponents.count == self.gs.count, "Commitment base and vector should have the same length");
         var result = exponents[0] * self.gs[0]
         for i in 1 ..< self.gs.count {
@@ -55,13 +53,12 @@ public struct GeneratorVector {
         return commit(exponents)
     }
     
-    public func commit(_ exponents: [PrimeFieldElement]) -> AffinePoint {
-        let exps = exponents.map { (el: PrimeFieldElement) -> BigUInt in
-            return el.mod(self.curve.order)
+    public func commit(_ exponents: [GeneralPrimeFieldElement]) -> AffinePoint {
+        let exps = exponents.map { (el: GeneralPrimeFieldElement) -> BigNumber in
+            return el.value
         }
         return commit(exps)
     }
-    
     
     public func sum() -> AffinePoint {
         precondition(self.gs.count > 0)
@@ -72,7 +69,7 @@ public struct GeneratorVector {
         return result.toAffine()
     }
     
-    public func hadamardProduct (_ exponents: [BigUInt]) -> GeneratorVector {
+    public func hadamardProduct(_ exponents: [BigNumber]) -> GeneratorVector {
         precondition(exponents.count == self.gs.count, "Commitment base and vector should have the same length");
         precondition(self.gs.count > 0)
         var elements = [AffinePoint]()

@@ -20,14 +20,14 @@ public struct VectorBase{
         self.h = h;
     }
     
-    public func commit(gExp: [BigUInt], blinding: BigUInt) -> AffinePoint {
+    public func commit(gExp: [BigNumber], blinding: BigNumber) -> AffinePoint {
         let blind = blinding * self.h
         let commitGs = self.gs.commit(gExp)
         let res = blind + commitGs
         return res.toAffine()
     }
     
-    public func commitToTwoVectors(gExp: [BigUInt], hExp: [BigUInt], blinding: BigUInt) -> AffinePoint {
+    public func commitToTwoVectors(gExp: [BigNumber], hExp: [BigNumber], blinding: BigNumber) -> AffinePoint {
         let blind = blinding * self.h
         let commitGs = self.gs.commit(gExp)
         let commitHs = self.hs.commit(hExp)

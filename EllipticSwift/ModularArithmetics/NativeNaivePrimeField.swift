@@ -9,7 +9,7 @@
 import Foundation
 import BigInt
 
-public class NativeNaivePrimeField<T> where T: Numeric, T: BytesInitializable, T: BytesRepresentable, T: Comparable, T: ModReducable {
+public class NativeNaivePrimeField<T> where T: FiniteFieldCompatible {
     
     public var prime: T
     
@@ -21,6 +21,16 @@ public class NativeNaivePrimeField<T> where T: Numeric, T: BytesInitializable, T
         let nativeType: T? = T(p.serialize())
         precondition(nativeType != nil)
         self.prime = nativeType!
+    }
+    
+    public init(_ p: BigNumber) {
+        let nativeType: T? = T(p.bytes)
+        precondition(nativeType != nil)
+        self.prime = nativeType!
+    }
+    
+    public init(_ p: T) {
+        self.prime = p
     }
     
     public func isEqualTo(_ other: NativeNaivePrimeField) -> Bool {
@@ -38,11 +48,11 @@ public class NativeNaivePrimeField<T> where T: Numeric, T: BytesInitializable, T
     }
     
     internal func toElement<T>(_ a: T) -> NativePrimeFieldElement<T> {
-        return NativePrimeFieldElement<T>(a, self as! NativePrimeField<T>)
+        return NativePrimeFieldElement<T>(a, self as! NativeNaivePrimeField<T>)
     }
     
     public func sub(_ a: NativePrimeFieldElement<T>, _ b: NativePrimeFieldElement<T>) -> NativePrimeFieldElement<T> {
-        if a.rawValue > b.rawValue {
+        if a.rawValue >= b.rawValue {
             return self.toElement(a.rawValue - b.rawValue)
         } else {
             return self.toElement(self.prime - (b.rawValue - a.rawValue))
@@ -53,12 +63,12 @@ public class NativeNaivePrimeField<T> where T: Numeric, T: BytesInitializable, T
         return self.toElement(self.prime - a.rawValue)
     }
     
-    internal func doubleAndAddExponentiation(_ a: NativePrimeFieldElement<T>, _ b: BigUInt) -> NativePrimeFieldElement<T> {
+    internal func doubleAndAddExponentiation(_ a: NativePrimeFieldElement<T>, _ b: T) -> NativePrimeFieldElement<T> {
         var base = a
         var result = self.identityElement
         let bitwidth = b.bitWidth
         for i in 0 ..< bitwidth {
-            if b.isBitSet(i) {
+            if b.bit(i) {
                 result = mul(result, base)
             }
             if i == b.bitWidth - 1 {
@@ -70,8 +80,7 @@ public class NativeNaivePrimeField<T> where T: Numeric, T: BytesInitializable, T
     }
     
     public func mul(_ a: NativePrimeFieldElement<T>, _ b: NativePrimeFieldElement<T>) -> NativePrimeFieldElement<T> {
-        var mult = a.rawValue * b.rawValue
-        mult.inplaceMod(self.prime)
+        let mult = a.rawValue.modMultiply(b.rawValue, self.prime)
         return self.toElement(mult)
     }
     
@@ -80,20 +89,30 @@ public class NativeNaivePrimeField<T> where T: Numeric, T: BytesInitializable, T
     }
     
     public func inv(_ a: NativePrimeFieldElement<T>) -> NativePrimeFieldElement<T> {
-        return self.toElement(a.rawValue.modInv(self.prime))
+        let TWO = T(Data(repeating: 2, count: 1))!
+        let power = self.prime - TWO
+        return self.pow(a, power)
+//        return self.toElement(a.rawValue.modInv(self.prime))
     }
     
-    public func pow(_ a: NativePrimeFieldElement<T>, _ b: BigUInt) -> NativePrimeFieldElement<T> {
+    public func pow(_ a: NativePrimeFieldElement<T>, _ b: T) -> NativePrimeFieldElement<T> {
         if a.isEqualTo(self.identityElement) {
             return a
         }
-        if b == 1 {
+        if b == 0 {
             return self.identityElement
         }
         if b == 1 {
             return a
         }
         return self.doubleAndAddExponentiation(a, b)
+    }
+    
+    public func pow(_ a: NativePrimeFieldElement<T>, _ b: BigNumber) -> NativePrimeFieldElement<T> {
+        switch b {
+        case .acceleratedU256(let u256):
+            return self.pow(a, u256 as! T)
+        }
     }
     
     public func sqrt(_ a: NativePrimeFieldElement<T>) -> NativePrimeFieldElement<T> {
@@ -104,23 +123,30 @@ public class NativeNaivePrimeField<T> where T: Numeric, T: BytesInitializable, T
         let TWO = T(Data(repeating: 2, count: 1))!
         let THREE = T(Data(repeating: 3, count: 1))!
         let FOUR = T(Data(repeating: 4, count: 1))!
-        let EIGHT = T(Data(repeating: 8, count: 1))!
-        let mod8 = self.prime.mod(EIGHT)
-        precondition(mod8.mod(TWO) == ONE)
+//        let EIGHT = T(Data(repeating: 8, count: 1))!
+        let mod4 = self.prime.mod(FOUR)
+        precondition(mod4.mod(TWO) == ONE)
         
         // Fast case
-        if (mod8 == THREE) {
+        if (mod4 == THREE) {
             let (power, _) = (self.prime + ONE).div(FOUR)
-            let p = BigUInt(power.bytes)
-            return self.pow(a, p)
+            return self.pow(a, power)
         }
         precondition(false, "NYI")
         return self.fromValue(0)
     }
     
-    public func fromValue(_ a: BigUInt) -> NativePrimeFieldElement<T> {
-        let element = NativePrimeFieldElement<T>(a, self)
-        return element
+//    public func fromValue(_ a: BigUInt) -> NativePrimeFieldElement<T> {
+//        let element = NativePrimeFieldElement<T>(a, self)
+//        return element
+//    }
+    
+    public func fromValue(_ a: BigNumber) -> NativePrimeFieldElement<T> {
+        switch a {
+        case .acceleratedU256(let u256):
+            let reduced = (u256 as! T).mod(self.prime)
+            return NativePrimeFieldElement<T>(reduced, self)
+        }
     }
     
     public func toValue(_ a: NativePrimeFieldElement<T>) -> BigUInt {
@@ -129,12 +155,12 @@ public class NativeNaivePrimeField<T> where T: Numeric, T: BytesInitializable, T
     }
     
     public var identityElement: NativePrimeFieldElement<T> {
-        let element = self.fromValue(1)
+        let element = self.fromValue(BigNumber(integerLiteral: 1))
         return element
     }
     
     public var zeroElement: NativePrimeFieldElement<T> {
-        let element = self.fromValue(0)
+        let element = self.fromValue(BigNumber(integerLiteral: 0))
         return element
     }
     

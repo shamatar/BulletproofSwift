@@ -18,9 +18,9 @@ public var hashFunctionForChallenges : ((Data) -> Data) = keccak256
 
 public struct ProofUtils {
     
-    public static func serialize(_ a: BigUInt) -> Data {
+    public static func serialize(_ a: BigNumber) -> Data {
         let dataLength = UnsignedIntegerBitWidth/8
-        let uintData = a.serialize()
+        let uintData = a.bytes
         precondition(uintData.count <= dataLength)
         let padding = Data(repeating: 0, count: dataLength - uintData.count)
         return padding + uintData
@@ -31,17 +31,23 @@ public struct ProofUtils {
     }
     
     
-    public static func computeChallenge(q: BigUInt, points:[AffinePoint]) -> BigUInt {
+    public static func computeChallenge(points: [AffinePoint]) -> BigNumber {
         var data = Data()
         for point in points {
             data.append(serialize(point))
         }
         let hash = hashFunctionForChallenges(data)
-        let bn = BigUInt(hash)
-        return bn % q
+        let bn = BigNumber(hash)
+        precondition(bn != nil)
+        return bn!
     }
     
-    public static func computeChallengeForBigIntegersAndPoints(q: BigUInt, ints: [BigUInt], points: [AffinePoint]) -> BigUInt {
+    public static func computeChallenge(points: [AffinePoint], field: GeneralPrimeField) -> GeneralPrimeFieldElement {
+        let bn = computeChallenge(points: points)
+        return field.fromValue(bn)
+    }
+    
+    public static func computeChallengeForBigIntegersAndPoints(ints: [BigNumber], points: [AffinePoint]) -> BigNumber {
         var data = Data()
         for int in ints {
             data.append(serialize(int))
@@ -50,21 +56,58 @@ public struct ProofUtils {
             data.append(serialize(point))
         }
         let hash = hashFunctionForChallenges(data)
-        let bn = BigUInt(hash)
-        return bn % q
+        let bn = BigNumber(hash)
+        precondition(bn != nil)
+        return bn!
     }
     
-    public static func computeChallengeForBigIntegers(q: BigUInt, ints: [BigUInt]) -> BigUInt {
+    public static func computeChallengeForBigIntegersAndPoints(ints: [BigNumber], points: [AffinePoint], field: GeneralPrimeField) -> GeneralPrimeFieldElement {
+        let bn = computeChallengeForBigIntegersAndPoints(ints: ints, points: points)
+        return field.fromValue(bn)
+    }
+    
+    public static func computeChallengeForBigIntegers(ints: [BigNumber]) -> BigNumber {
         var data = Data()
         for int in ints {
             data.append(serialize(int))
         }
         let hash = hashFunctionForChallenges(data)
-        let bn = BigUInt(hash)
-        return bn % q
+        let bn = BigNumber(hash)
+        precondition(bn != nil)
+        return bn!
     }
     
-    public static func randomNumber(bitWidth: Int = UnsignedIntegerBitWidth) -> BigUInt {
-        return BigUInt.randomInteger(withMaximumWidth: bitWidth)
+    public static func computeChallengeForBigIntegers(ints: [BigNumber], field: GeneralPrimeField) -> GeneralPrimeFieldElement {
+        let bn = computeChallengeForBigIntegers(ints: ints)
+        return field.fromValue(bn)
+    }
+    
+    
+    public static func randomNumber(bitWidth: Int = UnsignedIntegerBitWidth) -> BigNumber {
+        return BigNumber(integerLiteral: 1)
+        let bytes = randomBytes(length: bitWidth/8)
+        precondition(bytes != nil)
+        let bn = BigNumber(bytes!)
+        precondition(bn != nil)
+        return bn!
+    }
+    
+    public static func randomNumber(bitWidth: Int = UnsignedIntegerBitWidth, field: GeneralPrimeField) -> GeneralPrimeFieldElement {
+        let bn = randomNumber(bitWidth: bitWidth)
+        return field.fromValue(bn)
+    }
+    
+    internal static func randomBytes(length: Int) -> Data? {
+        for _ in 0...1024 {
+            var data = Data(repeating: 0, count: length)
+            let result = data.withUnsafeMutableBytes {
+                (mutableBytes: UnsafeMutablePointer<UInt8>) -> Int32 in
+                SecRandomCopyBytes(kSecRandomDefault, 32, mutableBytes)
+            }
+            if result == errSecSuccess {
+                return data
+            }
+        }
+        return nil
     }
 }

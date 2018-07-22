@@ -14,16 +14,7 @@ public enum PrimeField {
     case montgommery(MontPrimeField)
     // barret
     // 2^n - x special case
-    
-    public var prime: BigUInt {
-        switch self {
-        case .naive(let field):
-            return field.prime
-        case .montgommery(let field):
-            return field.prime
-        }
-    }
-    
+        
     public var modulus: BigUInt {
         switch self {
         case .naive(let field):
@@ -36,7 +27,7 @@ public enum PrimeField {
     public init(_ p: BigUInt) {
         let naiveField = NaivePrimeField(p)
         precondition(naiveField != nil)
-        self = PrimeField.naive(naiveField!)
+        self = PrimeField.naive(naiveField!)        
     }
     
     public func isEqualTo(_ other: PrimeField) -> Bool {

@@ -10,3 +10,5 @@ import Foundation
 import BigInt
 
 public var DefaultWindowSize = 5
+public var WordSize = BigInt.Word.bitWidth
+

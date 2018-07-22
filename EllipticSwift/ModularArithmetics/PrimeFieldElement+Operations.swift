@@ -41,7 +41,7 @@ extension PrimeFieldElement: Equatable {
     }
     
     public func mod(_ q: BigUInt) -> PrimeFieldElement {
-        if q == self.field.prime {
+        if q == self.field.modulus {
             return self
         }
         let newField = PrimeField(q)
@@ -49,14 +49,14 @@ extension PrimeFieldElement: Equatable {
     }
     
     public func mod(_ q: BigUInt) -> BigUInt {
-        if q == self.field.prime {
+        if q == self.field.modulus {
             return self.value
         }
         return self.value % q
     }
     
     public func inv(_ q: BigUInt) -> PrimeFieldElement {
-        if q == self.field.prime {
+        if q == self.field.modulus {
             return self.field.inv(self)
         }
         let newField = PrimeField(q)

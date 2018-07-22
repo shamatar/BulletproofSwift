@@ -13,14 +13,19 @@
 		813CB9CF20F12475001434D4 /* EllipticSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9CE20F12475001434D4 /* EllipticSwiftTests.swift */; };
 		813CB9D120F12475001434D4 /* EllipticSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 813CB9C320F12475001434D4 /* EllipticSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		813CB9E320F124A9001434D4 /* EllipticSwift_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 813CB9E120F124A9001434D4 /* EllipticSwift_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		813CB9E920F12591001434D4 /* FieldProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9E820F12591001434D4 /* FieldProtocols.swift */; };
-		813CB9EA20F12591001434D4 /* FieldProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9E820F12591001434D4 /* FieldProtocols.swift */; };
 		813CB9EC20F126A4001434D4 /* MontPrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9EB20F126A4001434D4 /* MontPrimeField.swift */; };
 		813CB9ED20F126A4001434D4 /* MontPrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9EB20F126A4001434D4 /* MontPrimeField.swift */; };
 		813CB9EF20F128B9001434D4 /* PrimeFieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9EE20F128B9001434D4 /* PrimeFieldElement.swift */; };
 		813CB9F020F128B9001434D4 /* PrimeFieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9EE20F128B9001434D4 /* PrimeFieldElement.swift */; };
-		81DFCBF220F3FA0D00603123 /* BigInt+Bitset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCBF120F3FA0D00603123 /* BigInt+Bitset.swift */; };
-		81DFCBF320F3FA0D00603123 /* BigInt+Bitset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCBF120F3FA0D00603123 /* BigInt+Bitset.swift */; };
+		81CFF0E921012A5900E1DA49 /* U128+BitAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CFF0E821012A5900E1DA49 /* U128+BitAccessible.swift */; };
+		81CFF0EB21012B1100E1DA49 /* U256+BitAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CFF0EA21012B1100E1DA49 /* U256+BitAccessible.swift */; };
+		81CFF0ED2101DD5E00E1DA49 /* BigNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CFF0EC2101DD5E00E1DA49 /* BigNumber.swift */; };
+		81CFF0F02102871E00E1DA49 /* RangeProofVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CFF0EF2102871E00E1DA49 /* RangeProofVerifier.swift */; };
+		81CFF0F12102871E00E1DA49 /* RangeProofVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CFF0EF2102871E00E1DA49 /* RangeProofVerifier.swift */; };
+		81CFF0F32103B5FE00E1DA49 /* InnerProductProofSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CFF0F22103B5FE00E1DA49 /* InnerProductProofSystem.swift */; };
+		81CFF0F42103B5FE00E1DA49 /* InnerProductProofSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CFF0F22103B5FE00E1DA49 /* InnerProductProofSystem.swift */; };
+		81CFF0F62103BAD100E1DA49 /* RangeProofSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CFF0F52103BAD100E1DA49 /* RangeProofSystem.swift */; };
+		81CFF0F72103BAD100E1DA49 /* RangeProofSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CFF0F52103BAD100E1DA49 /* RangeProofSystem.swift */; };
 		81DFCBF520F4001D00603123 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCBF420F4001D00603123 /* Constants.swift */; };
 		81DFCBF620F4001D00603123 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCBF420F4001D00603123 /* Constants.swift */; };
 		81DFCBF920F4AB5200603123 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCBF820F4AB5200603123 /* Point.swift */; };
@@ -76,8 +81,6 @@
 		81DFCC5420F7A32700603123 /* PrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC5220F7A32700603123 /* PrimeField.swift */; };
 		81DFCC5620F7A34A00603123 /* NaivePrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC5520F7A34A00603123 /* NaivePrimeField.swift */; };
 		81DFCC5720F7A34A00603123 /* NaivePrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC5520F7A34A00603123 /* NaivePrimeField.swift */; };
-		81DFCC5920F7B32000603123 /* FixedWidthTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC5820F7B32000603123 /* FixedWidthTypes.swift */; };
-		81DFCC5A20F7B32000603123 /* FixedWidthTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC5820F7B32000603123 /* FixedWidthTypes.swift */; };
 		81DFCC5D20F7B61500603123 /* U256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC5C20F7B61500603123 /* U256.swift */; };
 		81DFCC5E20F7B61500603123 /* U256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC5C20F7B61500603123 /* U256.swift */; };
 		81DFCC6020F80CC800603123 /* FixedWidthNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC5F20F80CC800603123 /* FixedWidthNumbers.swift */; };
@@ -93,8 +96,8 @@
 		81DFCC7420F8AD2E00603123 /* NativePrimeFieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC6820F891A600603123 /* NativePrimeFieldElement.swift */; };
 		81DFCC7820F8AD5000603123 /* U256+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC7720F8AD5000603123 /* U256+Comparable.swift */; };
 		81DFCC7920F8AD5000603123 /* U256+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC7720F8AD5000603123 /* U256+Comparable.swift */; };
-		81DFCC7B20F8AD6A00603123 /* U256+Equitable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC7A20F8AD6A00603123 /* U256+Equitable.swift */; };
-		81DFCC7C20F8AD6A00603123 /* U256+Equitable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC7A20F8AD6A00603123 /* U256+Equitable.swift */; };
+		81DFCC7B20F8AD6A00603123 /* U256+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC7A20F8AD6A00603123 /* U256+Equatable.swift */; };
+		81DFCC7C20F8AD6A00603123 /* U256+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC7A20F8AD6A00603123 /* U256+Equatable.swift */; };
 		81DFCC7E20F8AD7500603123 /* U256+Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC7D20F8AD7500603123 /* U256+Numeric.swift */; };
 		81DFCC7F20F8AD7500603123 /* U256+Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC7D20F8AD7500603123 /* U256+Numeric.swift */; };
 		81DFCC8120F8AD7F00603123 /* U256+Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC8020F8AD7F00603123 /* U256+Add.swift */; };
@@ -109,6 +112,24 @@
 		81DFCC8E20F8ADA800603123 /* U256+Div.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC8C20F8ADA800603123 /* U256+Div.swift */; };
 		81DFCC9020F8ADB300603123 /* U256+Mod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC8F20F8ADB300603123 /* U256+Mod.swift */; };
 		81DFCC9120F8ADB300603123 /* U256+Mod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC8F20F8ADB300603123 /* U256+Mod.swift */; };
+		81DFCC9320F8E65C00603123 /* U256+BitOps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC9220F8E65C00603123 /* U256+BitOps.swift */; };
+		81DFCC9420F8E65C00603123 /* U256+BitOps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC9220F8E65C00603123 /* U256+BitOps.swift */; };
+		81DFCC9620F8F35B00603123 /* NativePrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC9520F8F35B00603123 /* NativePrimeField.swift */; };
+		81DFCC9720F8F35B00603123 /* NativePrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC9520F8F35B00603123 /* NativePrimeField.swift */; };
+		81DFCC9920F8F62A00603123 /* GeneralPrimeFieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC9820F8F62A00603123 /* GeneralPrimeFieldElement.swift */; };
+		81DFCC9A20F8F62A00603123 /* GeneralPrimeFieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC9820F8F62A00603123 /* GeneralPrimeFieldElement.swift */; };
+		81DFCC9C20F90A9E00603123 /* GeneralPrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC9B20F90A9E00603123 /* GeneralPrimeField.swift */; };
+		81DFCC9D20F90A9E00603123 /* GeneralPrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC9B20F90A9E00603123 /* GeneralPrimeField.swift */; };
+		81DFCCA020F9416C00603123 /* U128.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC9F20F9416C00603123 /* U128.swift */; };
+		81DFCCA120F9416C00603123 /* U128.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCC9F20F9416C00603123 /* U128.swift */; };
+		81DFCCA320F9FE6300603123 /* vUInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCCA220F9FE6300603123 /* vUInt32.swift */; };
+		81DFCCA420F9FE6300603123 /* vUInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCCA220F9FE6300603123 /* vUInt32.swift */; };
+		81DFCCA620FA00B300603123 /* UInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCCA520FA00B300603123 /* UInt32.swift */; };
+		81DFCCA720FA00B300603123 /* UInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCCA520FA00B300603123 /* UInt32.swift */; };
+		81DFCCA920FA0D1F00603123 /* U128+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCCA820FA0D1F00603123 /* U128+Equatable.swift */; };
+		81DFCCAA20FA0D1F00603123 /* U128+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCCA820FA0D1F00603123 /* U128+Equatable.swift */; };
+		81DFCCAC20FA1CEA00603123 /* U128+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCCAB20FA1CEA00603123 /* U128+Comparable.swift */; };
+		81DFCCAD20FA1CEA00603123 /* U128+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCCAB20FA1CEA00603123 /* U128+Comparable.swift */; };
 		CC7AB8957C42B6BE8D97D7D1 /* libPods-EllipticSwift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B46A18082B4C5966DAF715C /* libPods-EllipticSwift.a */; };
 /* End PBXBuildFile section */
 
@@ -139,10 +160,14 @@
 		813CB9DF20F124A9001434D4 /* EllipticSwift_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EllipticSwift_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		813CB9E120F124A9001434D4 /* EllipticSwift_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EllipticSwift_iOS.h; sourceTree = "<group>"; };
 		813CB9E220F124A9001434D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		813CB9E820F12591001434D4 /* FieldProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldProtocols.swift; sourceTree = "<group>"; };
 		813CB9EB20F126A4001434D4 /* MontPrimeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontPrimeField.swift; sourceTree = "<group>"; };
 		813CB9EE20F128B9001434D4 /* PrimeFieldElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeFieldElement.swift; sourceTree = "<group>"; };
-		81DFCBF120F3FA0D00603123 /* BigInt+Bitset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BigInt+Bitset.swift"; sourceTree = "<group>"; };
+		81CFF0E821012A5900E1DA49 /* U128+BitAccessible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U128+BitAccessible.swift"; sourceTree = "<group>"; };
+		81CFF0EA21012B1100E1DA49 /* U256+BitAccessible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U256+BitAccessible.swift"; sourceTree = "<group>"; };
+		81CFF0EC2101DD5E00E1DA49 /* BigNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigNumber.swift; sourceTree = "<group>"; };
+		81CFF0EF2102871E00E1DA49 /* RangeProofVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeProofVerifier.swift; sourceTree = "<group>"; };
+		81CFF0F22103B5FE00E1DA49 /* InnerProductProofSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerProductProofSystem.swift; sourceTree = "<group>"; };
+		81CFF0F52103BAD100E1DA49 /* RangeProofSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeProofSystem.swift; sourceTree = "<group>"; };
 		81DFCBF420F4001D00603123 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		81DFCBF820F4AB5200603123 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		81DFCBFB20F4AE6E00603123 /* Curve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Curve.swift; sourceTree = "<group>"; };
@@ -171,7 +196,6 @@
 		81DFCC5020F7682A00603123 /* EllipticSwiftBulletproofTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllipticSwiftBulletproofTests.swift; sourceTree = "<group>"; };
 		81DFCC5220F7A32700603123 /* PrimeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeField.swift; sourceTree = "<group>"; };
 		81DFCC5520F7A34A00603123 /* NaivePrimeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaivePrimeField.swift; sourceTree = "<group>"; };
-		81DFCC5820F7B32000603123 /* FixedWidthTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedWidthTypes.swift; sourceTree = "<group>"; };
 		81DFCC5C20F7B61500603123 /* U256.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = U256.swift; sourceTree = "<group>"; };
 		81DFCC5F20F80CC800603123 /* FixedWidthNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedWidthNumbers.swift; sourceTree = "<group>"; };
 		81DFCC6120F8115300603123 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -181,7 +205,7 @@
 		81DFCC6B20F8922C00603123 /* FiniteWidthInteger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiniteWidthInteger.swift; sourceTree = "<group>"; };
 		81DFCC6E20F8972100603123 /* NativeNaivePrimeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeNaivePrimeField.swift; sourceTree = "<group>"; };
 		81DFCC7720F8AD5000603123 /* U256+Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U256+Comparable.swift"; sourceTree = "<group>"; };
-		81DFCC7A20F8AD6A00603123 /* U256+Equitable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U256+Equitable.swift"; sourceTree = "<group>"; };
+		81DFCC7A20F8AD6A00603123 /* U256+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U256+Equatable.swift"; sourceTree = "<group>"; };
 		81DFCC7D20F8AD7500603123 /* U256+Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U256+Numeric.swift"; sourceTree = "<group>"; };
 		81DFCC8020F8AD7F00603123 /* U256+Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U256+Add.swift"; sourceTree = "<group>"; };
 		81DFCC8320F8AD8900603123 /* U256+Aux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U256+Aux.swift"; sourceTree = "<group>"; };
@@ -189,6 +213,15 @@
 		81DFCC8920F8AD9E00603123 /* U256+Mul.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U256+Mul.swift"; sourceTree = "<group>"; };
 		81DFCC8C20F8ADA800603123 /* U256+Div.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U256+Div.swift"; sourceTree = "<group>"; };
 		81DFCC8F20F8ADB300603123 /* U256+Mod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U256+Mod.swift"; sourceTree = "<group>"; };
+		81DFCC9220F8E65C00603123 /* U256+BitOps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U256+BitOps.swift"; sourceTree = "<group>"; };
+		81DFCC9520F8F35B00603123 /* NativePrimeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativePrimeField.swift; sourceTree = "<group>"; };
+		81DFCC9820F8F62A00603123 /* GeneralPrimeFieldElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPrimeFieldElement.swift; sourceTree = "<group>"; };
+		81DFCC9B20F90A9E00603123 /* GeneralPrimeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPrimeField.swift; sourceTree = "<group>"; };
+		81DFCC9F20F9416C00603123 /* U128.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = U128.swift; sourceTree = "<group>"; };
+		81DFCCA220F9FE6300603123 /* vUInt32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vUInt32.swift; sourceTree = "<group>"; };
+		81DFCCA520FA00B300603123 /* UInt32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UInt32.swift; sourceTree = "<group>"; };
+		81DFCCA820FA0D1F00603123 /* U128+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U128+Equatable.swift"; sourceTree = "<group>"; };
+		81DFCCAB20FA1CEA00603123 /* U128+Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U128+Comparable.swift"; sourceTree = "<group>"; };
 		89D25E59ED1A8B5EEEF0547C /* Pods-EllipticSwift_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllipticSwift_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EllipticSwift_iOS/Pods-EllipticSwift_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		B1A986D531EFC8D7C120E061 /* libPods-EllipticSwiftTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EllipticSwiftTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -297,23 +330,32 @@
 		813CB9E720F1257B001434D4 /* ModularArithmetics */ = {
 			isa = PBXGroup;
 			children = (
-				813CB9E820F12591001434D4 /* FieldProtocols.swift */,
-				813CB9EB20F126A4001434D4 /* MontPrimeField.swift */,
-				813CB9EE20F128B9001434D4 /* PrimeFieldElement.swift */,
 				81DFCBF420F4001D00603123 /* Constants.swift */,
-				81DFCC1D20F5F84200603123 /* PrimeFieldElement+Operations.swift */,
 				81DFCC5220F7A32700603123 /* PrimeField.swift */,
 				81DFCC5520F7A34A00603123 /* NaivePrimeField.swift */,
-				81DFCC6820F891A600603123 /* NativePrimeFieldElement.swift */,
+				813CB9EB20F126A4001434D4 /* MontPrimeField.swift */,
+				813CB9EE20F128B9001434D4 /* PrimeFieldElement.swift */,
+				81DFCC1D20F5F84200603123 /* PrimeFieldElement+Operations.swift */,
+				81DFCC9520F8F35B00603123 /* NativePrimeField.swift */,
 				81DFCC6E20F8972100603123 /* NativeNaivePrimeField.swift */,
+				81DFCC6820F891A600603123 /* NativePrimeFieldElement.swift */,
+				81DFCC9820F8F62A00603123 /* GeneralPrimeFieldElement.swift */,
+				81DFCC9B20F90A9E00603123 /* GeneralPrimeField.swift */,
 			);
 			path = ModularArithmetics;
+			sourceTree = "<group>";
+		};
+		81CFF0EE2101DD9100E1DA49 /* BigNumber */ = {
+			isa = PBXGroup;
+			children = (
+				81CFF0EC2101DD5E00E1DA49 /* BigNumber.swift */,
+			);
+			path = BigNumber;
 			sourceTree = "<group>";
 		};
 		81DFCBF020F3F9FB00603123 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				81DFCBF120F3FA0D00603123 /* BigInt+Bitset.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -379,6 +421,7 @@
 				81DFCC3420F64F5400603123 /* InnerProductProof.swift */,
 				81DFCC3720F651B800603123 /* InnerProductProver.swift */,
 				81DFCC4D20F75E4000603123 /* EfficientInnerProductProofVerifier.swift */,
+				81CFF0F22103B5FE00E1DA49 /* InnerProductProofSystem.swift */,
 			);
 			path = InnerProductProof;
 			sourceTree = "<group>";
@@ -389,6 +432,8 @@
 				81DFCC3B20F657AA00603123 /* GeneratorParams.swift */,
 				81DFCC3E20F6985E00603123 /* RangeProofProver.swift */,
 				81DFCC4820F69E8100603123 /* RangeProof.swift */,
+				81CFF0EF2102871E00E1DA49 /* RangeProofVerifier.swift */,
+				81CFF0F52103BAD100E1DA49 /* RangeProofSystem.swift */,
 			);
 			path = RangeProof;
 			sourceTree = "<group>";
@@ -405,10 +450,13 @@
 		81DFCC5B20F7B32B00603123 /* FixedWidthTypes */ = {
 			isa = PBXGroup;
 			children = (
+				81CFF0EE2101DD9100E1DA49 /* BigNumber */,
+				81DFCC9E20F9415600603123 /* U128 */,
 				81DFCC7620F8AD3700603123 /* U512 */,
 				81DFCC7520F8AD3200603123 /* U256 */,
-				81DFCC5820F7B32000603123 /* FixedWidthTypes.swift */,
 				81DFCC6B20F8922C00603123 /* FiniteWidthInteger.swift */,
+				81DFCCA220F9FE6300603123 /* vUInt32.swift */,
+				81DFCCA520FA00B300603123 /* UInt32.swift */,
 			);
 			path = FixedWidthTypes;
 			sourceTree = "<group>";
@@ -418,7 +466,7 @@
 			children = (
 				81DFCC5C20F7B61500603123 /* U256.swift */,
 				81DFCC7720F8AD5000603123 /* U256+Comparable.swift */,
-				81DFCC7A20F8AD6A00603123 /* U256+Equitable.swift */,
+				81DFCC7A20F8AD6A00603123 /* U256+Equatable.swift */,
 				81DFCC7D20F8AD7500603123 /* U256+Numeric.swift */,
 				81DFCC8020F8AD7F00603123 /* U256+Add.swift */,
 				81DFCC8320F8AD8900603123 /* U256+Aux.swift */,
@@ -426,6 +474,8 @@
 				81DFCC8920F8AD9E00603123 /* U256+Mul.swift */,
 				81DFCC8C20F8ADA800603123 /* U256+Div.swift */,
 				81DFCC8F20F8ADB300603123 /* U256+Mod.swift */,
+				81DFCC9220F8E65C00603123 /* U256+BitOps.swift */,
+				81CFF0EA21012B1100E1DA49 /* U256+BitAccessible.swift */,
 			);
 			path = U256;
 			sourceTree = "<group>";
@@ -436,6 +486,17 @@
 				81DFCC6520F81E0200603123 /* U512.swift */,
 			);
 			path = U512;
+			sourceTree = "<group>";
+		};
+		81DFCC9E20F9415600603123 /* U128 */ = {
+			isa = PBXGroup;
+			children = (
+				81DFCC9F20F9416C00603123 /* U128.swift */,
+				81DFCCA820FA0D1F00603123 /* U128+Equatable.swift */,
+				81DFCCAB20FA1CEA00603123 /* U128+Comparable.swift */,
+				81CFF0E821012A5900E1DA49 /* U128+BitAccessible.swift */,
+			);
+			path = U128;
 			sourceTree = "<group>";
 		};
 		9BFAE9C082BCF3332669F54C /* Frameworks */ = {
@@ -657,15 +718,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81DFCCA620FA00B300603123 /* UInt32.swift in Sources */,
 				81DFCC8A20F8AD9E00603123 /* U256+Mul.swift in Sources */,
 				81DFCC8420F8AD8900603123 /* U256+Aux.swift in Sources */,
+				81DFCC9920F8F62A00603123 /* GeneralPrimeFieldElement.swift in Sources */,
 				81DFCC9020F8ADB300603123 /* U256+Mod.swift in Sources */,
+				81CFF0ED2101DD5E00E1DA49 /* BigNumber.swift in Sources */,
 				81DFCC1520F5F3FA00603123 /* PeddersenBase.swift in Sources */,
 				81DFCC7120F8AD2B00603123 /* NativeNaivePrimeField.swift in Sources */,
 				81DFCC7320F8AD2D00603123 /* NativePrimeFieldElement.swift in Sources */,
+				81CFF0F62103BAD100E1DA49 /* RangeProofSystem.swift in Sources */,
 				81DFCC8720F8AD9300603123 /* U256+Sub.swift in Sources */,
+				81CFF0F02102871E00E1DA49 /* RangeProofVerifier.swift in Sources */,
+				81CFF0F32103B5FE00E1DA49 /* InnerProductProofSystem.swift in Sources */,
 				81DFCC3F20F6985E00603123 /* RangeProofProver.swift in Sources */,
+				81DFCC9320F8E65C00603123 /* U256+BitOps.swift in Sources */,
 				81DFCC6620F81E0200603123 /* U512.swift in Sources */,
+				81CFF0EB21012B1100E1DA49 /* U256+BitAccessible.swift in Sources */,
 				81DFCC3520F64F5400603123 /* InnerProductProof.swift in Sources */,
 				81DFCC5620F7A34A00603123 /* NaivePrimeField.swift in Sources */,
 				81DFCC4920F69E8100603123 /* RangeProof.swift in Sources */,
@@ -673,21 +742,24 @@
 				81DFCBFC20F4AE6E00603123 /* Curve.swift in Sources */,
 				81DFCC1E20F5F84200603123 /* PrimeFieldElement+Operations.swift in Sources */,
 				81DFCC3820F651B800603123 /* InnerProductProver.swift in Sources */,
+				81CFF0E921012A5900E1DA49 /* U128+BitAccessible.swift in Sources */,
 				81DFCC0620F4ECFE00603123 /* windowMethods.swift in Sources */,
 				81DFCC5320F7A32700603123 /* PrimeField.swift in Sources */,
 				81DFCC1820F5F5ED00603123 /* GeneratorVector.swift in Sources */,
 				81DFCC4E20F75E4000603123 /* EfficientInnerProductProofVerifier.swift in Sources */,
 				81DFCBF520F4001D00603123 /* Constants.swift in Sources */,
 				81DFCBFF20F4AEBA00603123 /* WeierstrassCurve.swift in Sources */,
+				81DFCCA920FA0D1F00603123 /* U128+Equatable.swift in Sources */,
 				81DFCC6C20F8922C00603123 /* FiniteWidthInteger.swift in Sources */,
+				81DFCC9C20F90A9E00603123 /* GeneralPrimeField.swift in Sources */,
 				813CB9EC20F126A4001434D4 /* MontPrimeField.swift in Sources */,
+				81DFCC9620F8F35B00603123 /* NativePrimeField.swift in Sources */,
 				81DFCBF920F4AB5200603123 /* Point.swift in Sources */,
 				81DFCC7E20F8AD7500603123 /* U256+Numeric.swift in Sources */,
 				81DFCC2E20F645CA00603123 /* ProofUtils.swift in Sources */,
-				81DFCBF220F3FA0D00603123 /* BigInt+Bitset.swift in Sources */,
+				81DFCCA020F9416C00603123 /* U128.swift in Sources */,
 				81DFCC2820F60EB900603123 /* FieldVectorPolynomial.swift in Sources */,
 				81DFCC2B20F615DC00603123 /* VectorBase.swift in Sources */,
-				81DFCC5920F7B32000603123 /* FixedWidthTypes.swift in Sources */,
 				81DFCC3C20F657AA00603123 /* GeneratorParams.swift in Sources */,
 				81DFCC1020F5543E00603123 /* Global.swift in Sources */,
 				81DFCC4320F6989900603123 /* PeddersenCommitment.swift in Sources */,
@@ -695,13 +767,14 @@
 				81DFCC8120F8AD7F00603123 /* U256+Add.swift in Sources */,
 				81DFCC5D20F7B61500603123 /* U256.swift in Sources */,
 				81DFCC0920F53B1100603123 /* Point+Operations.swift in Sources */,
-				813CB9E920F12591001434D4 /* FieldProtocols.swift in Sources */,
 				81DFCC4620F69B9900603123 /* PolyCommitment.swift in Sources */,
 				813CB9EF20F128B9001434D4 /* PrimeFieldElement.swift in Sources */,
 				81DFCC7820F8AD5000603123 /* U256+Comparable.swift in Sources */,
 				81DFCC2520F60E6200603123 /* FieldPolynomial.swift in Sources */,
 				81DFCC1B20F5F62E00603123 /* FieldVector.swift in Sources */,
-				81DFCC7B20F8AD6A00603123 /* U256+Equitable.swift in Sources */,
+				81DFCC7B20F8AD6A00603123 /* U256+Equatable.swift in Sources */,
+				81DFCCAC20FA1CEA00603123 /* U128+Comparable.swift in Sources */,
+				81DFCCA320F9FE6300603123 /* vUInt32.swift in Sources */,
 				81DFCC8D20F8ADA800603123 /* U256+Div.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -720,16 +793,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81DFCCA720FA00B300603123 /* UInt32.swift in Sources */,
 				81DFCC8B20F8AD9E00603123 /* U256+Mul.swift in Sources */,
 				81DFCC8520F8AD8900603123 /* U256+Aux.swift in Sources */,
+				81DFCC9A20F8F62A00603123 /* GeneralPrimeFieldElement.swift in Sources */,
 				81DFCC9120F8ADB300603123 /* U256+Mod.swift in Sources */,
 				81DFCC1620F5F3FA00603123 /* PeddersenBase.swift in Sources */,
+				81CFF0F72103BAD100E1DA49 /* RangeProofSystem.swift in Sources */,
 				81DFCC7220F8AD2B00603123 /* NativeNaivePrimeField.swift in Sources */,
 				81DFCC7420F8AD2E00603123 /* NativePrimeFieldElement.swift in Sources */,
 				81DFCC8820F8AD9300603123 /* U256+Sub.swift in Sources */,
 				81DFCC4020F6985E00603123 /* RangeProofProver.swift in Sources */,
+				81CFF0F12102871E00E1DA49 /* RangeProofVerifier.swift in Sources */,
+				81DFCC9420F8E65C00603123 /* U256+BitOps.swift in Sources */,
 				81DFCC6720F81E0200603123 /* U512.swift in Sources */,
 				81DFCC3620F64F5400603123 /* InnerProductProof.swift in Sources */,
+				81CFF0F42103B5FE00E1DA49 /* InnerProductProofSystem.swift in Sources */,
 				81DFCC5720F7A34A00603123 /* NaivePrimeField.swift in Sources */,
 				81DFCC4A20F69E8100603123 /* RangeProof.swift in Sources */,
 				81DFCC0320F4B81900603123 /* PrecompiledCurves.swift in Sources */,
@@ -742,15 +821,17 @@
 				81DFCC4F20F75E4000603123 /* EfficientInnerProductProofVerifier.swift in Sources */,
 				81DFCBF620F4001D00603123 /* Constants.swift in Sources */,
 				81DFCC0020F4AEBA00603123 /* WeierstrassCurve.swift in Sources */,
+				81DFCCAA20FA0D1F00603123 /* U128+Equatable.swift in Sources */,
 				81DFCC6D20F8922C00603123 /* FiniteWidthInteger.swift in Sources */,
+				81DFCC9D20F90A9E00603123 /* GeneralPrimeField.swift in Sources */,
 				813CB9ED20F126A4001434D4 /* MontPrimeField.swift in Sources */,
+				81DFCC9720F8F35B00603123 /* NativePrimeField.swift in Sources */,
 				81DFCBFA20F4AB5200603123 /* Point.swift in Sources */,
 				81DFCC7F20F8AD7500603123 /* U256+Numeric.swift in Sources */,
 				81DFCC2F20F645CA00603123 /* ProofUtils.swift in Sources */,
-				81DFCBF320F3FA0D00603123 /* BigInt+Bitset.swift in Sources */,
+				81DFCCA120F9416C00603123 /* U128.swift in Sources */,
 				81DFCC2920F60EB900603123 /* FieldVectorPolynomial.swift in Sources */,
 				81DFCC2C20F615DC00603123 /* VectorBase.swift in Sources */,
-				81DFCC5A20F7B32000603123 /* FixedWidthTypes.swift in Sources */,
 				81DFCC3D20F657AA00603123 /* GeneratorParams.swift in Sources */,
 				81DFCC1120F5543E00603123 /* Global.swift in Sources */,
 				81DFCC4420F6989900603123 /* PeddersenCommitment.swift in Sources */,
@@ -758,13 +839,14 @@
 				81DFCC8220F8AD7F00603123 /* U256+Add.swift in Sources */,
 				81DFCC5E20F7B61500603123 /* U256.swift in Sources */,
 				81DFCC0A20F53B1100603123 /* Point+Operations.swift in Sources */,
-				813CB9EA20F12591001434D4 /* FieldProtocols.swift in Sources */,
 				81DFCC4720F69B9900603123 /* PolyCommitment.swift in Sources */,
 				813CB9F020F128B9001434D4 /* PrimeFieldElement.swift in Sources */,
 				81DFCC7920F8AD5000603123 /* U256+Comparable.swift in Sources */,
 				81DFCC2620F60E6200603123 /* FieldPolynomial.swift in Sources */,
 				81DFCC1C20F5F62E00603123 /* FieldVector.swift in Sources */,
-				81DFCC7C20F8AD6A00603123 /* U256+Equitable.swift in Sources */,
+				81DFCC7C20F8AD6A00603123 /* U256+Equatable.swift in Sources */,
+				81DFCCAD20FA1CEA00603123 /* U128+Comparable.swift in Sources */,
+				81DFCCA420F9FE6300603123 /* vUInt32.swift in Sources */,
 				81DFCC8E20F8ADA800603123 /* U256+Div.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

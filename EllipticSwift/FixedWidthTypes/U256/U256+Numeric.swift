@@ -13,16 +13,10 @@ extension U256: Numeric {
     public typealias IntegerLiteralType = UInt64
     
     public init(integerLiteral: U256.IntegerLiteralType) {
-        var data = Data(repeating: 0, count: 8)
-        var copy = integerLiteral
-        withUnsafePointer(to: &copy, { (copyPtr) -> Void in
-            let copyRawPtr = UnsafeRawBufferPointer.init(start: copyPtr, count: 8)
-            for i in 0 ..< 8 {
-                let b = copyRawPtr.load(fromByteOffset: i, as: UInt8.self)
-                data[i] = b
-            }
-        })
-        self = U256(data)!
+        let top = integerLiteral >> 32
+        let bot = integerLiteral & 0xffffffff
+        let u256 = U256(v: (vUInt32(x: UInt32(bot), y: UInt32(top), z: 0, w: 0), vZERO))
+        self = u256
     }
     
     
@@ -40,7 +34,8 @@ extension U256: Numeric {
     
     
     public static func * (lhs: U256, rhs: U256) -> U256 {
-        return lhs.halfMul(rhs)
+        let (_, bottom) = lhs.fullMultiply(rhs)
+        return bottom
     }
     
     public static func *= (lhs: inout U256, rhs: U256) {

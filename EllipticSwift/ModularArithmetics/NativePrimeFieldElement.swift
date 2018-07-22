@@ -9,9 +9,7 @@
 import Foundation
 import BigInt
 
-public typealias NativePrimeField = NativeNaivePrimeField
-
-public struct NativePrimeFieldElement<T> where T: Numeric, T: BytesInitializable, T: BytesRepresentable, T: Comparable, T: ModReducable {
+public struct NativePrimeFieldElement<T> where T: FiniteFieldCompatible {
     
     internal var rawValue: T
     
@@ -35,16 +33,16 @@ public struct NativePrimeFieldElement<T> where T: Numeric, T: BytesInitializable
         }
     }
     
-    public var field: NativePrimeField<T>
+    public var field: NativeNaivePrimeField<T>
     
-    internal init(_ bigUInt: BigUInt, _ field: NativePrimeField<T>) {
+    internal init(_ bigUInt: BigUInt, _ field: NativeNaivePrimeField<T>) {
         let native: T? = T.init(bigUInt.serialize())
         precondition(native != nil)
         self.rawValue = native!
         self.field = field
     }
     
-    internal init(_ rawValue: T, _ field: NativePrimeField<T>) {
+    internal init(_ rawValue: T, _ field: NativeNaivePrimeField<T>) {
         self.rawValue = rawValue
         self.field = field
     }

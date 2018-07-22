@@ -12,10 +12,10 @@ import BigInt
 public struct InnerProductProof {
     public var L: [AffinePoint]
     public var R: [AffinePoint]
-    public var a: BigUInt
-    public var b: BigUInt
+    public var a: BigNumber
+    public var b: BigNumber
     
-    public init (L: [AffinePoint], R: [AffinePoint], a: BigUInt, b: BigUInt) {
+    public init (L: [AffinePoint], R: [AffinePoint], a: BigNumber, b: BigNumber) {
         self.L = L;
         self.R = R;
         self.a = a;
