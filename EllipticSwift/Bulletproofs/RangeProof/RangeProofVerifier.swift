@@ -49,7 +49,7 @@ internal struct RangeProofVerifier {
         }
         
         let uChallenge = ProofUtils.computeChallengeForBigIntegers(ints: [tauX, mu, t])
-        print(uChallenge.bytes.toHexString())
+
         let u = uChallenge * base.g
         let hs = vectorBase.hs
         let gs = vectorBase.gs

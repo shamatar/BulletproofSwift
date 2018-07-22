@@ -43,7 +43,7 @@ public struct FieldVectorPolynomial {
     }
     
     public func innerProduct(_ other: FieldVectorPolynomial) -> FieldPolynomial {
-        var newCoeffs = [GeneralPrimeFieldElement](repeating: self.field.zeroElement, count: self.coefficients.count + other.coefficients.count)
+        var newCoeffs = [GeneralPrimeFieldElement](repeating: self.field.zeroElement, count: self.coefficients.count + other.coefficients.count - 1)
         for i in 0 ..< self.coefficients.count {
             let coeff = self.coefficients[i]
             for j in 0 ..< other.coefficients.count {

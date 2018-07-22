@@ -70,6 +70,33 @@ class EllipticSwiftBulletproofTests: XCTestCase {
         XCTAssert(valid)
     }
     
+    func testGenerateMultiRangeProof() {
+        let number = BigNumber(7)
+        let change = BigNumber(3)
+        
+        let curve = EllipticSwift.bn256Curve
+        let parameters = GeneratorParams.generateParams(size: 64, curve: curve)
+        let proofSystem = MultiRangeProofSystem(parameters)
+        
+        let q = curve.order
+        let randomness = BigNumber(123)
+        let anotherRandomness = q - randomness
+        
+        let commitment = PeddersenCommitment(base: parameters.base, x: number, r: randomness)
+        let commitmentToChange = PeddersenCommitment(base: parameters.base, x: change, r: anotherRandomness)
+        
+        let v = commitment.commitment
+        let changeV = commitmentToChange.commitment
+        
+        let multiWitness = MultiRangeProofWitness([commitment, commitmentToChange])
+        let proof = proofSystem.generateProof(witness: multiWitness)
+        print(proof.description)
+        print("For one proof size is: scalaras " + String(proof.numIntegers) + ", field elements " + String(proof.numElements))
+        
+        let valid = proofSystem.verify(inputs: [v, changeV], proof: proof)
+        XCTAssert(valid)
+    }
+    
     func testBaseCorrectness() {
         let n = 256
         let curve = EllipticSwift.bn256Curve

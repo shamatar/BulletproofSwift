@@ -49,7 +49,6 @@ public struct GeneratorParams {
         }
         let g = curve.hashInto(hashFunctionForChallenges("G".data(using: .utf8)!))
         let h = curve.hashInto(hashFunctionForChallenges("H".data(using: .utf8)!))
-        print(h.description)
         let v = curve.hashInto(hashFunctionForChallenges("V".data(using: .utf8)!))
         let generatorVectorG = GeneratorVector(gPoints, curve)
         let generatorVectorH = GeneratorVector(hPoints, curve)

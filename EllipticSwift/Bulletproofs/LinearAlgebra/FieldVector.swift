@@ -162,7 +162,6 @@ public struct FieldVector {
         })
     }
     
-    
     public static func powers(k: BigNumber, n: Int, q: BigNumber) -> FieldVector {
         var elements = [GeneralPrimeFieldElement]()
         let field = GeneralPrimeField(q)

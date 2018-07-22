@@ -26,6 +26,10 @@
 		81CFF0F42103B5FE00E1DA49 /* InnerProductProofSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CFF0F22103B5FE00E1DA49 /* InnerProductProofSystem.swift */; };
 		81CFF0F62103BAD100E1DA49 /* RangeProofSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CFF0F52103BAD100E1DA49 /* RangeProofSystem.swift */; };
 		81CFF0F72103BAD100E1DA49 /* RangeProofSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CFF0F52103BAD100E1DA49 /* RangeProofSystem.swift */; };
+		81DFB3F72105055B0011DC85 /* MultiRangeProofWitness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFB3F62105055B0011DC85 /* MultiRangeProofWitness.swift */; };
+		81DFB3F92105056A0011DC85 /* MultiRangeProofProver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFB3F82105056A0011DC85 /* MultiRangeProofProver.swift */; };
+		81DFB3FB210505770011DC85 /* MultiRangeProofVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFB3FA210505770011DC85 /* MultiRangeProofVerifier.swift */; };
+		81DFB3FD210505B50011DC85 /* MultiRangeProofSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFB3FC210505B50011DC85 /* MultiRangeProofSystem.swift */; };
 		81DFCBF520F4001D00603123 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCBF420F4001D00603123 /* Constants.swift */; };
 		81DFCBF620F4001D00603123 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCBF420F4001D00603123 /* Constants.swift */; };
 		81DFCBF920F4AB5200603123 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFCBF820F4AB5200603123 /* Point.swift */; };
@@ -168,6 +172,10 @@
 		81CFF0EF2102871E00E1DA49 /* RangeProofVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeProofVerifier.swift; sourceTree = "<group>"; };
 		81CFF0F22103B5FE00E1DA49 /* InnerProductProofSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerProductProofSystem.swift; sourceTree = "<group>"; };
 		81CFF0F52103BAD100E1DA49 /* RangeProofSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeProofSystem.swift; sourceTree = "<group>"; };
+		81DFB3F62105055B0011DC85 /* MultiRangeProofWitness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiRangeProofWitness.swift; sourceTree = "<group>"; };
+		81DFB3F82105056A0011DC85 /* MultiRangeProofProver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiRangeProofProver.swift; sourceTree = "<group>"; };
+		81DFB3FA210505770011DC85 /* MultiRangeProofVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiRangeProofVerifier.swift; sourceTree = "<group>"; };
+		81DFB3FC210505B50011DC85 /* MultiRangeProofSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiRangeProofSystem.swift; sourceTree = "<group>"; };
 		81DFCBF420F4001D00603123 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		81DFCBF820F4AB5200603123 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		81DFCBFB20F4AE6E00603123 /* Curve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Curve.swift; sourceTree = "<group>"; };
@@ -353,6 +361,17 @@
 			path = BigNumber;
 			sourceTree = "<group>";
 		};
+		81DFB3F52105053E0011DC85 /* MultiRangeProof */ = {
+			isa = PBXGroup;
+			children = (
+				81DFB3F62105055B0011DC85 /* MultiRangeProofWitness.swift */,
+				81DFB3F82105056A0011DC85 /* MultiRangeProofProver.swift */,
+				81DFB3FA210505770011DC85 /* MultiRangeProofVerifier.swift */,
+				81DFB3FC210505B50011DC85 /* MultiRangeProofSystem.swift */,
+			);
+			path = MultiRangeProof;
+			sourceTree = "<group>";
+		};
 		81DFCBF020F3F9FB00603123 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,6 +402,7 @@
 		81DFCC0E20F53FD600603123 /* Bulletproofs */ = {
 			isa = PBXGroup;
 			children = (
+				81DFB3F52105053E0011DC85 /* MultiRangeProof */,
 				81DFCC4120F6988100603123 /* Commitments */,
 				81DFCC3A20F6579C00603123 /* RangeProof */,
 				81DFCC3020F64C6400603123 /* InnerProductProof */,
@@ -409,6 +429,7 @@
 		81DFCC2020F5FC4200603123 /* ProofUtils */ = {
 			isa = PBXGroup;
 			children = (
+				81DFCC3B20F657AA00603123 /* GeneratorParams.swift */,
 				81DFCC2D20F645CA00603123 /* ProofUtils.swift */,
 			);
 			path = ProofUtils;
@@ -429,7 +450,6 @@
 		81DFCC3A20F6579C00603123 /* RangeProof */ = {
 			isa = PBXGroup;
 			children = (
-				81DFCC3B20F657AA00603123 /* GeneratorParams.swift */,
 				81DFCC3E20F6985E00603123 /* RangeProofProver.swift */,
 				81DFCC4820F69E8100603123 /* RangeProof.swift */,
 				81CFF0EF2102871E00E1DA49 /* RangeProofVerifier.swift */,
@@ -721,8 +741,10 @@
 				81DFCCA620FA00B300603123 /* UInt32.swift in Sources */,
 				81DFCC8A20F8AD9E00603123 /* U256+Mul.swift in Sources */,
 				81DFCC8420F8AD8900603123 /* U256+Aux.swift in Sources */,
+				81DFB3F72105055B0011DC85 /* MultiRangeProofWitness.swift in Sources */,
 				81DFCC9920F8F62A00603123 /* GeneralPrimeFieldElement.swift in Sources */,
 				81DFCC9020F8ADB300603123 /* U256+Mod.swift in Sources */,
+				81DFB3F92105056A0011DC85 /* MultiRangeProofProver.swift in Sources */,
 				81CFF0ED2101DD5E00E1DA49 /* BigNumber.swift in Sources */,
 				81DFCC1520F5F3FA00603123 /* PeddersenBase.swift in Sources */,
 				81DFCC7120F8AD2B00603123 /* NativeNaivePrimeField.swift in Sources */,
@@ -733,6 +755,7 @@
 				81CFF0F32103B5FE00E1DA49 /* InnerProductProofSystem.swift in Sources */,
 				81DFCC3F20F6985E00603123 /* RangeProofProver.swift in Sources */,
 				81DFCC9320F8E65C00603123 /* U256+BitOps.swift in Sources */,
+				81DFB3FB210505770011DC85 /* MultiRangeProofVerifier.swift in Sources */,
 				81DFCC6620F81E0200603123 /* U512.swift in Sources */,
 				81CFF0EB21012B1100E1DA49 /* U256+BitAccessible.swift in Sources */,
 				81DFCC3520F64F5400603123 /* InnerProductProof.swift in Sources */,
@@ -776,6 +799,7 @@
 				81DFCCAC20FA1CEA00603123 /* U128+Comparable.swift in Sources */,
 				81DFCCA320F9FE6300603123 /* vUInt32.swift in Sources */,
 				81DFCC8D20F8ADA800603123 /* U256+Div.swift in Sources */,
+				81DFB3FD210505B50011DC85 /* MultiRangeProofSystem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -84,7 +84,7 @@ public struct ProofUtils {
     
     
     public static func randomNumber(bitWidth: Int = UnsignedIntegerBitWidth) -> BigNumber {
-        return BigNumber(integerLiteral: 1)
+//        return BigNumber(integerLiteral: 1)
         let bytes = randomBytes(length: bitWidth/8)
         precondition(bytes != nil)
         let bn = BigNumber(bytes!)

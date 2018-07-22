@@ -26,9 +26,6 @@ public struct PolyCommitment {
             multiplier = multiplier.modMultiply(x, q)
             intermediates.append(self.coefficientCommitments[i].times(multiplier))
         }
-        print(intermediates.map({ (c) -> AffinePoint in
-            return c.commitment
-        }))
         var result = intermediates[0]
         for i in 1 ..< intermediates.count {
             result = result.add(intermediates[i])
@@ -44,9 +41,6 @@ public struct PolyCommitment {
             multiplier = multiplier * x
             intermediates.append(self.coefficientCommitments[i].times(multiplier.value))
         }
-        print(intermediates.map({ (c) -> AffinePoint in
-            return c.commitment
-        }))
         var result = intermediates[0]
         for i in 1 ..< intermediates.count {
             result = result.add(intermediates[i])
