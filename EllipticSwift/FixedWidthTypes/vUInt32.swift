@@ -32,7 +32,9 @@ extension vUInt32 {
 }
 
 extension vUInt32: Zeroable {
-    
+    public static var zero: vUInt32 {
+        return vUInt32()
+    }
 }
 
 extension vUInt32: EvenOrOdd {
@@ -81,5 +83,20 @@ extension vUInt32: BitAccessible {
             return self.w & (UInt32(1) << (i-96)) != 0
         }
         return false
+    }
+}
+
+extension vUInt32 {
+    public var leadingZeroBitCount: Int {
+        if self.w.leadingZeroBitCount != 32 {
+            return self.w.leadingZeroBitCount
+        } else if self.z.leadingZeroBitCount != 32 {
+            return 32 + self.z.leadingZeroBitCount
+        } else if self.y.leadingZeroBitCount != 32 {
+            return 64 + self.y.leadingZeroBitCount
+        } else if self.x.leadingZeroBitCount != 32 {
+            return 96 + self.x.leadingZeroBitCount
+        }
+        return 128
     }
 }

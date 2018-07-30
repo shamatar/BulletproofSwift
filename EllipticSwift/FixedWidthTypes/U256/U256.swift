@@ -57,4 +57,13 @@ extension U256: BytesInitializable, BytesRepresentable {
     }
 }
 
+extension U256: UInt64Initializable {
+    public init(_ value: UInt64) {
+        let top = value >> 32
+        let bot = value & 0xffffffff
+        let u256 = U256(v: (vUInt32(x: UInt32(bot), y: UInt32(top), z: 0, w: 0), vZERO))
+        self = u256
+    }
+}
+
 

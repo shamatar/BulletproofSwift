@@ -17,10 +17,14 @@ public typealias U1024 = vU1024
 extension U256: FiniteFieldCompatible {
 }
 
-public protocol FiniteFieldCompatible: Comparable, Numeric, ModReducable, BytesInitializable, BitsAndBytes, BitShiftable, EvenOrOdd {
+public protocol FiniteFieldCompatible: Comparable, Numeric, ModReducable, BytesInitializable, BitsAndBytes, BitShiftable, EvenOrOdd, UInt64Initializable {
 }
 
 public protocol BitsAndBytes: BytesRepresentable, BitAccessible, FixedWidth, Zeroable {
+}
+
+public protocol UInt64Initializable {
+    init(_ value: UInt64)
 }
 
 public protocol BytesInitializable {
@@ -33,6 +37,7 @@ public protocol BytesRepresentable {
 
 public protocol Zeroable {
     var isZero: Bool {get}
+    static var zero: Self {get}
 }
 
 public protocol EvenOrOdd {
@@ -45,6 +50,8 @@ public protocol BitAccessible {
 
 public protocol FixedWidth {
     var bitWidth: Int {get}
+    var leadingZeroBitCount: Int {get}
+    var fullBitWidth: UInt32 {get}
 }
 
 public protocol BitShiftable {
@@ -58,4 +65,8 @@ public protocol ModReducable {
     func modInv(_ modulus: Self) -> Self
     func div(_ a: Self) -> (Self, Self)
     func fullMultiply(_ a: Self) -> (Self, Self)
+}
+
+public protocol MontArithmeticsCompatible {
+    static func getMontParams(_ a: Self) -> (Self, Self, Self)
 }

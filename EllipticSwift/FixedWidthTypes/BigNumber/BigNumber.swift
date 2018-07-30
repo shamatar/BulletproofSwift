@@ -20,6 +20,24 @@ extension BigNumber: BytesInitializable {
 }
 
 extension BigNumber: BitsAndBytes {
+    public var fullBitWidth: UInt32 {
+        switch self {
+        case .acceleratedU256(let u256):
+            return u256.fullBitWidth
+        }
+    }
+    
+    public var leadingZeroBitCount: Int {
+        switch self {
+        case .acceleratedU256(let u256):
+            return u256.leadingZeroBitCount
+        }
+    }
+    
+    public static var zero: BigNumber {
+        return BigNumber.acceleratedU256(U256())
+    }
+    
     public var bytes: Data {
         switch self {
         case .acceleratedU256(let u256):

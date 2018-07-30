@@ -351,4 +351,127 @@ class FixedWidthNumbers: XCTestCase {
         XCTAssert(BigUInt(y.bytes) == BigUInt("19775247992460679389771436516608933805782779220511590267128505960436574705663", radix: 10)!)
     }
     
+    func testNaiveModularMultiplicationPerformance() {
+        let bn256Prime = BigUInt("21888242871839275222246405745257275088696311157297823662689037894645226208583", radix: 10)!
+        let modulus = U256(bn256Prime.serialize())!
+        let number1 = BigUInt.randomInteger(lessThan: bn256Prime)
+        let number2 = BigUInt.randomInteger(lessThan: bn256Prime)
+        let bn1 = U256(number1.serialize())!
+        let bn2 = U256(number2.serialize())!
+        measure {
+            let _ = bn1.modMultiply(bn2, modulus)
+        }
+    }
+    
+    func testBitWidth() {
+        let br = BigUInt(11749)
+        let b = U256(br.serialize())!
+        let leadingZeroes = UInt32(11794).leadingZeroBitCount
+        let actualWidth = 32 - leadingZeroes
+        let bitWidth = b.bitWidth
+        let largeLeadingZeroes = b.leadingZeroBitCount
+        XCTAssert(largeLeadingZeroes + bitWidth == 256)
+        XCTAssert(actualWidth == bitWidth)
+        XCTAssert(leadingZeroes + 224 == largeLeadingZeroes)
+    }
+    
+    func testComputeSlidingWindow() {
+        let exponent = 12686028502
+        let br = BigUInt(exponent)
+        let b = U256(br.serialize())!
+        let windowSize = 5
+        let (lookups, powers) = computeSlidingWindow(scalar: b, windowSize: windowSize)
+        let numPrecomputedElements = (1 << windowSize) - 1 // 2**k - 1
+        var precomputations = [Int](repeating: 0, count: numPrecomputedElements)
+        precomputations[0] = 1
+        precomputations[1] = 2
+        for i in 2 ..< numPrecomputedElements {
+            precomputations[i] = precomputations[i-2] + precomputations[1]
+        }
+        XCTAssert(lookups[0] != -1)
+        // base implementation of sliding windows exponentiation
+        var resultOrder = 0
+        for i in 0 ..< lookups.count {
+            if lookups[i] == -1 {
+                resultOrder = resultOrder * 2
+            } else {
+                let power = powers[i]
+                let intermediatePower = resultOrder * Int(power)
+                resultOrder = intermediatePower + precomputations[lookups[i]]
+            }
+        }
+        XCTAssert(resultOrder == exponent)
+    }
+    
+    func testDifferentSquaring() {
+        let secp256k1Prime = EllipticSwift.secp256k1Prime
+        let secp256k1PrimeField = NativeNaivePrimeField<U256>(secp256k1Prime)
+        let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let a = secp256k1PrimeField.fromValue(BigNumber(ar.serialize())!)
+        //        let br = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let br = BigUInt(2)
+        let b = U256(br.serialize())!
+        let mul = a.field.mul(a, a)
+        let trivial = a.field.doubleAndAddExponentiation(a, b)
+        let sliding = a.field.kSlidingWindowExponentiation(a, b, windowSize: 5)
+        XCTAssert(mul.value == trivial.value)
+        XCTAssert(trivial.value == sliding.value)
+    }
+    
+    func testDifferentCubing() {
+        let secp256k1Prime = EllipticSwift.secp256k1Prime
+        let secp256k1PrimeField = NativeNaivePrimeField<U256>(secp256k1Prime)
+        let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let a = secp256k1PrimeField.fromValue(BigNumber(ar.serialize())!)
+        //        let br = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let br = BigUInt(3)
+        let b = U256(br.serialize())!
+        var mul = a.field.mul(a, a)
+        mul = a.field.mul(a, mul)
+        let trivial = a.field.doubleAndAddExponentiation(a, b)
+        let sliding = a.field.kSlidingWindowExponentiation(a, b, windowSize: 5)
+        XCTAssert(mul.value == trivial.value)
+        XCTAssert(trivial.value == sliding.value)
+    }
+    
+    func testDifferentExponentiations() {
+        let secp256k1Prime = EllipticSwift.secp256k1Prime
+        let secp256k1PrimeField = NativeNaivePrimeField<U256>(secp256k1Prime)
+//        let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let ar = BigUInt.randomInteger(withExactWidth: 256)
+        let a = secp256k1PrimeField.fromValue(BigNumber(ar.serialize())!)
+//        let br = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let br = BigUInt.randomInteger(withExactWidth: 256)
+        let b = U256(br.serialize())!
+        let trivial = a.field.doubleAndAddExponentiation(a, b)
+        let sliding = a.field.kSlidingWindowExponentiation(a, b, windowSize: 5)
+        XCTAssert(trivial.value == sliding.value)
+    }
+    
+    func testDoubleAndAddExponentiationPerformance() {
+        let secp256k1Prime = EllipticSwift.secp256k1Prime
+        let secp256k1PrimeField = NativeNaivePrimeField<U256>(secp256k1Prime)
+        let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let a = secp256k1PrimeField.fromValue(BigNumber(ar.serialize())!)
+        let br = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let b = U256(br.serialize())!
+        measure {
+            let _ = a.field.doubleAndAddExponentiation(a, b)
+        }
+    }
+    
+    func testSlidingWindowExponentiationPerformance() {
+        let secp256k1Prime = EllipticSwift.secp256k1Prime
+        let secp256k1PrimeField = NativeNaivePrimeField<U256>(secp256k1Prime)
+        let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let a = secp256k1PrimeField.fromValue(BigNumber(ar.serialize())!)
+        let br = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let b = U256(br.serialize())!
+        measure {
+            let _ = a.field.kSlidingWindowExponentiation(a, b, windowSize: 5)
+        }
+    }
+    
+    
+    
 }

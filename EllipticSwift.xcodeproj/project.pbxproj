@@ -17,6 +17,13 @@
 		813CB9ED20F126A4001434D4 /* MontPrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9EB20F126A4001434D4 /* MontPrimeField.swift */; };
 		813CB9EF20F128B9001434D4 /* PrimeFieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9EE20F128B9001434D4 /* PrimeFieldElement.swift */; };
 		813CB9F020F128B9001434D4 /* PrimeFieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813CB9EE20F128B9001434D4 /* PrimeFieldElement.swift */; };
+		814FB635210F0833009235FB /* NativeMontPrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB634210F0833009235FB /* NativeMontPrimeField.swift */; };
+		814FB637210F0888009235FB /* NativeMontPrimeFieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB636210F0888009235FB /* NativeMontPrimeFieldElement.swift */; };
+		814FB638210F0888009235FB /* NativeMontPrimeFieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB636210F0888009235FB /* NativeMontPrimeFieldElement.swift */; };
+		814FB63A210F6917009235FB /* U256+Mont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB639210F6917009235FB /* U256+Mont.swift */; };
+		814FB63B210F6917009235FB /* U256+Mont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB639210F6917009235FB /* U256+Mont.swift */; };
+		814FB63D210F6A6B009235FB /* U512+Aux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB63C210F6A6B009235FB /* U512+Aux.swift */; };
+		814FB63E210F6A6B009235FB /* U512+Aux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB63C210F6A6B009235FB /* U512+Aux.swift */; };
 		81CFF0E921012A5900E1DA49 /* U128+BitAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CFF0E821012A5900E1DA49 /* U128+BitAccessible.swift */; };
 		81CFF0EB21012B1100E1DA49 /* U256+BitAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CFF0EA21012B1100E1DA49 /* U256+BitAccessible.swift */; };
 		81CFF0ED2101DD5E00E1DA49 /* BigNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CFF0EC2101DD5E00E1DA49 /* BigNumber.swift */; };
@@ -166,6 +173,10 @@
 		813CB9E220F124A9001434D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		813CB9EB20F126A4001434D4 /* MontPrimeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontPrimeField.swift; sourceTree = "<group>"; };
 		813CB9EE20F128B9001434D4 /* PrimeFieldElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeFieldElement.swift; sourceTree = "<group>"; };
+		814FB634210F0833009235FB /* NativeMontPrimeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeMontPrimeField.swift; sourceTree = "<group>"; };
+		814FB636210F0888009235FB /* NativeMontPrimeFieldElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeMontPrimeFieldElement.swift; sourceTree = "<group>"; };
+		814FB639210F6917009235FB /* U256+Mont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U256+Mont.swift"; sourceTree = "<group>"; };
+		814FB63C210F6A6B009235FB /* U512+Aux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U512+Aux.swift"; sourceTree = "<group>"; };
 		81CFF0E821012A5900E1DA49 /* U128+BitAccessible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U128+BitAccessible.swift"; sourceTree = "<group>"; };
 		81CFF0EA21012B1100E1DA49 /* U256+BitAccessible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U256+BitAccessible.swift"; sourceTree = "<group>"; };
 		81CFF0EC2101DD5E00E1DA49 /* BigNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigNumber.swift; sourceTree = "<group>"; };
@@ -346,7 +357,9 @@
 				81DFCC1D20F5F84200603123 /* PrimeFieldElement+Operations.swift */,
 				81DFCC9520F8F35B00603123 /* NativePrimeField.swift */,
 				81DFCC6E20F8972100603123 /* NativeNaivePrimeField.swift */,
+				814FB634210F0833009235FB /* NativeMontPrimeField.swift */,
 				81DFCC6820F891A600603123 /* NativePrimeFieldElement.swift */,
+				814FB636210F0888009235FB /* NativeMontPrimeFieldElement.swift */,
 				81DFCC9820F8F62A00603123 /* GeneralPrimeFieldElement.swift */,
 				81DFCC9B20F90A9E00603123 /* GeneralPrimeField.swift */,
 			);
@@ -496,6 +509,7 @@
 				81DFCC8F20F8ADB300603123 /* U256+Mod.swift */,
 				81DFCC9220F8E65C00603123 /* U256+BitOps.swift */,
 				81CFF0EA21012B1100E1DA49 /* U256+BitAccessible.swift */,
+				814FB639210F6917009235FB /* U256+Mont.swift */,
 			);
 			path = U256;
 			sourceTree = "<group>";
@@ -504,6 +518,7 @@
 			isa = PBXGroup;
 			children = (
 				81DFCC6520F81E0200603123 /* U512.swift */,
+				814FB63C210F6A6B009235FB /* U512+Aux.swift */,
 			);
 			path = U512;
 			sourceTree = "<group>";
@@ -738,9 +753,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				814FB635210F0833009235FB /* NativeMontPrimeField.swift in Sources */,
 				81DFCCA620FA00B300603123 /* UInt32.swift in Sources */,
 				81DFCC8A20F8AD9E00603123 /* U256+Mul.swift in Sources */,
 				81DFCC8420F8AD8900603123 /* U256+Aux.swift in Sources */,
+				814FB637210F0888009235FB /* NativeMontPrimeFieldElement.swift in Sources */,
 				81DFB3F72105055B0011DC85 /* MultiRangeProofWitness.swift in Sources */,
 				81DFCC9920F8F62A00603123 /* GeneralPrimeFieldElement.swift in Sources */,
 				81DFCC9020F8ADB300603123 /* U256+Mod.swift in Sources */,
@@ -787,10 +804,12 @@
 				81DFCC1020F5543E00603123 /* Global.swift in Sources */,
 				81DFCC4320F6989900603123 /* PeddersenCommitment.swift in Sources */,
 				81DFCC3220F64C9F00603123 /* InnerProductWitness.swift in Sources */,
+				814FB63D210F6A6B009235FB /* U512+Aux.swift in Sources */,
 				81DFCC8120F8AD7F00603123 /* U256+Add.swift in Sources */,
 				81DFCC5D20F7B61500603123 /* U256.swift in Sources */,
 				81DFCC0920F53B1100603123 /* Point+Operations.swift in Sources */,
 				81DFCC4620F69B9900603123 /* PolyCommitment.swift in Sources */,
+				814FB63A210F6917009235FB /* U256+Mont.swift in Sources */,
 				813CB9EF20F128B9001434D4 /* PrimeFieldElement.swift in Sources */,
 				81DFCC7820F8AD5000603123 /* U256+Comparable.swift in Sources */,
 				81DFCC2520F60E6200603123 /* FieldPolynomial.swift in Sources */,
@@ -818,6 +837,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81DFCCA720FA00B300603123 /* UInt32.swift in Sources */,
+				814FB63B210F6917009235FB /* U256+Mont.swift in Sources */,
 				81DFCC8B20F8AD9E00603123 /* U256+Mul.swift in Sources */,
 				81DFCC8520F8AD8900603123 /* U256+Aux.swift in Sources */,
 				81DFCC9A20F8F62A00603123 /* GeneralPrimeFieldElement.swift in Sources */,
@@ -837,6 +857,7 @@
 				81DFCC4A20F69E8100603123 /* RangeProof.swift in Sources */,
 				81DFCC0320F4B81900603123 /* PrecompiledCurves.swift in Sources */,
 				81DFCBFD20F4AE6E00603123 /* Curve.swift in Sources */,
+				814FB63E210F6A6B009235FB /* U512+Aux.swift in Sources */,
 				81DFCC1F20F5F84200603123 /* PrimeFieldElement+Operations.swift in Sources */,
 				81DFCC3920F651B800603123 /* InnerProductProver.swift in Sources */,
 				81DFCC0720F4ECFE00603123 /* windowMethods.swift in Sources */,
@@ -861,6 +882,7 @@
 				81DFCC4420F6989900603123 /* PeddersenCommitment.swift in Sources */,
 				81DFCC3320F64C9F00603123 /* InnerProductWitness.swift in Sources */,
 				81DFCC8220F8AD7F00603123 /* U256+Add.swift in Sources */,
+				814FB638210F0888009235FB /* NativeMontPrimeFieldElement.swift in Sources */,
 				81DFCC5E20F7B61500603123 /* U256.swift in Sources */,
 				81DFCC0A20F53B1100603123 /* Point+Operations.swift in Sources */,
 				81DFCC4720F69B9900603123 /* PolyCommitment.swift in Sources */,

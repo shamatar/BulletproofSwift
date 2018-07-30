@@ -23,7 +23,25 @@ extension U256: BitAccessible {
 }
 
 extension U256: FixedWidth {
+    public var leadingZeroBitCount: Int {
+        if self.v.1.leadingZeroBitCount != 128 {
+            return self.v.1.leadingZeroBitCount
+        } else if self.v.0.leadingZeroBitCount != 128 {
+            return 128 + self.v.0.leadingZeroBitCount
+        }
+        return 256
+    }
+    
     public var bitWidth: Int {
+        if self.v.1.leadingZeroBitCount != 128 {
+            return 256 - self.v.1.leadingZeroBitCount
+        } else if self.v.0.leadingZeroBitCount != 128 {
+            return 128 - self.v.0.leadingZeroBitCount
+        }
+        return 256
+    }
+    
+    public var fullBitWidth: UInt32 {
         return 256
     }
 }
