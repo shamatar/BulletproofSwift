@@ -16,7 +16,7 @@ public class NativeMontPrimeField<T> where T: FiniteFieldCompatible, T: MontArit
     public var montInvR: T
     public var montK: T
     
-    var montWordBitWidth: UInt32 = T.zero.fullBitWidth
+//    var montWordBitWidth: UInt32 = T.zero.fullBitWidth
     
     public var modulus: BigUInt {
         return BigUInt(self.prime.bytes)
@@ -121,8 +121,12 @@ public class NativeMontPrimeField<T> where T: FiniteFieldCompatible, T: MontArit
     
     public func mul(_ a: NativeMontPrimeFieldElement<T>, _ b: NativeMontPrimeFieldElement<T>) -> NativeMontPrimeFieldElement<T> {
         // multiplication in Mont. reduced field
-        let mult = a.rawValue.modMultiply(b.rawValue, self.prime)
-        return self.toElement(mult)
+        return self.montMul(a, b)
+    }
+    
+    func montMul(_ a: NativeMontPrimeFieldElement<T>, _ b: NativeMontPrimeFieldElement<T>) -> NativeMontPrimeFieldElement<T> {
+        let res = a.rawValue.montMul(b.rawValue, modulus: self.prime, montR: self.montR, montInvR: self.montInvR, montK: self.montK)
+        return self.toElement(res)
     }
     
     public func div(_ a: NativeMontPrimeFieldElement<T>, _ b: NativeMontPrimeFieldElement<T>) -> NativeMontPrimeFieldElement<T> {
@@ -181,7 +185,8 @@ public class NativeMontPrimeField<T> where T: FiniteFieldCompatible, T: MontArit
     public func fromValue(_ a: BigNumber) -> NativeMontPrimeFieldElement<T> {
         switch a {
         case .acceleratedU256(let u256):
-            let reduced = (u256 as! T).modMultiply(self.montR, self.prime)
+            let reduced = (u256 as! T).toMontForm(self.prime)
+//            let reduced = (u256 as! T).modMultiply(self.montR, self.prime)
 //            (a*self.montR) % self.prime
             return NativeMontPrimeFieldElement<T>(reduced, self)
         }

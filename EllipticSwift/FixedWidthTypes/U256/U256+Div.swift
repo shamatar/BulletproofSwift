@@ -15,15 +15,7 @@ extension U256 {
         var remainder = U256()
         var aCopy = a
         var selfCopy = self
-        withUnsafePointer(to: &selfCopy) { (selfPtr: UnsafePointer<vU256>) -> Void in
-            withUnsafePointer(to: &aCopy, { (aPtr: UnsafePointer<vU256>) -> Void in
-                withUnsafeMutablePointer(to: &result, { (resultPtr: UnsafeMutablePointer<vU256>) -> Void in
-                    withUnsafeMutablePointer(to: &remainder, { (remainderPtr: UnsafeMutablePointer<vU256>) -> Void in
-                        vU256Divide(selfPtr, aPtr, resultPtr, remainderPtr)
-                    })
-                })
-            })
-        }
+        vU256Divide(&selfCopy, &aCopy, &result, &remainder)
         return (result, remainder)
     }
 }

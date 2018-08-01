@@ -25,28 +25,27 @@ extension U256: ModReducable {
     }
     
     public func modInv(_ modulus: U256) -> U256 {
-        precondition(false, "NYI")
-        var x1 = U256.one
-        var x2 = U256.zero
-        var v = modulus
-        var u = self
-        while u != U256.one {
-            let (q, r) = v.div(u)
-            let qx1 = q.modMultiply(x1, modulus)
-            if x2 > qx1 {
-                let x = x2 - qx1
-                x2 = x1
-                x1 = x
-            } else {
-                let x = modulus - (qx1 - x2)
-                x2 = x1
-                x1 = x
-            }
-            v = u
-            u = r
+        var a = self
+        var new = U256.one
+        var old = U256.zero
+        var q = modulus
+        var r = U256.zero
+        var h = U256.zero
+        var positive = false
+        while !a.isZero {
+            (q, r) = q.div(a)
+            h = q.halfMul(new).addMod(old)
+            old = new
+            new = h
+            q = a
+            a = r
+            positive = !positive
         }
-//        x1.inplaceMod(modulus)
-        return x1.mod(modulus)
+        if positive {
+            return old
+        } else {
+            return modulus.subMod(old)
+        }
     }
     
     public func modMultiply(_ a: U256, _ modulus: U256) -> U256 {

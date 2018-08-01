@@ -59,4 +59,8 @@ extension U512 {
         arr.append(vecs.3.w)
         return arr
     }
+    
+    public var isZero: Bool {
+        return self.v.0.isZero && self.v.1.isZero && self.v.2.isZero && self.v.3.isZero
+    }
 }

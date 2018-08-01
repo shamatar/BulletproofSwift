@@ -205,6 +205,39 @@ class FixedWidthNumbers: XCTestCase {
         XCTAssert(mul.value == 1)
     }
     
+    func testMontFieldConversion() {
+        let modulus = BigUInt(97)
+        let field = NativeMontPrimeField<U256>(modulus)!
+        let forward = field.fromValue(BigNumber(3))
+        let back = forward.value
+        XCTAssert(back == 3)
+        let rawValue = U256(3)
+        let reduced = rawValue.toMontForm(U256(modulus.serialize())!)
+        XCTAssert(forward.rawValue == reduced)
+    }
+    
+    func testMontParamsCalculation() {
+        let modulus = BigUInt(97)
+        let field = NativeMontPrimeField<U256>(modulus)!
+        let R = BigUInt(1) << 256
+        let montR = R % modulus
+        XCTAssert(montR == BigUInt(field.montR.bytes))
+        let montInvR = montR.inverse(modulus)!
+        XCTAssert(montInvR == BigUInt(field.montInvR.bytes))
+        let montK = (R * montInvR - BigUInt(1)) / modulus
+        XCTAssert(montK == BigUInt(field.montK.bytes))
+    }
+
+    func testMontMultiplication() {
+        let modulus = BigUInt(97)
+        let field = NativeMontPrimeField<U256>(modulus)!
+        let a = field.fromValue(BigNumber(43))
+        let b = field.fromValue(BigNumber(56))
+        let mul = field.montMul(a, b)
+        let value = mul.value
+        XCTAssert(value == 80)
+    }
+    
     func testInit() {
         let bn = BigNumber(3)
         XCTAssert("0000000000000000000000000000000000000000000000000000000000000003" == bn.bytes.toHexString())
@@ -472,6 +505,47 @@ class FixedWidthNumbers: XCTestCase {
         }
     }
     
+    func testDoubleAndAddExponentiationPerformanceInMontForm() {
+        let secp256k1Prime = EllipticSwift.secp256k1Prime
+        let secp256k1PrimeField = NativeMontPrimeField<U256>(secp256k1Prime)
+        let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let a = secp256k1PrimeField.fromValue(BigNumber(ar.serialize())!)
+        let br = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let b = U256(br.serialize())!
+        measure {
+            let _ = a.field.doubleAndAddExponentiation(a, b)
+        }
+    }
     
+    func testSlidingWindowExponentiationPerformanceInMontForm() {
+        let secp256k1Prime = EllipticSwift.secp256k1Prime
+        let secp256k1PrimeField = NativeMontPrimeField<U256>(secp256k1Prime)
+        let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let a = secp256k1PrimeField.fromValue(BigNumber(ar.serialize())!)
+        let br = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let b = U256(br.serialize())!
+        measure {
+            let _ = a.field.kSlidingWindowExponentiation(a, b, windowSize: 5)
+        }
+    }
+    
+    func testWideSlidingWindowExponentiationPerformanceInMontForm() {
+        let secp256k1Prime = EllipticSwift.secp256k1Prime
+        let secp256k1PrimeField = NativeMontPrimeField<U256>(secp256k1Prime)
+        let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let a = secp256k1PrimeField.fromValue(BigNumber(ar.serialize())!)
+        let br = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let b = U256(br.serialize())!
+        measure {
+            let _ = a.field.kSlidingWindowExponentiation(a, b, windowSize: 16)
+        }
+    }
+    
+    func testNaviteModInverse() {
+        let modulus = U256(97)
+        let number = U256(3)
+        let inverse = number.modInv(modulus)
+        XCTAssert(inverse.v.0.clippedValue == 65)
+    }
     
 }

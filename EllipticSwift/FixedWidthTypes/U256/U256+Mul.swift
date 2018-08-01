@@ -29,12 +29,6 @@ extension U256 {
     public mutating func inplaceHalfMul(_ a: U256) {
         var aCopy = a
         var selfCopy = self
-        withUnsafePointer(to: &selfCopy) { (selfPtr: UnsafePointer<vU256>) -> Void in
-            withUnsafePointer(to: &aCopy, { (aPtr: UnsafePointer<vU256>) -> Void in
-                withUnsafeMutablePointer(to: &self, { (resultPtr: UnsafeMutablePointer<vU256>) -> Void in
-                    vU256HalfMultiply(selfPtr, aPtr, resultPtr)
-                })
-            })
-        }
+        vU256HalfMultiply(&selfCopy, &aCopy, &self)
     }
 }

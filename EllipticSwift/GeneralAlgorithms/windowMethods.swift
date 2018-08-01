@@ -105,9 +105,10 @@ public func computeWNAF(scalar: BigNumber, windowSize: Int = DefaultWindowSize) 
     let maxBit = windowSize - 1
     let half = 1 << (windowSize-1)
     let full = 1 << windowSize
+    let data = scalar.bytes.bytes
     while scalarCopy > 0 {
         if scalarCopy.bit(0) {
-            let coeff = bits(of: scalarCopy, maxBit, 0) // should be window size long
+            let coeff = bits(data, maxBit, 0) // should be window size long
             let mods = guardedMods(coeff, half, full)
             dCoeffs.append(mods)
             if mods > 0 {
@@ -133,6 +134,7 @@ public func computeSlidingWindow<T: FiniteFieldCompatible> (scalar: T, windowSiz
     lookupCoeffs.reserveCapacity(numElements)
     var powers = [UInt64]()
     powers.reserveCapacity(numElements)
+    let data = scalar.bytes.bytes
     var i = scalar.bitWidth - 1
     while i > 0 {
         if !scalar.bit(i) {
@@ -146,7 +148,7 @@ public func computeSlidingWindow<T: FiniteFieldCompatible> (scalar: T, windowSiz
                 l = 0
                 nextI = 0
             }
-            var bitSlice = bits(of: scalar, i, l)
+            var bitSlice = bits(data, i, l)
             let sliceBitWidth = i - l + 1
             let elementNumber = Int(bitSlice) - 1
             if bitSlice == 0 {
@@ -170,35 +172,32 @@ public func computeSlidingWindow<T: FiniteFieldCompatible> (scalar: T, windowSiz
 }
 
 
-internal func bits(of element: BytesRepresentable, _ from: Int, _ to: Int) -> UInt32 {
-    let beData: [UInt8] = element.bytes.bytes // BE!
+internal func bits(_ beData: [UInt8], _ from: Int, _ to: Int) -> UInt32 {
+    // TODO: should improve to one pass
     let numBytes = beData.count
     precondition(to < beData.count * 8, "accessing out of range bits")
     precondition(from > to, "should access nonzero range with LE notation")
     precondition(to - from < UInt32.bitWidth, "not meant to access more than " + String(UInt32.bitWidth) + " bits")
-    let bigUint = BigUInt(element.bytes)
-    let bits = String(bigUint, radix: 2)
-    print(bits)
     var (upperByteNumber, upperBitInByte) = from.quotientAndRemainder(dividingBy: 8)
     var (lowerByteNumber, lowerBitInByte) = to.quotientAndRemainder(dividingBy: 8)
     upperByteNumber = numBytes - upperByteNumber - 1
     lowerByteNumber = numBytes - lowerByteNumber - 1
     if upperByteNumber == lowerByteNumber {
         precondition(upperBitInByte <= 7)
-        let bitmask: UInt8 = ((1 << (upperBitInByte - lowerBitInByte + 1)) - 1) << lowerBitInByte
+        var bitmask: UInt8 = UInt8((UInt16(1) << (upperBitInByte - lowerBitInByte + 1)) - UInt16(1))
+        bitmask = bitmask << lowerBitInByte
         let byte = beData[lowerByteNumber]
         let maskedValue = byte & bitmask
         let result = UInt32(maskedValue >> lowerBitInByte)
-        print(String(result, radix: 2))
         return result
     } else {
         let bitsFromUpperByte = upperBitInByte + 1
-        let upperByteBitmask: UInt8 = ((1 << bitsFromUpperByte) - 1)
+        let upperByteBitmask: UInt8 = UInt8((UInt16(1) << bitsFromUpperByte) - UInt16(1))
         let upperByte = beData[upperByteNumber]
         let upperBits = (upperByte & upperByteBitmask)
 
         let bitsFromLowerByte = 8 - lowerBitInByte
-        var lowerByteBitmask: UInt8 = ((1 << bitsFromLowerByte) - 1)
+        var lowerByteBitmask: UInt8 = UInt8((UInt16(1) << bitsFromLowerByte) - UInt16(1))
         lowerByteBitmask = lowerByteBitmask << lowerBitInByte
         let lowerByte = beData[lowerByteNumber]
         let lowerBits = (lowerByte & lowerByteBitmask) >> lowerBitInByte
@@ -210,7 +209,6 @@ internal func bits(of element: BytesRepresentable, _ from: Int, _ to: Int) -> UI
             shiftMultiplier = shiftMultiplier + 1
         }
         fullBits |= UInt32(upperBits) << (shiftMultiplier*8 + bitsFromLowerByte)
-        print(String(fullBits, radix: 2))
         return fullBits
     }
     

@@ -69,4 +69,6 @@ public protocol ModReducable {
 
 public protocol MontArithmeticsCompatible {
     static func getMontParams(_ a: Self) -> (Self, Self, Self)
+    func toMontForm(_ modulus: Self) -> Self
+    func montMul(_ b: Self, modulus: Self, montR: Self, montInvR: Self, montK: Self) -> Self
 }
