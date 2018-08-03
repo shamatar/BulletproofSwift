@@ -548,4 +548,38 @@ class FixedWidthNumbers: XCTestCase {
         XCTAssert(inverse.v.0.clippedValue == 65)
     }
     
+    func testGenericFE() {
+        let modulus = U256(97)
+        let field = GeneralizedMontPrimeField<U256>(modulus)
+        let fe = GeneralizedPrimeFieldElement.fromValue(UInt64(3), field: field)
+        let inverse = fe.inv()
+        let value = inverse.value
+        XCTAssert(value == 65)
+    }
+    
+    func testGenericDoubleAndAddExponentiationPerformanceInMontForm() {
+        let secp256k1Prime = EllipticSwift.secp256k1Prime
+        let secp256k1PrimeField = GeneralizedMontPrimeField<U256>(secp256k1Prime)
+        let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let a = GeneralizedPrimeFieldElement.fromValue(BigNumber(ar.serialize())!, field: secp256k1PrimeField)
+        let br = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let b = U256(br.serialize())!
+        measure {
+            let _ = a.pow(b)
+        }
+    }
+    
+    func testGenericCurveCreation() {
+        let secp256k1PrimeBUI = BigUInt("fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f", radix: 16)!
+//        let secp256k1PrimeField = GeneralizedMontPrimeField<U256>.init(secp256k1PrimeBUI)
+        let secp256k1PrimeField = GeneralizedNaivePrimeField<U256>.init(secp256k1PrimeBUI)
+        let secp256k1CurveOrderBUI = BigUInt("fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141", radix: 16)!
+        let secp256k1CurveOrder = U256(secp256k1CurveOrderBUI.serialize())!
+        let secp256k1WeierstrassCurve = GeneralizedWeierstrassCurve(field: secp256k1PrimeField, order: secp256k1CurveOrder, A: U256(0), B: U256(7))
+        let generatorX = BigUInt("79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798", radix: 16)!
+        let generatorY = BigUInt("483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8", radix: 16)!
+        let success = secp256k1WeierstrassCurve.setGenerator(AffineCoordinates(generatorX, generatorY))
+        precondition(success, "Failed to init secp256k1 curve!")
+    }
+    
 }

@@ -1,0 +1,91 @@
+//
+//  GeneralizedPrimeFieldElement.swift
+//  EllipticSwift
+//
+//  Created by Alexander Vlasov on 02.08.2018.
+//  Copyright © 2018 Alexander Vlasov. All rights reserved.
+//
+
+import Foundation
+import BigInt
+
+public struct GeneralizedPrimeFieldElement<U>: PrimeFieldElementProtocol where U: PrimeFieldProtocol, U.UnderlyingFieldElementType == GeneralizedPrimeFieldElement {
+
+    public typealias UnderlyingType = U.UnderlyingRawType
+    public typealias Field = U
+
+    public var rawValue: UnderlyingType
+    public var isZero: Bool {
+        return self.rawValue.isZero
+    }
+    public var field: Field
+        
+    public var value: BigUInt {
+        get {
+            return self.field.toValue(self.rawValue)
+        }
+    }
+    
+    public init(_ bigUInt: BigUInt, _ field: Field) {
+        let native: UnderlyingType? = UnderlyingType.init(bigUInt.serialize())
+        precondition(native != nil)
+        self = field.fromValue(native!)
+    }
+    
+    public init(_ rawValue: UnderlyingType, _ field: Field) {
+        self.rawValue = rawValue
+        self.field = field
+    }
+    
+    public static func == (lhs: GeneralizedPrimeFieldElement, rhs: GeneralizedPrimeFieldElement) -> Bool {
+        return lhs.rawValue == rhs.rawValue
+    }
+    public static func + (lhs: GeneralizedPrimeFieldElement, rhs: GeneralizedPrimeFieldElement) -> GeneralizedPrimeFieldElement {
+        return self.field.add(lhs, rhs)
+    }
+    public static func - (lhs: GeneralizedPrimeFieldElement, rhs: GeneralizedPrimeFieldElement) -> GeneralizedPrimeFieldElement {
+        return self.field.sub(lhs, rhs)
+    }
+    public static func * (lhs: GeneralizedPrimeFieldElement, rhs: GeneralizedPrimeFieldElement) -> GeneralizedPrimeFieldElement {
+        return self.field.mul(lhs, rhs)
+    }
+    public static func * (lhs: BytesRepresentable, rhs: GeneralizedPrimeFieldElement) -> GeneralizedPrimeFieldElement {
+        let newFE = self.field.fromValue(lhs)
+        return self.field.mul(newFE, rhs)
+    }
+    public static func + (lhs: BigUInt, rhs: GeneralizedPrimeFieldElement) -> GeneralizedPrimeFieldElement {
+        let bytes = lhs.serialize()
+        let native: UnderlyingType? = UnderlyingType.init(bytes)
+        precondition(native != nil)
+        let newFE = field.fromValue(native!)
+        return self.field.mul(newFE, rhs)
+    }
+    public static func + (lhs: BytesRepresentable, rhs: GeneralizedPrimeFieldElement) -> GeneralizedPrimeFieldElement {
+        let newFE = self.field.fromValue(lhs)
+        return self.field.add(newFE, rhs)
+    }
+//    func mod(_ q: BigUInt) -> GeneralizedPrimeFieldElement {
+//        return self.field.mod(self, q)
+//    }
+//    func mod(_ q: BigUInt) -> BigUInt {
+//        let m = self.field.mod(q)
+//    }
+//    func mod(_ q: BytesRepresentable) -> BytesRepresentable
+//    func mod(_ q: UnderlyingType) -> Self
+//    func mod(_ q: Self) -> Self
+//    func inv(_ q: BigUInt) -> Self
+    public func pow(_ a: BytesRepresentable) -> GeneralizedPrimeFieldElement {
+        return self.field.pow(self, a)
+    }
+    public func inv() -> GeneralizedPrimeFieldElement {
+        return self.field.inv(self)
+    }
+    public func sqrt() -> GeneralizedPrimeFieldElement {
+        return self.field.sqrt(self)
+    }
+    public func negate() -> GeneralizedPrimeFieldElement {
+        return self.field.neg(self)
+    }
+}
+
+

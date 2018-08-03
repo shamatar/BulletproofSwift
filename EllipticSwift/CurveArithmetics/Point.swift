@@ -85,7 +85,7 @@ public struct ProjectivePoint { // also refered as Jacobian Point
     public var curve: Curve
     
     public var isInfinity: Bool {
-        return self.rawZ.value == 0
+        return self.rawZ.isZero
     }
     public var rawX: GeneralPrimeFieldElement
     public var rawY: GeneralPrimeFieldElement
@@ -93,8 +93,8 @@ public struct ProjectivePoint { // also refered as Jacobian Point
     
     public static func infinityPoint(_ curve: Curve) -> ProjectivePoint {
         let field = curve.field
-        let zero = field.fromValue(BigNumber(integerLiteral: 0))
-        let one = field.fromValue(BigNumber(integerLiteral: 1))
+        let zero = field.zeroElement
+        let one = field.identityElement
         return ProjectivePoint(zero, one, zero, curve)
     }
     
@@ -114,7 +114,7 @@ public struct ProjectivePoint { // also refered as Jacobian Point
     public func toAffine() -> AffinePoint {
         if self.isInfinity {
             let field = curve.field
-            let zero = field.fromValue(BigNumber(integerLiteral: 0))
+            let zero = field.zeroElement
             var p = AffinePoint(zero, zero, self.curve)
             p.isInfinity = true
             return p

@@ -1,62 +1,70 @@
 //
-//  WeierstrassCurve.swift
+//  GeneralizedWeirstrassCurve.swift
 //  EllipticSwift
 //
-//  Created by Alexander Vlasov on 10.07.2018.
+//  Created by Alexander Vlasov on 02.08.2018.
 //  Copyright © 2018 Alexander Vlasov. All rights reserved.
 //
 
 import Foundation
 import BigInt
 
-public class WeierstrassCurve {
-    public var field: GeneralPrimeField
-    public var order: BigNumber
-    public var curveOrderField: GeneralPrimeField
-    public var A: GeneralPrimeFieldElement
-    public var B: GeneralPrimeFieldElement
-    public var generator: AffinePoint?
+public class GeneralizedWeierstrassCurve<T>: CurveProtocol where T: PrimeFieldProtocol {
+    public typealias Field = T
+    public typealias FieldElement = GeneralizedPrimeFieldElement<T>
+    public typealias UnderlyingRawType = T.UnderlyingRawType
+    public typealias FE = FieldElement
+    public typealias AffineType = GeneralizedAffinePoint<GeneralizedWeierstrassCurve<T>>
+    public typealias ProjectiveType = GeneralizedProjectivePoint<GeneralizedWeierstrassCurve<T>>
+    public var field: T
+    public var order: UnderlyingRawType
+    public var curveOrderField: T
+    public var A: FE
+    public var B: FE
+//    public var generator: GeneralizedAffinePoint<GeneralizedWeierstrassCurve<T>>?
     
     internal var aIsZero: Bool = false
     internal var bIsZero: Bool = false
     
-    public init(field: GeneralPrimeField, order: BigNumber, A: BigNumber, B: BigNumber) {
+    public init(field: T, order: UnderlyingRawType, A: UnderlyingRawType, B: UnderlyingRawType) {
         self.field = field
         self.order = order
-        let reducedA = field.fromValue(A)
-        let reducedB = field.fromValue(B)
-        if A == 0 {
+        let reducedA = FE.fromValue(A, field: field)
+        let reducedB = FE.fromValue(B, field: field)
+        if A.isZero {
             self.aIsZero = true
         }
-        if B == 0 {
+        if B.isZero {
             self.bIsZero = true
         }
         self.A = reducedA
         self.B = reducedB
-        let det = field.fromValue(BigNumber(integerLiteral: 4)) * self.A * self.A * self.A + field.fromValue(BigNumber(integerLiteral: 27)) * self.B * self.B
+        let FOUR: FE = FE.fromValue(UInt64(4), field: field)
+        var det = FOUR * self.A * self.A * self.A
+        let TWENTYSEVEN: FE = FE.fromValue(UInt64(27), field: field)
+        det = det + TWENTYSEVEN * self.B * self.B
         precondition(!det.isZero, "Creating a curve with 0 determinant")
-        self.curveOrderField = GeneralPrimeField(self.order)
+        self.curveOrderField = T(self.order)
     }
     
     public func setGenerator(_ p: AffineCoordinates) -> Bool {
         if p.isInfinity {
             return false
         }
-        let reducedGeneratorX = field.fromValue(p.X)
-        let reducedGeneratorY = field.fromValue(p.Y)
-        let generatorPoint = AffinePoint(reducedGeneratorX, reducedGeneratorY, Curve.weierstrass(self))
+        let reducedGeneratorX = FE.fromValue(p.X, field: self.field)
+        let reducedGeneratorY = FE.fromValue(p.Y, field: self.field)
+        let generatorPoint = AffineType(reducedGeneratorX, reducedGeneratorY, self)
         if !checkOnCurve(generatorPoint) {
             return false
         }
         if !self.mul(self.order, generatorPoint).isInfinity {
             return false
         }
-        self.generator = generatorPoint
+//        self.generator = generatorPoint
         return true
     }
 
-    
-    public func checkOnCurve(_ p: AffinePoint) -> Bool {
+    public func checkOnCurve(_ p: AffineType) -> Bool {
         if p.isInfinity {
             return false
         }
@@ -70,32 +78,25 @@ public class WeierstrassCurve {
         }
         return lhs == rhs
     }
-    
-    public func toPoint(_ x: BigUInt, _ y: BigUInt) -> AffinePoint? {
+
+    public func toPoint(_ x: BigUInt, _ y: BigUInt) -> AffineType? {
         return toPoint(AffineCoordinates(x, y))
     }
     
-    public func toPoint(_ p: AffineCoordinates) -> AffinePoint? {
-        let reducedX = field.fromValue(p.X)
-        let reducedY = field.fromValue(p.Y)
-        let point = AffinePoint(reducedX, reducedY, Curve.weierstrass(self))
+    public func toPoint(_ p: AffineCoordinates) -> AffineType? {
+        let reducedX = FE.fromValue(p.X, field: self.field)
+        let reducedY = FE.fromValue(p.Y, field: self.field)
+        let point = AffineType(reducedX, reducedY, self)
         if !checkOnCurve(point) {
             return nil
         }
         return point
     }
     
-    public func isEqualTo(_ other: WeierstrassCurve) -> Bool {
-        return self.field.isEqualTo(other.field) &&
-            self.order == other.order &&
-            self.A == other.A &&
-            self.B == other.B
-    }
-    
-    public func hashInto(_ data: Data) -> AffinePoint {
-        let bn = BigNumber(data)
+    public func hashInto(_ data: Data) -> AffineType {
+        let bn = UnderlyingRawType(data)
         precondition(bn != nil)
-        var seed = self.field.fromValue(bn!)
+        var seed = FE.fromValue(bn!, field: self.field)
         for _ in 0 ..< 100 {
             let x = seed
             var y2 = x * x * x
@@ -108,17 +109,15 @@ public class WeierstrassCurve {
             // TODO
             let yReduced = y2.sqrt()
             if y2 == yReduced * yReduced {
-                return AffinePoint(x, yReduced, Curve.weierstrass(self))
+                return AffineType(x, yReduced, self)
             }
-            seed = seed + self.field.identityElement
+            seed = seed + FE.identityElement(field)
         }
         precondition(false, "Are you using a normal curve?")
-        return ProjectivePoint.infinityPoint(Curve.weierstrass(self)).toAffine()
+        return ProjectiveType.infinityPoint(self).toAffine()
     }
-}
 
-extension WeierstrassCurve {
-    public func add(_ p: ProjectivePoint, _ q: ProjectivePoint) -> ProjectivePoint {
+    public func add(_ p: ProjectiveType, _ q: ProjectiveType) -> ProjectiveType {
         if p.isInfinity {
             return q
         }
@@ -136,8 +135,8 @@ extension WeierstrassCurve {
         let s2 = q.rawY * pz3 // S2 = Y2*Z1^3
         // Pu, Ps, Qu, Qs
         if u1 == u2 { // U1 == U2
-            if s1 != s2 { // S1 != S2
-                return ProjectivePoint.infinityPoint(Curve.weierstrass(self))
+            if !(s1 == s2) { // S1 != S2
+                return ProjectiveType.infinityPoint(self)
             }
             else {
                 return double(p)
@@ -150,33 +149,33 @@ extension WeierstrassCurve {
         var rx = r * r // r^2
         rx = rx - h3 // r^2 - h^3
         let uh2 = u1 * h2 // U1*h^2
-        let TWO = field.fromValue(BigNumber(integerLiteral: 2))
+        let TWO = field.fromValue(UInt64(2))
         rx = rx - (TWO * uh2) // r^2 - h^3 - 2*U1*h^2
         var ry = uh2 - rx // U1*h^2 - rx
         ry = r * ry // r*(U1*h^2 - rx)
         ry = ry - (s1 * h3) // R*(U1*H^2 - X3) - S1*H^3
         let rz = h * p.rawZ * q.rawZ // H*Z1*Z2
-        return ProjectivePoint(rx, ry, rz, Curve.weierstrass(self))
+        return ProjectiveType(rx, ry, rz, self)
     }
     
-    public func neg(_ p: ProjectivePoint) -> ProjectivePoint {
-        return ProjectivePoint(p.rawX, p.rawY.negate(), p.rawZ, Curve.weierstrass(self))
+    public func neg(_ p: ProjectiveType) -> ProjectiveType {
+        return ProjectiveType(p.rawX, p.rawY.negate(), p.rawZ, self)
     }
     
-    public func sub(_ p: ProjectivePoint, _ q: ProjectivePoint) -> ProjectivePoint {
+    public func sub(_ p: ProjectiveType, _ q: ProjectiveType) -> ProjectiveType {
         return self.add(p, neg(q))
     }
     
-    public func double(_ p: ProjectivePoint) -> ProjectivePoint {
+    public func double(_ p: ProjectiveType) -> ProjectiveType {
         if p.isInfinity {
-           return ProjectivePoint.infinityPoint(Curve.weierstrass(self))
+            return ProjectiveType.infinityPoint(self)
         }
         let field = self.field
         let px = p.rawX
         let py = p.rawY
         let py2 = py * py
-        let FOUR = field.fromValue(BigNumber(integerLiteral: 4))
-        let THREE = field.fromValue(BigNumber(integerLiteral: 3))
+        let FOUR = field.fromValue(UInt64(4))
+        let THREE = field.fromValue(UInt64(3))
         var s = FOUR * px
         s = s * py2
         var m = THREE * px
@@ -186,14 +185,14 @@ extension WeierstrassCurve {
             m = m + z2 * z2 * self.A // m = m + z^4*A
         }
         let qx = m * m - s - s // m^2 - 2*s
-        let TWO = field.fromValue(BigNumber(integerLiteral: 2))
-        let EIGHT = field.fromValue(BigNumber(integerLiteral: 8))
+        let TWO = field.fromValue(UInt64(2))
+        let EIGHT = field.fromValue(UInt64(8))
         let qy = m * (s - qx) - (EIGHT * py2 * py2)
         let qz = TWO * py * p.rawZ
-        return ProjectivePoint(qx, qy, qz, Curve.weierstrass(self))
+        return ProjectiveType(qx, qy, qz, self)
     }
     
-    public func mixedAdd(_ p: ProjectivePoint, _ q: AffinePoint) -> ProjectivePoint {
+    public func mixedAdd(_ p: ProjectiveType, _ q: AffineType) -> ProjectiveType {
         if p.isInfinity {
             return q.toProjective()
         }
@@ -210,7 +209,7 @@ extension WeierstrassCurve {
         let s2 = q.rawY * pz3 // S2 = Y2*Z1^3
         if u1 == u2 {
             if s1 != s2 {
-                return ProjectivePoint.infinityPoint(Curve.weierstrass(self))
+                return ProjectiveType.infinityPoint(self)
             }
             else {
                 return double(p)
@@ -223,76 +222,74 @@ extension WeierstrassCurve {
         var rx = r * r // r^2
         rx = rx - h3 // r^2 - h^3
         let uh2 = u1 * h2 // U1*h^2
-        let TWO = field.fromValue(BigNumber(integerLiteral: 2))
+        let TWO = field.fromValue(UInt64(2))
         rx = rx - (TWO * uh2) // r^2 - h^3 - 2*U1*h^2
         var ry = uh2 - rx // U1*h^2 - rx
         ry = r * ry // r*(U1*h^2 - rx)
         ry = ry - (s1 * h3) // R*(U1*H^2 - X3) - S1*H^3
         let rz = h * p.rawZ // H*Z1*Z2
-        return ProjectivePoint(rx, ry, rz, Curve.weierstrass(self))
+        return ProjectiveType(rx, ry, rz, self)
     }
     
-//    public func mul(_ scalar: BigUInt, _ p: AffinePoint) -> ProjectivePoint {
+    //    public func mul(_ scalar: BigUInt, _ p: AffinePoint) -> ProjectivePoint {
+    //        return wNAFmul(scalar, p)
+    //    }
+    
+//    public func mul(_ scalar: GeneralPrimeFieldElement, _ p: AffineType) -> ProjectiveType {
+//        return wNAFmul(scalar.value, p)
+//    }
+    
+//    public func mul(_ scalar: BigNumber, _ p: AffineType) -> ProjectiveType {
 //        return wNAFmul(scalar, p)
 //    }
     
-    public func mul(_ scalar: GeneralPrimeFieldElement, _ p: AffinePoint) -> ProjectivePoint {
-        return wNAFmul(scalar.value, p)
+//    public func mul<U>(_ scalar: GeneralizedPrimeFieldElement<U>, _ p: AffineType) -> ProjectiveType {
+//        let nativeScalar = scalar.nativeValue
+//        if nativeScalar is UnderlyingRawType {
+//            return doubleAndAddMul(nativeScalar as! UnderlyingRawType, p)
+//        } else {
+//            let a = Field.f
+//            let thisNative = T.fromBytes(nativeScalar.bytes).nativeValue
+//            return doubleAndAddMul(thisNative as! UnderlyingRawType, p)
+//        }
+//    }
+//
+//    public func mul(_ scalar: BytesRepresentable, _ p: AffineType) -> ProjectiveType {
+//        let thisNative = T.fromBytes(scalar.bytes).nativeValue
+//        return doubleAndAddMul(thisNative as! UnderlyingRawType, p)
+//    }
+    
+    public func mul(_ scalar: UnderlyingRawType, _ p: AffineType) -> ProjectiveType {
+        return doubleAndAddMul(scalar, p)
     }
     
-    public func mul(_ scalar: BigNumber, _ p: AffinePoint) -> ProjectivePoint {
-        return wNAFmul(scalar, p)
-    }
-    
-    func wNAFmul(_ scalar: BigNumber,_ p: AffinePoint, windowSize: Int = DefaultWindowSize) -> ProjectivePoint {
-        if scalar.isZero {
-            return ProjectivePoint.infinityPoint(Curve.weierstrass(self))
-        }
-        if p.isInfinity {
-            return ProjectivePoint.infinityPoint(Curve.weierstrass(self))
-        }
-        let reducedScalar = scalar.mod(self.order)
-        let projectiveP = p.toProjective()
-        let numPrecomputedElements = (1 << (windowSize-2)) // 2**(w-1) precomputations required
-        var precomputations = [ProjectivePoint]() // P, 3P, 5P, 7P, 9P, 11P, 13P, 15P ...
-        precomputations.append(projectiveP)
-        let dbl = double(projectiveP)
-        precomputations.append(mixedAdd(dbl, p))
-        for i in 2 ..< numPrecomputedElements {
-            precomputations.append(add(precomputations[i-1], dbl))
-        }
-        let lookups = computeWNAF(scalar: reducedScalar, windowSize: windowSize)
-        var result = ProjectivePoint.infinityPoint(Curve.weierstrass(self))
-        let range = (0 ..< lookups.count).reversed()
-        for i in range {
-            result = double(result)
-            let lookup = lookups[i]
-            if lookup == 0 {
-                continue
-            } else if lookup > 0 {
-                let idx = lookup >> 1
-                let precomputeToAdd = precomputations[idx]
-                result = add(result, precomputeToAdd)
-            } else if lookup < 0 {
-                let idx = -lookup >> 1
-                let precomputeToAdd = neg(precomputations[idx])
-                result = add(result, precomputeToAdd)
+    func doubleAndAddMul(_ scalar: UnderlyingRawType, _ p: AffineType) -> ProjectiveType {
+        var base = p.toProjective()
+        var result = ProjectiveType.infinityPoint(self)
+        let bitwidth = scalar.bitWidth
+        for i in 0 ..< bitwidth {
+            if scalar.bit(i) {
+                result = self.add(result, base)
             }
+            if i == scalar.bitWidth - 1 {
+                break
+            }
+            base = self.double(base)
         }
         return result
     }
     
-//    func wNAFmul(_ scalar: BigUInt, _ p: AffinePoint, windowSize: Int = DefaultWindowSize) -> ProjectivePoint {
-//        if scalar == 0 {
-//            return ProjectivePoint.infinityPoint(Curve.weierstrass(self))
+//    func wNAFmul(_ scalar: BigNumber,_ p: AffineType, windowSize: Int = DefaultWindowSize) -> ProjectiveType {
+//        if scalar.isZero {
+//            return ProjectiveType.infinityPoint(self)
 //        }
 //        if p.isInfinity {
-//            return ProjectivePoint.infinityPoint(Curve.weierstrass(self))
+//            return ProjectiveType.infinityPoint(self)
 //        }
-//        let reducedScalar = scalar % self.order
+//        let reducedScalar = scalar.mod(self.order)
 //        let projectiveP = p.toProjective()
 //        let numPrecomputedElements = (1 << (windowSize-2)) // 2**(w-1) precomputations required
-//        var precomputations = [ProjectivePoint]() // P, 3P, 5P, 7P, 9P, 11P, 13P, 15P ...
+//        var precomputations = [ProjectiveType]() // P, 3P, 5P, 7P, 9P, 11P, 13P, 15P ...
 //        precomputations.append(projectiveP)
 //        let dbl = double(projectiveP)
 //        precomputations.append(mixedAdd(dbl, p))
@@ -300,7 +297,7 @@ extension WeierstrassCurve {
 //            precomputations.append(add(precomputations[i-1], dbl))
 //        }
 //        let lookups = computeWNAF(scalar: reducedScalar, windowSize: windowSize)
-//        var result = ProjectivePoint.infinityPoint(Curve.weierstrass(self))
+//        var result = ProjectiveType.infinityPoint(self)
 //        let range = (0 ..< lookups.count).reversed()
 //        for i in range {
 //            result = double(result)
@@ -319,7 +316,4 @@ extension WeierstrassCurve {
 //        }
 //        return result
 //    }
-    
-    
 }
-

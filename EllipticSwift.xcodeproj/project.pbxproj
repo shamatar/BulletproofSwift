@@ -34,6 +34,20 @@
 		814FB64A211239B8009235FB /* U512+Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB648211239B8009235FB /* U512+Sub.swift */; };
 		814FB64C211239FC009235FB /* U512+Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB64B211239FC009235FB /* U512+Add.swift */; };
 		814FB64D211239FC009235FB /* U512+Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB64B211239FC009235FB /* U512+Add.swift */; };
+		814FB64F21130AC2009235FB /* FieldProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB64E21130AC2009235FB /* FieldProtocols.swift */; };
+		814FB65021130AC2009235FB /* FieldProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB64E21130AC2009235FB /* FieldProtocols.swift */; };
+		814FB65221133056009235FB /* GeneralizedMontField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB65121133056009235FB /* GeneralizedMontField.swift */; };
+		814FB65321133056009235FB /* GeneralizedMontField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB65121133056009235FB /* GeneralizedMontField.swift */; };
+		814FB6582113489F009235FB /* GeneralizedPrimeFieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB6572113489F009235FB /* GeneralizedPrimeFieldElement.swift */; };
+		814FB6592113489F009235FB /* GeneralizedPrimeFieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB6572113489F009235FB /* GeneralizedPrimeFieldElement.swift */; };
+		814FB65C2113638B009235FB /* GeneralizedNaivePrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB65B2113638B009235FB /* GeneralizedNaivePrimeField.swift */; };
+		814FB65D2113638B009235FB /* GeneralizedNaivePrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB65B2113638B009235FB /* GeneralizedNaivePrimeField.swift */; };
+		814FB6632113670D009235FB /* CurveProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB6622113670D009235FB /* CurveProtocols.swift */; };
+		814FB6642113670D009235FB /* CurveProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB6622113670D009235FB /* CurveProtocols.swift */; };
+		814FB66621148C05009235FB /* GeneralizedPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB66521148C05009235FB /* GeneralizedPoint.swift */; };
+		814FB66721148C05009235FB /* GeneralizedPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB66521148C05009235FB /* GeneralizedPoint.swift */; };
+		814FB66821149094009235FB /* GeneralizedWeirstrassCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB65F211363B1009235FB /* GeneralizedWeirstrassCurve.swift */; };
+		814FB66921149095009235FB /* GeneralizedWeirstrassCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB65F211363B1009235FB /* GeneralizedWeirstrassCurve.swift */; };
 		81CFF0E921012A5900E1DA49 /* U128+BitAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CFF0E821012A5900E1DA49 /* U128+BitAccessible.swift */; };
 		81CFF0EB21012B1100E1DA49 /* U256+BitAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CFF0EA21012B1100E1DA49 /* U256+BitAccessible.swift */; };
 		81CFF0ED2101DD5E00E1DA49 /* BigNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CFF0EC2101DD5E00E1DA49 /* BigNumber.swift */; };
@@ -192,6 +206,14 @@
 		814FB6452112396B009235FB /* U512+Div.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U512+Div.swift"; sourceTree = "<group>"; };
 		814FB648211239B8009235FB /* U512+Sub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U512+Sub.swift"; sourceTree = "<group>"; };
 		814FB64B211239FC009235FB /* U512+Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U512+Add.swift"; sourceTree = "<group>"; };
+		814FB64E21130AC2009235FB /* FieldProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldProtocols.swift; sourceTree = "<group>"; };
+		814FB65121133056009235FB /* GeneralizedMontField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralizedMontField.swift; sourceTree = "<group>"; };
+		814FB6542113316B009235FB /* GeneralizedPrimeFieldElement.swift.bak */ = {isa = PBXFileReference; lastKnownFileType = text; path = GeneralizedPrimeFieldElement.swift.bak; sourceTree = "<group>"; };
+		814FB6572113489F009235FB /* GeneralizedPrimeFieldElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralizedPrimeFieldElement.swift; sourceTree = "<group>"; };
+		814FB65B2113638B009235FB /* GeneralizedNaivePrimeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralizedNaivePrimeField.swift; sourceTree = "<group>"; };
+		814FB65F211363B1009235FB /* GeneralizedWeirstrassCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralizedWeirstrassCurve.swift; sourceTree = "<group>"; };
+		814FB6622113670D009235FB /* CurveProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurveProtocols.swift; sourceTree = "<group>"; };
+		814FB66521148C05009235FB /* GeneralizedPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralizedPoint.swift; sourceTree = "<group>"; };
 		81CFF0E821012A5900E1DA49 /* U128+BitAccessible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U128+BitAccessible.swift"; sourceTree = "<group>"; };
 		81CFF0EA21012B1100E1DA49 /* U256+BitAccessible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U256+BitAccessible.swift"; sourceTree = "<group>"; };
 		81CFF0EC2101DD5E00E1DA49 /* BigNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigNumber.swift; sourceTree = "<group>"; };
@@ -364,6 +386,7 @@
 		813CB9E720F1257B001434D4 /* ModularArithmetics */ = {
 			isa = PBXGroup;
 			children = (
+				814FB65A2113636C009235FB /* Generics */,
 				81DFCBF420F4001D00603123 /* Constants.swift */,
 				81DFCC5220F7A32700603123 /* PrimeField.swift */,
 				81DFCC5520F7A34A00603123 /* NaivePrimeField.swift */,
@@ -379,6 +402,28 @@
 				81DFCC9B20F90A9E00603123 /* GeneralPrimeField.swift */,
 			);
 			path = ModularArithmetics;
+			sourceTree = "<group>";
+		};
+		814FB65A2113636C009235FB /* Generics */ = {
+			isa = PBXGroup;
+			children = (
+				814FB64E21130AC2009235FB /* FieldProtocols.swift */,
+				814FB65121133056009235FB /* GeneralizedMontField.swift */,
+				814FB6542113316B009235FB /* GeneralizedPrimeFieldElement.swift.bak */,
+				814FB6572113489F009235FB /* GeneralizedPrimeFieldElement.swift */,
+				814FB65B2113638B009235FB /* GeneralizedNaivePrimeField.swift */,
+			);
+			path = Generics;
+			sourceTree = "<group>";
+		};
+		814FB65E2113639A009235FB /* Generics */ = {
+			isa = PBXGroup;
+			children = (
+				814FB6622113670D009235FB /* CurveProtocols.swift */,
+				814FB66521148C05009235FB /* GeneralizedPoint.swift */,
+				814FB65F211363B1009235FB /* GeneralizedWeirstrassCurve.swift */,
+			);
+			path = Generics;
 			sourceTree = "<group>";
 		};
 		81CFF0EE2101DD9100E1DA49 /* BigNumber */ = {
@@ -410,6 +455,7 @@
 		81DFCBF720F4AB4000603123 /* CurveArithmetics */ = {
 			isa = PBXGroup;
 			children = (
+				814FB65E2113639A009235FB /* Generics */,
 				81DFCBF820F4AB5200603123 /* Point.swift */,
 				81DFCBFB20F4AE6E00603123 /* Curve.swift */,
 				81DFCBFE20F4AEBA00603123 /* WeierstrassCurve.swift */,
@@ -773,6 +819,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				814FB6582113489F009235FB /* GeneralizedPrimeFieldElement.swift in Sources */,
 				814FB635210F0833009235FB /* NativeMontPrimeField.swift in Sources */,
 				81DFCCA620FA00B300603123 /* UInt32.swift in Sources */,
 				81DFCC8A20F8AD9E00603123 /* U256+Mul.swift in Sources */,
@@ -792,6 +839,7 @@
 				81DFCC8720F8AD9300603123 /* U256+Sub.swift in Sources */,
 				81CFF0F02102871E00E1DA49 /* RangeProofVerifier.swift in Sources */,
 				81CFF0F32103B5FE00E1DA49 /* InnerProductProofSystem.swift in Sources */,
+				814FB65221133056009235FB /* GeneralizedMontField.swift in Sources */,
 				81DFCC3F20F6985E00603123 /* RangeProofProver.swift in Sources */,
 				81DFCC9320F8E65C00603123 /* U256+BitOps.swift in Sources */,
 				81DFB3FB210505770011DC85 /* MultiRangeProofVerifier.swift in Sources */,
@@ -807,17 +855,21 @@
 				81DFCC1E20F5F84200603123 /* PrimeFieldElement+Operations.swift in Sources */,
 				81DFCC3820F651B800603123 /* InnerProductProver.swift in Sources */,
 				81CFF0E921012A5900E1DA49 /* U128+BitAccessible.swift in Sources */,
+				814FB65C2113638B009235FB /* GeneralizedNaivePrimeField.swift in Sources */,
 				81DFCC0620F4ECFE00603123 /* windowMethods.swift in Sources */,
 				81DFCC5320F7A32700603123 /* PrimeField.swift in Sources */,
 				81DFCC1820F5F5ED00603123 /* GeneratorVector.swift in Sources */,
 				81DFCC4E20F75E4000603123 /* EfficientInnerProductProofVerifier.swift in Sources */,
+				814FB66621148C05009235FB /* GeneralizedPoint.swift in Sources */,
 				81DFCBF520F4001D00603123 /* Constants.swift in Sources */,
+				814FB64F21130AC2009235FB /* FieldProtocols.swift in Sources */,
 				81DFCBFF20F4AEBA00603123 /* WeierstrassCurve.swift in Sources */,
 				81DFCCA920FA0D1F00603123 /* U128+Equatable.swift in Sources */,
 				81DFCC6C20F8922C00603123 /* FiniteWidthInteger.swift in Sources */,
 				81DFCC9C20F90A9E00603123 /* GeneralPrimeField.swift in Sources */,
 				813CB9EC20F126A4001434D4 /* MontPrimeField.swift in Sources */,
 				81DFCC9620F8F35B00603123 /* NativePrimeField.swift in Sources */,
+				814FB66821149094009235FB /* GeneralizedWeirstrassCurve.swift in Sources */,
 				81DFCBF920F4AB5200603123 /* Point.swift in Sources */,
 				814FB649211239B8009235FB /* U512+Sub.swift in Sources */,
 				81DFCC7E20F8AD7500603123 /* U256+Numeric.swift in Sources */,
@@ -826,6 +878,7 @@
 				81DFCC2820F60EB900603123 /* FieldVectorPolynomial.swift in Sources */,
 				81DFCC2B20F615DC00603123 /* VectorBase.swift in Sources */,
 				81DFCC3C20F657AA00603123 /* GeneratorParams.swift in Sources */,
+				814FB6632113670D009235FB /* CurveProtocols.swift in Sources */,
 				81DFCC1020F5543E00603123 /* Global.swift in Sources */,
 				81DFCC4320F6989900603123 /* PeddersenCommitment.swift in Sources */,
 				81DFCC3220F64C9F00603123 /* InnerProductWitness.swift in Sources */,
@@ -867,6 +920,7 @@
 				81DFCC8B20F8AD9E00603123 /* U256+Mul.swift in Sources */,
 				81DFCC8520F8AD8900603123 /* U256+Aux.swift in Sources */,
 				81DFCC9A20F8F62A00603123 /* GeneralPrimeFieldElement.swift in Sources */,
+				814FB65D2113638B009235FB /* GeneralizedNaivePrimeField.swift in Sources */,
 				81DFCC9120F8ADB300603123 /* U256+Mod.swift in Sources */,
 				81DFCC1620F5F3FA00603123 /* PeddersenBase.swift in Sources */,
 				81CFF0F72103BAD100E1DA49 /* RangeProofSystem.swift in Sources */,
@@ -878,14 +932,17 @@
 				81DFCC9420F8E65C00603123 /* U256+BitOps.swift in Sources */,
 				81DFCC6720F81E0200603123 /* U512.swift in Sources */,
 				81DFCC3620F64F5400603123 /* InnerProductProof.swift in Sources */,
+				814FB66921149095009235FB /* GeneralizedWeirstrassCurve.swift in Sources */,
 				81CFF0F42103B5FE00E1DA49 /* InnerProductProofSystem.swift in Sources */,
 				81DFCC5720F7A34A00603123 /* NaivePrimeField.swift in Sources */,
 				81DFCC4A20F69E8100603123 /* RangeProof.swift in Sources */,
 				81DFCC0320F4B81900603123 /* PrecompiledCurves.swift in Sources */,
 				81DFCBFD20F4AE6E00603123 /* Curve.swift in Sources */,
 				814FB63E210F6A6B009235FB /* U512+Aux.swift in Sources */,
+				814FB6642113670D009235FB /* CurveProtocols.swift in Sources */,
 				81DFCC1F20F5F84200603123 /* PrimeFieldElement+Operations.swift in Sources */,
 				81DFCC3920F651B800603123 /* InnerProductProver.swift in Sources */,
+				814FB65321133056009235FB /* GeneralizedMontField.swift in Sources */,
 				81DFCC0720F4ECFE00603123 /* windowMethods.swift in Sources */,
 				81DFCC5420F7A32700603123 /* PrimeField.swift in Sources */,
 				81DFCC1920F5F5ED00603123 /* GeneratorVector.swift in Sources */,
@@ -898,7 +955,9 @@
 				813CB9ED20F126A4001434D4 /* MontPrimeField.swift in Sources */,
 				814FB6412112385F009235FB /* U512+Mod.swift in Sources */,
 				81DFCC9720F8F35B00603123 /* NativePrimeField.swift in Sources */,
+				814FB6592113489F009235FB /* GeneralizedPrimeFieldElement.swift in Sources */,
 				81DFCBFA20F4AB5200603123 /* Point.swift in Sources */,
+				814FB66721148C05009235FB /* GeneralizedPoint.swift in Sources */,
 				81DFCC7F20F8AD7500603123 /* U256+Numeric.swift in Sources */,
 				81DFCC2F20F645CA00603123 /* ProofUtils.swift in Sources */,
 				81DFCCA120F9416C00603123 /* U128.swift in Sources */,
@@ -908,6 +967,7 @@
 				81DFCC3D20F657AA00603123 /* GeneratorParams.swift in Sources */,
 				81DFCC1120F5543E00603123 /* Global.swift in Sources */,
 				81DFCC4420F6989900603123 /* PeddersenCommitment.swift in Sources */,
+				814FB65021130AC2009235FB /* FieldProtocols.swift in Sources */,
 				81DFCC3320F64C9F00603123 /* InnerProductWitness.swift in Sources */,
 				81DFCC8220F8AD7F00603123 /* U256+Add.swift in Sources */,
 				814FB638210F0888009235FB /* NativeMontPrimeFieldElement.swift in Sources */,
