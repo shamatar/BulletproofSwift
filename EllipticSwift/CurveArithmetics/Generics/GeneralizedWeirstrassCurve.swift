@@ -47,7 +47,7 @@ public class GeneralizedWeierstrassCurve<T>: CurveProtocol where T: PrimeFieldPr
         self.curveOrderField = T(self.order)
     }
     
-    public func setGenerator(_ p: AffineCoordinates) -> Bool {
+    public func testGenerator(_ p: AffineCoordinates) -> Bool {
         if p.isInfinity {
             return false
         }
@@ -97,6 +97,7 @@ public class GeneralizedWeierstrassCurve<T>: CurveProtocol where T: PrimeFieldPr
         let bn = UnderlyingRawType(data)
         precondition(bn != nil)
         var seed = FE.fromValue(bn!, field: self.field)
+        let ONE = FE.identityElement(field)
         for _ in 0 ..< 100 {
             let x = seed
             var y2 = x * x * x
@@ -111,7 +112,7 @@ public class GeneralizedWeierstrassCurve<T>: CurveProtocol where T: PrimeFieldPr
             if y2 == yReduced * yReduced {
                 return AffineType(x, yReduced, self)
             }
-            seed = seed + FE.identityElement(field)
+            seed = seed + ONE
         }
         precondition(false, "Are you using a normal curve?")
         return ProjectiveType.infinityPoint(self).toAffine()
@@ -135,7 +136,7 @@ public class GeneralizedWeierstrassCurve<T>: CurveProtocol where T: PrimeFieldPr
         let s2 = q.rawY * pz3 // S2 = Y2*Z1^3
         // Pu, Ps, Qu, Qs
         if u1 == u2 { // U1 == U2
-            if !(s1 == s2) { // S1 != S2
+            if s1 != s2 { // S1 != S2
                 return ProjectiveType.infinityPoint(self)
             }
             else {
@@ -149,7 +150,7 @@ public class GeneralizedWeierstrassCurve<T>: CurveProtocol where T: PrimeFieldPr
         var rx = r * r // r^2
         rx = rx - h3 // r^2 - h^3
         let uh2 = u1 * h2 // U1*h^2
-        let TWO = field.fromValue(UInt64(2))
+        let TWO = FE.fromValue(UInt64(2), field: field)
         rx = rx - (TWO * uh2) // r^2 - h^3 - 2*U1*h^2
         var ry = uh2 - rx // U1*h^2 - rx
         ry = r * ry // r*(U1*h^2 - rx)
@@ -174,8 +175,8 @@ public class GeneralizedWeierstrassCurve<T>: CurveProtocol where T: PrimeFieldPr
         let px = p.rawX
         let py = p.rawY
         let py2 = py * py
-        let FOUR = field.fromValue(UInt64(4))
-        let THREE = field.fromValue(UInt64(3))
+        let FOUR = FE.fromValue(UInt64(4), field: field)
+        let THREE = FE.fromValue(UInt64(3), field: field)
         var s = FOUR * px
         s = s * py2
         var m = THREE * px
@@ -185,8 +186,8 @@ public class GeneralizedWeierstrassCurve<T>: CurveProtocol where T: PrimeFieldPr
             m = m + z2 * z2 * self.A // m = m + z^4*A
         }
         let qx = m * m - s - s // m^2 - 2*s
-        let TWO = field.fromValue(UInt64(2))
-        let EIGHT = field.fromValue(UInt64(8))
+        let TWO = FE.fromValue(UInt64(2), field: field)
+        let EIGHT = FE.fromValue(UInt64(8), field: field)
         let qy = m * (s - qx) - (EIGHT * py2 * py2)
         let qz = TWO * py * p.rawZ
         return ProjectiveType(qx, qy, qz, self)
@@ -222,7 +223,7 @@ public class GeneralizedWeierstrassCurve<T>: CurveProtocol where T: PrimeFieldPr
         var rx = r * r // r^2
         rx = rx - h3 // r^2 - h^3
         let uh2 = u1 * h2 // U1*h^2
-        let TWO = field.fromValue(UInt64(2))
+        let TWO = FE.fromValue(UInt64(2), field: field)
         rx = rx - (TWO * uh2) // r^2 - h^3 - 2*U1*h^2
         var ry = uh2 - rx // U1*h^2 - rx
         ry = r * ry // r*(U1*h^2 - rx)
@@ -279,7 +280,7 @@ public class GeneralizedWeierstrassCurve<T>: CurveProtocol where T: PrimeFieldPr
         return result
     }
     
-//    func wNAFmul(_ scalar: BigNumber,_ p: AffineType, windowSize: Int = DefaultWindowSize) -> ProjectiveType {
+//    func wNAFmul(_ scalar: UnderlyingRawType, _ p: AffineType, windowSize: Int = DefaultWindowSize) -> ProjectiveType {
 //        if scalar.isZero {
 //            return ProjectiveType.infinityPoint(self)
 //        }

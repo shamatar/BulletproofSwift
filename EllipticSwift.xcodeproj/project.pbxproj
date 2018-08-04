@@ -36,8 +36,8 @@
 		814FB64D211239FC009235FB /* U512+Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB64B211239FC009235FB /* U512+Add.swift */; };
 		814FB64F21130AC2009235FB /* FieldProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB64E21130AC2009235FB /* FieldProtocols.swift */; };
 		814FB65021130AC2009235FB /* FieldProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB64E21130AC2009235FB /* FieldProtocols.swift */; };
-		814FB65221133056009235FB /* GeneralizedMontField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB65121133056009235FB /* GeneralizedMontField.swift */; };
-		814FB65321133056009235FB /* GeneralizedMontField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB65121133056009235FB /* GeneralizedMontField.swift */; };
+		814FB65221133056009235FB /* GeneralizedMontPrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB65121133056009235FB /* GeneralizedMontPrimeField.swift */; };
+		814FB65321133056009235FB /* GeneralizedMontPrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB65121133056009235FB /* GeneralizedMontPrimeField.swift */; };
 		814FB6582113489F009235FB /* GeneralizedPrimeFieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB6572113489F009235FB /* GeneralizedPrimeFieldElement.swift */; };
 		814FB6592113489F009235FB /* GeneralizedPrimeFieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB6572113489F009235FB /* GeneralizedPrimeFieldElement.swift */; };
 		814FB65C2113638B009235FB /* GeneralizedNaivePrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FB65B2113638B009235FB /* GeneralizedNaivePrimeField.swift */; };
@@ -207,7 +207,7 @@
 		814FB648211239B8009235FB /* U512+Sub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U512+Sub.swift"; sourceTree = "<group>"; };
 		814FB64B211239FC009235FB /* U512+Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "U512+Add.swift"; sourceTree = "<group>"; };
 		814FB64E21130AC2009235FB /* FieldProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldProtocols.swift; sourceTree = "<group>"; };
-		814FB65121133056009235FB /* GeneralizedMontField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralizedMontField.swift; sourceTree = "<group>"; };
+		814FB65121133056009235FB /* GeneralizedMontPrimeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralizedMontPrimeField.swift; sourceTree = "<group>"; };
 		814FB6542113316B009235FB /* GeneralizedPrimeFieldElement.swift.bak */ = {isa = PBXFileReference; lastKnownFileType = text; path = GeneralizedPrimeFieldElement.swift.bak; sourceTree = "<group>"; };
 		814FB6572113489F009235FB /* GeneralizedPrimeFieldElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralizedPrimeFieldElement.swift; sourceTree = "<group>"; };
 		814FB65B2113638B009235FB /* GeneralizedNaivePrimeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralizedNaivePrimeField.swift; sourceTree = "<group>"; };
@@ -408,10 +408,10 @@
 			isa = PBXGroup;
 			children = (
 				814FB64E21130AC2009235FB /* FieldProtocols.swift */,
-				814FB65121133056009235FB /* GeneralizedMontField.swift */,
 				814FB6542113316B009235FB /* GeneralizedPrimeFieldElement.swift.bak */,
 				814FB6572113489F009235FB /* GeneralizedPrimeFieldElement.swift */,
 				814FB65B2113638B009235FB /* GeneralizedNaivePrimeField.swift */,
+				814FB65121133056009235FB /* GeneralizedMontPrimeField.swift */,
 			);
 			path = Generics;
 			sourceTree = "<group>";
@@ -839,7 +839,7 @@
 				81DFCC8720F8AD9300603123 /* U256+Sub.swift in Sources */,
 				81CFF0F02102871E00E1DA49 /* RangeProofVerifier.swift in Sources */,
 				81CFF0F32103B5FE00E1DA49 /* InnerProductProofSystem.swift in Sources */,
-				814FB65221133056009235FB /* GeneralizedMontField.swift in Sources */,
+				814FB65221133056009235FB /* GeneralizedMontPrimeField.swift in Sources */,
 				81DFCC3F20F6985E00603123 /* RangeProofProver.swift in Sources */,
 				81DFCC9320F8E65C00603123 /* U256+BitOps.swift in Sources */,
 				81DFB3FB210505770011DC85 /* MultiRangeProofVerifier.swift in Sources */,
@@ -942,7 +942,7 @@
 				814FB6642113670D009235FB /* CurveProtocols.swift in Sources */,
 				81DFCC1F20F5F84200603123 /* PrimeFieldElement+Operations.swift in Sources */,
 				81DFCC3920F651B800603123 /* InnerProductProver.swift in Sources */,
-				814FB65321133056009235FB /* GeneralizedMontField.swift in Sources */,
+				814FB65321133056009235FB /* GeneralizedMontPrimeField.swift in Sources */,
 				81DFCC0720F4ECFE00603123 /* windowMethods.swift in Sources */,
 				81DFCC5420F7A32700603123 /* PrimeField.swift in Sources */,
 				81DFCC1920F5F5ED00603123 /* GeneratorVector.swift in Sources */,

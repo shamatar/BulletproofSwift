@@ -56,7 +56,8 @@ extension U256: MontArithmeticsCompatible {
         
         // here we use a multiplication in a "true" form with R = 2^256 !
         var modulusCopy = modulus
-        var x = self.halfMul(b)
+//        var x = self.halfMul(b)
+        var x = self.modMultiply(b, modulus)
         var s = x.halfMul(montK)
         var v = U512()
         var t = U512()
@@ -68,7 +69,7 @@ extension U256: MontArithmeticsCompatible {
         if (!bottom.isZero) {
             return U256.zero
         }
-        precondition(!u.isZero)
+//        precondition(!u.isZero)
         if u < modulus {
             return u
         } else {

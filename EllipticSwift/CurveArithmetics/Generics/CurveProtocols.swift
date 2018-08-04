@@ -33,7 +33,7 @@ public protocol CurveProtocol {
     func mul(_ scalar: Field.UnderlyingRawType, _ p: AffineType) -> ProjectiveType
     func neg(_ p: ProjectiveType) -> ProjectiveType
     func hashInto(_ data: Data) -> AffineType
-    func setGenerator(_ p: AffineCoordinates) -> Bool
+    func testGenerator(_ p: AffineCoordinates) -> Bool
 }
 
 public protocol AffinePointProtocol {
