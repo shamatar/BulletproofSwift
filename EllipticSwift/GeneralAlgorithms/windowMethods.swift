@@ -102,13 +102,19 @@ public func computeWNAF(scalar: BigNumber, windowSize: Int = DefaultWindowSize) 
     var dCoeffs = [Int]()
     var i = 0
     var scalarCopy = scalar
-    let maxBit = windowSize - 1
+//    let maxBit = windowSize - 1
     let half = 1 << (windowSize-1)
     let full = 1 << windowSize
     let data = scalar.bytes.bytes
+    let numBytes = data.count
+    let endBit = numBytes * 8 - 1
+    var beginingBit = endBit - windowSize + 1
+    if beginingBit < 0 {
+        beginingBit = 0
+    }
     while scalarCopy > 0 {
         if scalarCopy.bit(0) {
-            let coeff = bits(data, maxBit, 0) // should be window size long
+            let coeff = bits(data, beginingBit, endBit) // should be window size long
             let mods = guardedMods(coeff, half, full)
             dCoeffs.append(mods)
             if mods > 0 {
@@ -120,6 +126,47 @@ public func computeWNAF(scalar: BigNumber, windowSize: Int = DefaultWindowSize) 
             dCoeffs.append(0)
         }
         scalarCopy = scalarCopy >> UInt32(1)
+        i = i + 1
+    }
+    return dCoeffs
+}
+
+// returns [Int] - lookup coefficients in precompute, stores as SIGNED
+public func computeWNAF<T: FiniteFieldCompatible>(scalar: T, windowSize: Int = DefaultWindowSize) -> [Int] {
+    var result = [Int]()
+    result.reserveCapacity(100)
+    var coeffsIndex: Int = 0 // points to array of NAF coefficients.
+    func guardedMods(_ a: UInt32, _ half: Int, _ full: Int) -> Int {
+        precondition(full <= UInt32.max)
+        if a > half {
+            return full - Int(a)
+        } else {
+            return Int(a)
+        }
+    }
+    var dCoeffs = [Int]()
+    var i = 0
+    var scalarCopy = scalar
+    let maxBit = windowSize - 1
+    let half = 1 << (windowSize-1)
+    let full = 1 << windowSize
+    while scalarCopy > 0 {
+        if !scalarCopy.isEven {
+            let data = scalarCopy.bytes.bytes
+            let coeff = bits(data, maxBit, 0) // should be window size long
+            let mods = guardedMods(coeff, half, full)
+            dCoeffs.append(mods)
+            if mods > 0 {
+                scalarCopy = scalarCopy - T(UInt64(mods))
+            } else {
+                scalarCopy = scalarCopy + T(UInt64(-mods))
+            }
+//            scalarCopy = scalarCopy >> UInt32(windowSize)
+            scalarCopy = scalarCopy >> UInt32(1)
+        } else {
+            dCoeffs.append(0)
+            scalarCopy = scalarCopy >> UInt32(1)
+        }
         i = i + 1
     }
     return dCoeffs
@@ -170,7 +217,6 @@ public func computeSlidingWindow<T: FiniteFieldCompatible> (scalar: T, windowSiz
     }
     return (lookupCoeffs, powers)
 }
-
 
 internal func bits(_ beData: [UInt8], _ from: Int, _ to: Int) -> UInt32 {
     // TODO: should improve to one pass

@@ -261,7 +261,8 @@ public class GeneralizedWeierstrassCurve<T>: CurveProtocol where T: PrimeFieldPr
 //    }
     
     public func mul(_ scalar: UnderlyingRawType, _ p: AffineType) -> ProjectiveType {
-        return doubleAndAddMul(scalar, p)
+//        return doubleAndAddMul(scalar, p)
+        return wNAFmul(scalar, p)
     }
     
     func doubleAndAddMul(_ scalar: UnderlyingRawType, _ p: AffineType) -> ProjectiveType {
@@ -280,41 +281,41 @@ public class GeneralizedWeierstrassCurve<T>: CurveProtocol where T: PrimeFieldPr
         return result
     }
     
-//    func wNAFmul(_ scalar: UnderlyingRawType, _ p: AffineType, windowSize: Int = DefaultWindowSize) -> ProjectiveType {
-//        if scalar.isZero {
-//            return ProjectiveType.infinityPoint(self)
-//        }
-//        if p.isInfinity {
-//            return ProjectiveType.infinityPoint(self)
-//        }
-//        let reducedScalar = scalar.mod(self.order)
-//        let projectiveP = p.toProjective()
-//        let numPrecomputedElements = (1 << (windowSize-2)) // 2**(w-1) precomputations required
-//        var precomputations = [ProjectiveType]() // P, 3P, 5P, 7P, 9P, 11P, 13P, 15P ...
-//        precomputations.append(projectiveP)
-//        let dbl = double(projectiveP)
-//        precomputations.append(mixedAdd(dbl, p))
-//        for i in 2 ..< numPrecomputedElements {
-//            precomputations.append(add(precomputations[i-1], dbl))
-//        }
-//        let lookups = computeWNAF(scalar: reducedScalar, windowSize: windowSize)
-//        var result = ProjectiveType.infinityPoint(self)
-//        let range = (0 ..< lookups.count).reversed()
-//        for i in range {
-//            result = double(result)
-//            let lookup = lookups[i]
-//            if lookup == 0 {
-//                continue
-//            } else if lookup > 0 {
-//                let idx = lookup >> 1
-//                let precomputeToAdd = precomputations[idx]
-//                result = add(result, precomputeToAdd)
-//            } else if lookup < 0 {
-//                let idx = -lookup >> 1
-//                let precomputeToAdd = neg(precomputations[idx])
-//                result = add(result, precomputeToAdd)
-//            }
-//        }
-//        return result
-//    }
+    func wNAFmul(_ scalar: UnderlyingRawType, _ p: AffineType, windowSize: Int = DefaultWindowSize) -> ProjectiveType {
+        if scalar.isZero {
+            return ProjectiveType.infinityPoint(self)
+        }
+        if p.isInfinity {
+            return ProjectiveType.infinityPoint(self)
+        }
+        let reducedScalar = scalar.mod(self.order)
+        let projectiveP = p.toProjective()
+        let numPrecomputedElements = (1 << (windowSize-2)) // 2**(w-1) precomputations required
+        var precomputations = [ProjectiveType]() // P, 3P, 5P, 7P, 9P, 11P, 13P, 15P ...
+        precomputations.append(projectiveP)
+        let dbl = double(projectiveP)
+        precomputations.append(mixedAdd(dbl, p))
+        for i in 2 ..< numPrecomputedElements {
+            precomputations.append(add(precomputations[i-1], dbl))
+        }
+        let lookups = computeWNAF(scalar: reducedScalar, windowSize: windowSize)
+        var result = ProjectiveType.infinityPoint(self)
+        let range = (0 ..< lookups.count).reversed()
+        for i in range {
+            result = double(result)
+            let lookup = lookups[i]
+            if lookup == 0 {
+                continue
+            } else if lookup > 0 {
+                let idx = lookup >> 1
+                let precomputeToAdd = precomputations[idx]
+                result = add(result, precomputeToAdd)
+            } else if lookup < 0 {
+                let idx = -lookup >> 1
+                let precomputeToAdd = neg(precomputations[idx])
+                result = add(result, precomputeToAdd)
+            }
+        }
+        return result
+    }
 }

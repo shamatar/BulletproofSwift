@@ -657,8 +657,13 @@ class FixedWidthNumbers: XCTestCase {
         let c = secp256k1WeierstrassCurve
         let p = c.toPoint(BigUInt("5cfdf0eaa22d4d954067ab6f348e400f97357e2703821195131bfe78f7c92b38", radix: 16)!, BigUInt("584171d79868d22fae4442faede6d2c4972a35d1699453254d1b0df029225032", radix: 16)!)
         XCTAssert(p != nil)
-        let res = c.mul(U256(scalar.serialize())! , p!)
-        let resAff = res.toAffine().coordinates
+        var res = c.wNAFmul(U256(scalar.serialize())! , p!)
+        var resAff = res.toAffine().coordinates
+        XCTAssert(!resAff.isInfinity)
+        XCTAssert(resAff.X == BigUInt("e2b1976566023f61f70893549a497dbf68f14e6cb44ba1b3bbe8c438a172a7b0", radix: 16)!)
+        XCTAssert(resAff.Y == BigUInt("d088864d26ac7c96690ebc652b2906e8f2b85bccfb27b181d587899ccab4b442", radix: 16)!)
+        res = c.doubleAndAddMul(U256(scalar.serialize())! , p!)
+        resAff = res.toAffine().coordinates
         XCTAssert(!resAff.isInfinity)
         XCTAssert(resAff.X == BigUInt("e2b1976566023f61f70893549a497dbf68f14e6cb44ba1b3bbe8c438a172a7b0", radix: 16)!)
         XCTAssert(resAff.Y == BigUInt("d088864d26ac7c96690ebc652b2906e8f2b85bccfb27b181d587899ccab4b442", radix: 16)!)
@@ -718,4 +723,46 @@ class FixedWidthNumbers: XCTestCase {
         XCTAssert(trivial.value == mont.value)
     }
     
+    
+    func testPointMulPerformanceDoubleAndAdd() {
+        let secp256k1PrimeBUI = BigUInt("fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f", radix: 16)!
+        let secp256k1PrimeField = GeneralizedMontPrimeField<U256>.init(secp256k1PrimeBUI)
+        //        let secp256k1PrimeField = GeneralizedNaivePrimeField<U256>.init(secp256k1PrimeBUI)
+        let secp256k1CurveOrderBUI = BigUInt("fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141", radix: 16)!
+        let secp256k1CurveOrder = U256(secp256k1CurveOrderBUI.serialize())!
+        let secp256k1WeierstrassCurve = GeneralizedWeierstrassCurve(field: secp256k1PrimeField, order: secp256k1CurveOrder, A: U256(0), B: U256(7))
+        let generatorX = BigUInt("79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798", radix: 16)!
+        let generatorY = BigUInt("483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8", radix: 16)!
+        let success = secp256k1WeierstrassCurve.testGenerator(AffineCoordinates(generatorX, generatorY))
+        XCTAssert(success, "Failed to init secp256k1 curve!")
+        
+        let scalar = BigUInt("e853ff4cc88e32bc6c2b74ffaca14a7e4b118686e77eefb086cb0ae298811127", radix: 16)!
+        let c = secp256k1WeierstrassCurve
+        let p = c.toPoint(BigUInt("5cfdf0eaa22d4d954067ab6f348e400f97357e2703821195131bfe78f7c92b38", radix: 16)!, BigUInt("584171d79868d22fae4442faede6d2c4972a35d1699453254d1b0df029225032", radix: 16)!)
+        XCTAssert(p != nil)
+        measure {
+            let _ = c.doubleAndAddMul(U256(scalar.serialize())! , p!)
+        }
+    }
+    
+    func testPointMulPerformanceWNAF() {
+        let secp256k1PrimeBUI = BigUInt("fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f", radix: 16)!
+        let secp256k1PrimeField = GeneralizedMontPrimeField<U256>.init(secp256k1PrimeBUI)
+        //        let secp256k1PrimeField = GeneralizedNaivePrimeField<U256>.init(secp256k1PrimeBUI)
+        let secp256k1CurveOrderBUI = BigUInt("fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141", radix: 16)!
+        let secp256k1CurveOrder = U256(secp256k1CurveOrderBUI.serialize())!
+        let secp256k1WeierstrassCurve = GeneralizedWeierstrassCurve(field: secp256k1PrimeField, order: secp256k1CurveOrder, A: U256(0), B: U256(7))
+        let generatorX = BigUInt("79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798", radix: 16)!
+        let generatorY = BigUInt("483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8", radix: 16)!
+        let success = secp256k1WeierstrassCurve.testGenerator(AffineCoordinates(generatorX, generatorY))
+        XCTAssert(success, "Failed to init secp256k1 curve!")
+        
+        let scalar = BigUInt("e853ff4cc88e32bc6c2b74ffaca14a7e4b118686e77eefb086cb0ae298811127", radix: 16)!
+        let c = secp256k1WeierstrassCurve
+        let p = c.toPoint(BigUInt("5cfdf0eaa22d4d954067ab6f348e400f97357e2703821195131bfe78f7c92b38", radix: 16)!, BigUInt("584171d79868d22fae4442faede6d2c4972a35d1699453254d1b0df029225032", radix: 16)!)
+        XCTAssert(p != nil)
+        measure {
+            let _ = c.wNAFmul(U256(scalar.serialize())! , p!)
+        }
+    }
 }
